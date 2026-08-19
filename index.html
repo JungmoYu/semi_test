@@ -9,207 +9,104 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.19/index.min.css">
 <style>
 :root{
-  --ink:#0d1321;          /* 히어로 배경 — 짙은 잉크 네이비 */
-  --paper:#f4f6f8;        /* 본문 배경 */
-  --card:#ffffff;
-  --text:#1a2233;
-  --muted:#5c6675;
-  --line:#e3e7ec;
-  --signal:#00b894;       /* PASS·신호 그린 */
-  --signal-dark:#00775f;
-  --probe:#f0a500;        /* 프로브·주의 골드 */
-  --fail:#e2504a;
-  --accent:#3d7bfd;       /* 링크·포커스 블루 */
-  --radius:14px;
+  --ink:#0d1321;--paper:#f4f6f8;--card:#ffffff;--text:#1a2233;--muted:#5c6675;--line:#e3e7ec;
+  --signal:#00b894;--signal-dark:#00775f;--probe:#f0a500;--fail:#e2504a;--accent:#3d7bfd;--radius:14px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  background:var(--paper);color:var(--text);line-height:1.65;
-  font-feature-settings:"ss05";
-}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:var(--paper);color:var(--text);line-height:1.65;font-feature-settings:"ss05"}
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
-
-/* ---------- 히어로 ---------- */
 .hero{background:var(--ink);color:#eef1f6;padding:64px 24px 88px;position:relative;overflow:hidden}
 .hero-inner{max-width:960px;margin:0 auto;position:relative;z-index:2}
-.eyebrow{
-  display:flex;align-items:center;gap:10px;
-  font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.22em;
-  color:var(--signal);text-transform:uppercase;margin-bottom:22px;
-}
-.eyebrow::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--signal);
-  box-shadow:0 0 10px var(--signal);animation:blink 2.4s ease-in-out infinite}
+.eyebrow{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.22em;color:var(--signal);text-transform:uppercase;margin-bottom:22px}
+.eyebrow::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--signal);box-shadow:0 0 10px var(--signal);animation:blink 2.4s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
 .hero h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.02em;margin-bottom:18px}
-.hero p.lede{max-width:640px;font-size:16.5px;color:#b8c0cd}
-.thesis{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:26px;
-  font-size:14px;color:#dfe4ec}
-.thesis .step{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
-  padding:6px 13px;border-radius:99px;white-space:nowrap}
+.hero p.lede{max-width:680px;font-size:16.5px;color:#b8c0cd}
+.thesis{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:26px;font-size:14px;color:#dfe4ec}
+.thesis .step{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:6px 13px;border-radius:99px;white-space:nowrap}
 .thesis .arrow{color:var(--signal);font-family:"JetBrains Mono",monospace}
 .thesis .step.hot{border-color:var(--signal);color:#dffef4;background:rgba(0,184,148,.12)}
-
-/* 시그니처 — 히어로 하단 테스트 파형 */
 .wave{position:absolute;left:0;right:0;bottom:0;height:120px;z-index:1;opacity:.9}
 .wave svg{width:100%;height:100%}
-.wave .trace{fill:none;stroke:var(--signal);stroke-width:1.6;
-  stroke-dasharray:1600;stroke-dashoffset:1600;animation:draw 3.2s ease-out forwards}
+.wave .trace{fill:none;stroke:var(--signal);stroke-width:1.6;stroke-dasharray:1600;stroke-dashoffset:1600;animation:draw 3.2s ease-out forwards}
 .wave .trace.dim{stroke:rgba(255,255,255,.16);animation-delay:.45s}
 @keyframes draw{to{stroke-dashoffset:0}}
-.wave .pass{font-family:"JetBrains Mono",monospace;font-size:11px;fill:var(--signal);opacity:0;
-  animation:fadein .6s ease-out 2.8s forwards}
-.wave .fail{fill:var(--fail)}
+.wave .pass{font-family:"JetBrains Mono",monospace;font-size:11px;fill:var(--signal);opacity:0;animation:fadein .6s ease-out 2.8s forwards}
 @keyframes fadein{to{opacity:1}}
-@media(prefers-reduced-motion:reduce){
-  .wave .trace{animation:none;stroke-dashoffset:0}
-  .wave .pass{animation:none;opacity:1}
-  .eyebrow::before{animation:none}
-}
-
-/* ---------- 본문 ---------- */
-main{max-width:960px;margin:0 auto;padding:48px 24px 32px}
-.section-label{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;
-  color:var(--muted);text-transform:uppercase;margin-bottom:18px}
+main{max-width:960px;margin:0 auto;padding:48px 24px 48px}
+.section-label{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:18px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
-
-.card{
-  display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-  padding:26px 26px 22px;text-decoration:none;color:inherit;position:relative;
-  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
-}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 26px 22px;text-decoration:none;color:inherit;position:relative;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
 .card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(13,19,33,.09);border-color:#c9d2dd}
 .card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .card.featured{border:1.5px solid var(--signal)}
-.card .icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;
-  font-size:21px;margin-bottom:16px;background:var(--paper)}
+.card .icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:16px;background:var(--paper)}
 .card h2{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:9px}
 .card p{font-size:14px;color:var(--muted);margin-bottom:16px;min-height:63px}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:7px;background:#eef2f6;color:#42506a}
-.tag.green{background:#e0f6ef;color:var(--signal-dark)}
-.tag.gold{background:#fdf3dc;color:#8a6100}
-.tag.blue{background:#e7efff;color:#2456c8}
-.tag.soon{background:#f1f1f1;color:#9aa1ab;font-weight:500}
-.card .go{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--signal-dark);
-  transition:transform .18s ease;display:inline-block}
+.tag.green{background:#e0f6ef;color:var(--signal-dark)}.tag.gold{background:#fdf3dc;color:#8a6100}.tag.blue{background:#e7efff;color:#2456c8}.tag.soon{background:#f1f1f1;color:#9aa1ab;font-weight:500}
+.card .go{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--signal-dark);transition:transform .18s ease;display:inline-block}
 .card:hover .go{transform:translateX(4px)}
-
-/* 밸류체인 미니 스트립 */
-.chainstrip{margin:44px 0 8px;background:var(--card);border:1px solid var(--line);
-  border-radius:var(--radius);padding:24px 26px}
-.chainstrip h3{font-size:15px;font-weight:700;margin-bottom:4px}
-.chainstrip .sub{font-size:13px;color:var(--muted);margin-bottom:18px}
-.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.chain .node{font-size:13px;font-weight:600;padding:8px 13px;border-radius:9px;
-  background:var(--paper);border:1px solid var(--line);color:#34405a;white-space:nowrap;
-  text-decoration:none;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
-.chain a.node:hover{transform:translateY(-2px);border-color:var(--signal);box-shadow:0 6px 16px rgba(13,19,33,.08)}
-.chain a.node:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.chain .node em{font-style:normal;display:block;font-weight:500;font-size:11px;color:var(--muted)}
-.chain .arr{color:var(--signal-dark);font-family:"JetBrains Mono",monospace;font-size:13px}
-
-footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;
-  text-align:center;font-size:12.5px;color:var(--muted)}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;text-align:center;font-size:12.5px;color:var(--muted)}
 footer .mono{font-size:12px}
-@media(max-width:560px){
-  .hero{padding:48px 20px 76px}
-  .card p{min-height:0}
-}
+@media(prefers-reduced-motion:reduce){.wave .trace{animation:none;stroke-dashoffset:0}.wave .pass{animation:none;opacity:1}.eyebrow::before{animation:none}}
+@media(max-width:560px){.hero{padding:48px 20px 76px}.card p{min-height:0}}
 </style>
 </head>
 <body>
-
 <header class="hero">
   <div class="hero-inner">
     <div class="eyebrow">Semiconductor Test Desk</div>
     <h1>반도체 테스트 투자 리서치</h1>
-    <p class="lede">칩은 만드는 것보다 검증하는 게 어려워지고 있다. 대형화·이종집적·고단 적층이 테스트 시간과 강도를 구조적으로 끌어올리는 흐름을, 밸류체인·기업·개념으로 추적한다.</p>
+    <p class="lede">HBM4는 전기 테스트의 강도를 높이고, 첨단 패키징은 검사를 공정 앞단으로 끌어당긴다. 두 변화가 테스트 시간·접점·인서션을 어떻게 늘리는지 산업과 기업을 함께 추적한다.</p>
     <div class="thesis" aria-label="투자 논리 요약">
-      <span class="step">AI 칩 대형화 · 이종집적</span>
-      <span class="arrow">→</span>
-      <span class="step">불량 비용 급증 · KGD 필수화</span>
-      <span class="arrow">→</span>
-      <span class="step hot">테스트 시간 · 장비 · 소모품 수요 확대</span>
+      <span class="step">HBM4 전환</span><span class="arrow">+</span>
+      <span class="step">첨단 패키징 증가</span><span class="arrow">→</span>
+      <span class="step hot">테스트 강도 · 조기 검사 수요 확대</span>
     </div>
   </div>
-  <div class="wave" aria-hidden="true">
-    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path class="trace dim" d="M0 88 L80 88 L80 48 L150 48 L150 88 L230 88 L230 48 L270 48 L270 88 L360 88 L360 48 L430 48 L430 88 L520 88 L520 48 L560 48 L560 88 L660 88 L660 48 L730 48 L730 88 L820 88 L820 48 L880 48 L880 88 L980 88 L980 48 L1050 48 L1050 88 L1200 88"/>
-      <path class="trace" d="M0 78 L60 78 L60 38 L140 38 L140 78 L200 78 L200 38 L260 38 L260 78 L340 78 L340 38 L400 38 L400 78 L490 78 L490 38 L540 38 L540 78 L640 78 L640 38 L710 38 L710 78 L800 78 L800 38 L870 38 L870 78 L960 78 L960 38 L1030 38 L1030 78 L1200 78"/>
-      <text class="pass" x="1090" y="34">● PASS</text>
-    </svg>
-  </div>
+  <div class="wave" aria-hidden="true"><svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <path class="trace dim" d="M0 88 L80 88 L80 48 L150 48 L150 88 L230 88 L230 48 L270 48 L270 88 L360 88 L360 48 L430 48 L430 88 L520 88 L520 48 L560 48 L560 88 L660 88 L660 48 L730 48 L730 88 L820 88 L820 48 L880 48 L880 88 L980 88 L980 48 L1050 48 L1050 88 L1200 88"/>
+    <path class="trace" d="M0 78 L60 78 L60 38 L140 38 L140 78 L200 78 L200 38 L260 38 L260 78 L340 78 L340 38 L400 38 L400 78 L490 78 L490 38 L540 38 L540 78 L640 78 L640 38 L710 38 L710 78 L800 78 L800 38 L870 38 L870 78 L960 78 L960 38 L1030 38 L1030 78 L1200 78"/>
+    <text class="pass" x="1090" y="34">● PASS</text>
+  </svg></div>
 </header>
 
 <main>
   <div class="section-label">바로가기</div>
-
   <div class="grid">
     <a class="card featured" href="report.html">
-      <div class="icon">🧪</div>
-      <h2>산업분석 — 왜 지금 테스트인가</h2>
-      <p>HBM4 전환과 첨단 패키징 확산이 테스트를 다음 병목으로 만드는 구조. Why now → 업황과 테스트 플로우 → 밸류체인 → 탑픽·바스켓까지 한 편의 리포트로.</p>
-      <div class="tags"><span class="tag green">딥다이브</span><span class="tag">Why now</span><span class="tag">탑픽 · 바스켓</span></div>
-      <span class="go">→</span>
+      <div class="icon">🧪</div><h2>산업분석 — 왜 지금 테스트인가</h2>
+      <p>HBM4 전환과 첨단 패키징 확산이 테스트 수요를 키우는 구조. Why now → 업황과 테스트 플로우 → 밸류체인 → Top Pick까지 한 편의 리포트로.</p>
+      <div class="tags"><span class="tag green">딥다이브</span><span class="tag">Why now</span><span class="tag">Top Pick</span></div><span class="go">→</span>
     </a>
-
     <a class="card" href="news/">
-      <div class="icon">📰</div>
-      <h2>테스트 뉴스 로그</h2>
-      <p>ATE·프로브카드·소켓·핸들러·테스트 하우스 관련 주요 뉴스를 날짜별로 누적. Advantest·Teradyne 실적과 국내 밸류체인 동향까지.</p>
-      <div class="tags"><span class="tag green">매일 갱신</span><span class="tag">ATE</span><span class="tag soon">준비 중</span></div>
-      <span class="go">→</span>
+      <div class="icon">📰</div><h2>테스트 뉴스 로그</h2>
+      <p>ATE·프로브카드·소켓·핸들러·검사·계측 관련 주요 뉴스를 날짜별로 누적하고, 밸류체인 변화와 기업 실적을 연결해 본다.</p>
+      <div class="tags"><span class="tag green">매일 갱신</span><span class="tag">ATE</span><span class="tag soon">준비 중</span></div><span class="go">→</span>
     </a>
-
     <a class="card" href="company/">
-      <div class="icon">🏢</div>
-      <h2>기업 분석</h2>
-      <p>핵심 기업별 재무 추이·수주 흐름·컨콜 정리·알파 시그널. 글로벌 장비사부터 국내 소모품·부품사까지 심층 분석.</p>
-      <div class="tags"><span class="tag green">FormFactor</span><span class="tag">Advantest</span><span class="tag soon">+ 추가 중</span></div>
-      <span class="go">→</span>
+      <div class="icon">🏢</div><h2>기업 분석</h2>
+      <p>핵심 기업별 재무 추이·수주 흐름·컨콜 정리·알파 시그널. ATE, 프로브카드, 검사·계측까지 테스트 밸류체인의 주요 기업을 심층 분석.</p>
+      <div class="tags"><span class="tag green">FormFactor</span><span class="tag">Advantest</span><span class="tag">Onto · KLA</span></div><span class="go">→</span>
     </a>
-
     <a class="card" href="concept/">
-      <div class="icon">📖</div>
-      <h2>개념 정리</h2>
-      <p>CP·FT·SLT·번인, KGD, 프로브카드와 소켓의 차이, ATE 구조 등 테스트 핵심 개념. 뉴스와 기업 분석을 빠르게 해석하기 위한 기술 기반.</p>
-      <div class="tags"><span class="tag blue">CP · FT</span><span class="tag blue">SLT</span><span class="tag blue">KGD</span></div>
-      <span class="go">→</span>
+      <div class="icon">📖</div><h2>개념 정리</h2>
+      <p>KGD·KGSD, 웨이퍼·스택·파이널·SLT, 프로브카드와 소켓, ATE 구조 등 산업분석을 읽기 위한 핵심 개념을 도식으로 정리.</p>
+      <div class="tags"><span class="tag blue">KGD</span><span class="tag blue">KGSD</span><span class="tag blue">ATE</span></div><span class="go">→</span>
     </a>
-
     <a class="card" href="valuechain/">
-      <div class="icon">🔬</div>
-      <h2>테스트 밸류체인</h2>
-      <p>웨이퍼에서 출하까지 테스트 공정 흐름을 단계별로 따라가며, 각 단계에서 무엇을 검증하고 어떤 도구가 필요하며 누가 그 자리를 차지하고 있는지 정리.</p>
-      <div class="tags"><span class="tag gold">공정 단계</span><span class="tag gold">인터랙티브</span><span class="tag green">오픈</span></div>
-      <span class="go">→</span>
+      <div class="icon">🔬</div><h2>테스트 밸류체인</h2>
+      <p>Wafer test → Die-level → Stack·Bond → Stack test(KGSD) → Final·Burn-in → SLT까지, 단계별 도구와 플레이어를 인터랙티브하게 정리.</p>
+      <div class="tags"><span class="tag gold">HBM 플로우</span><span class="tag gold">인터랙티브</span><span class="tag green">오픈</span></div><span class="go">→</span>
     </a>
-
     <a class="card" href="insights/">
-      <div class="icon">🧭</div>
-      <h2>테스트 인사이트</h2>
-      <p>컨콜·IR 발언 중 테스트 관련 내용만 업종별로 묶고, 여기서 뽑을 수 있는 핵심 포인트를 한 페이지로 정리.</p>
-      <div class="tags"><span class="tag">컨콜 · IR</span><span class="tag soon">준비 중</span></div>
-      <span class="go">→</span>
+      <div class="icon">🧭</div><h2>테스트 인사이트</h2>
+      <p>컨콜·IR 발언 중 테스트 관련 내용만 업종별로 묶고, HBM4·첨단 패키징 투자 논지를 실제 수주와 실적 신호로 검증한다.</p>
+      <div class="tags"><span class="tag">컨콜 · IR</span><span class="tag">논지 검증</span></div><span class="go">→</span>
     </a>
-  </div>
-
-  <div class="chainstrip">
-    <h3>한눈에 보는 테스트 밸류체인</h3>
-    <div class="sub">각 단계를 클릭하면 밸류체인 페이지의 해당 단계로 이동합니다</div>
-    <div class="chain" aria-label="테스트 공정 흐름">
-      <a class="node" href="valuechain/#cp">CP · 웨이퍼 테스트<em>프로버 · 프로브카드</em></a>
-      <span class="arr">→</span>
-      <a class="node" href="valuechain/#bi">번인<em>고온 · 고전압 스트레스</em></a>
-      <span class="arr">→</span>
-      <a class="node" href="valuechain/#ft">FT · 파이널 테스트<em>소켓 · 핸들러 · ATE</em></a>
-      <span class="arr">→</span>
-      <a class="node" href="valuechain/#slt">SLT<em>실사용 워크로드</em></a>
-      <span class="arr">→</span>
-      <a class="node" href="valuechain/#ship">출하<em>PASS 판정 · 빈 분류</em></a>
-    </div>
   </div>
 </main>
 
@@ -217,6 +114,5 @@ footer .mono{font-size:12px}
   반도체 테스트 투자 리서치 데스크 · 발표 자료 인용 전 원문(IR·공시·어닝콜)으로 재확인하세요.<br>
   <span class="mono">semiconductor-test-desk</span>
 </footer>
-
 </body>
 </html>

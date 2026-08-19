@@ -58,6 +58,21 @@ th{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;te
 td{padding:11px 16px;border-bottom:1px solid var(--line);vertical-align:top;color:#2a3448}
 tr:last-child td{border-bottom:none}
 td:first-child{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:700;white-space:nowrap}
+/* ---------- 도식 애니메이션 (자동 반복) ---------- */
+.probe-move{animation:dip 2.8s ease-in-out infinite}
+@keyframes dip{0%,100%{transform:translateY(-10px)}45%,60%{transform:translateY(0)}}
+.chip-in{animation:chipin 3.2s ease-in-out infinite}
+@keyframes chipin{0%,100%{transform:translateY(0)}40%,65%{transform:translateY(-28px)}}
+.bad-die{animation:badblink 1.6s ease-in-out infinite}
+@keyframes badblink{0%,100%{opacity:1}50%{opacity:.25}}
+.bad-stack{animation:fadeout 4.8s ease-in-out infinite}
+@keyframes fadeout{0%,55%{opacity:1}75%,90%{opacity:.35}100%{opacity:1}}
+.flowline{stroke-dasharray:7 6;animation:march 1.2s linear infinite}
+@keyframes march{to{stroke-dashoffset:-13}}
+@media(prefers-reduced-motion:reduce){
+  .probe-move,.chip-in,.bad-die,.bad-stack,.flowline{animation:none}
+  .anim-smil{display:none}
+}
 .linkline{margin-top:6px}
 .linkline a{font-family:"JetBrains Mono",monospace;font-size:13.5px;color:var(--signal-dark);text-decoration:none}
 .linkline a:hover{text-decoration:underline}
@@ -144,6 +159,14 @@ footer .mono{font-size:12px}
           <text x="847" y="182" text-anchor="middle" font-size="11.5" fill="#5c6675">SLT 장비 · 소켓</text>
         </g>
       </g>
+      <g class="anim-smil">
+        <circle r="8" fill="#00b894" opacity=".25">
+          <animateMotion dur="7s" repeatCount="indefinite" path="M80 100 L847 100"/>
+        </circle>
+        <circle r="4.5" fill="#00b894">
+          <animateMotion dur="7s" repeatCount="indefinite" path="M80 100 L847 100"/>
+        </circle>
+      </g>
       <rect x="10" y="212" width="900" height="66" rx="12" fill="#0d1321"/>
       <text x="34" y="240" font-size="12" fill="#00b894" font-family="JetBrains Mono,monospace" letter-spacing="2">WHY IT MATTERS</text>
       <text x="34" y="262" font-size="13" fill="#dfe4ec" font-family="Pretendard,system-ui,sans-serif">HBM4·첨단 패키징은 ① 각 인서션의 시간·강도 ② 인서션 개수 ③ 접촉 소모품 소비를 모두 늘린다 — 테스트 수요의 3중 증가 구조</text>
@@ -177,11 +200,11 @@ footer .mono{font-size:12px}
           </g>
           <text x="105" y="222" text-anchor="middle" font-size="12.5" font-weight="700" fill="#00775f">✓ 출하 가능</text>
           <text x="315" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="#a83a34">불량 1개 혼입</text>
-          <g>
+          <g class="bad-stack">
             <rect x="265" y="44"  width="100" height="14" rx="3" fill="#e6ebef"/>
             <rect x="265" y="61"  width="100" height="14" rx="3" fill="#e6ebef"/>
             <rect x="265" y="78"  width="100" height="14" rx="3" fill="#e6ebef"/>
-            <rect x="265" y="95"  width="100" height="14" rx="3" fill="#e2504a"/>
+            <rect class="bad-die" x="265" y="95"  width="100" height="14" rx="3" fill="#e2504a"/>
             <rect x="265" y="112" width="100" height="14" rx="3" fill="#e6ebef"/>
             <rect x="265" y="129" width="100" height="14" rx="3" fill="#e6ebef"/>
             <rect x="265" y="146" width="100" height="14" rx="3" fill="#e6ebef"/>
@@ -236,12 +259,14 @@ footer .mono{font-size:12px}
         <text x="235" y="30" text-anchor="middle" font-size="14.5" font-weight="800" fill="#00775f">프로브카드 — CP (웨이퍼 단계)</text>
         <rect x="110" y="50" width="250" height="34" rx="8" fill="#0d1321"/>
         <text x="235" y="72" text-anchor="middle" font-size="12" fill="#eef1f6">ATE 테스트 헤드</text>
-        <rect x="130" y="96" width="210" height="22" rx="5" fill="#e0f6ef" stroke="#00b894" stroke-width="1.5"/>
-        <text x="235" y="111" text-anchor="middle" font-size="11.5" fill="#00775f" font-weight="700">프로브카드 (PCB + MEMS 니들)</text>
-        <g stroke="#00775f" stroke-width="1.6">
-          <line x1="165" y1="118" x2="165" y2="150"/><line x1="193" y1="118" x2="193" y2="150"/>
-          <line x1="221" y1="118" x2="221" y2="150"/><line x1="249" y1="118" x2="249" y2="150"/>
-          <line x1="277" y1="118" x2="277" y2="150"/><line x1="305" y1="118" x2="305" y2="150"/>
+        <g class="probe-move">
+          <rect x="130" y="96" width="210" height="22" rx="5" fill="#e0f6ef" stroke="#00b894" stroke-width="1.5"/>
+          <text x="235" y="111" text-anchor="middle" font-size="11.5" fill="#00775f" font-weight="700">프로브카드 (PCB + MEMS 니들)</text>
+          <g stroke="#00775f" stroke-width="1.6">
+            <line x1="165" y1="118" x2="165" y2="150"/><line x1="193" y1="118" x2="193" y2="150"/>
+            <line x1="221" y1="118" x2="221" y2="150"/><line x1="249" y1="118" x2="249" y2="150"/>
+            <line x1="277" y1="118" x2="277" y2="150"/><line x1="305" y1="118" x2="305" y2="150"/>
+          </g>
         </g>
         <ellipse cx="235" cy="176" rx="150" ry="26" fill="#e7efff" stroke="#3d7bfd" stroke-width="1.5"/>
         <text x="235" y="181" text-anchor="middle" font-size="11.5" fill="#2456c8">웨이퍼 (수백~수천 다이)</text>
@@ -255,8 +280,10 @@ footer .mono{font-size:12px}
         <text x="690" y="72" text-anchor="middle" font-size="12" fill="#eef1f6">ATE 테스트 헤드 / 번인 보드</text>
         <text x="690" y="102" text-anchor="middle" font-size="11.5" fill="#8a6100" font-weight="700">테스트 소켓 (포고핀 · 러버)</text>
         <path d="M600 140 L600 110 L640 110 L640 126 L740 126 L740 110 L780 110 L780 140 Z" fill="#fdf3dc" stroke="#f0a500" stroke-width="1.5"/>
-        <rect x="645" y="146" width="90" height="26" rx="4" fill="#e6ebef" stroke="#9aa6b4" stroke-width="1.5"/>
-        <text x="690" y="163" text-anchor="middle" font-size="11" fill="#42506a">패키지 완성 칩</text>
+        <g class="chip-in">
+          <rect x="645" y="146" width="90" height="26" rx="4" fill="#e6ebef" stroke="#9aa6b4" stroke-width="1.5"/>
+          <text x="690" y="163" text-anchor="middle" font-size="11" fill="#42506a">패키지 완성 칩</text>
+        </g>
         <line x1="690" y1="180" x2="690" y2="204" stroke="#8a6100" stroke-width="1.6" marker-end="url(#ar2)"/>
         <text x="690" y="222" text-anchor="middle" font-size="11.5" fill="#5c6675">핸들러가 칩을 소켓에 넣고 빼며 온도를 제어</text>
         <g font-size="11.5" fill="#5c6675">
@@ -297,6 +324,14 @@ footer .mono{font-size:12px}
         <text x="802" y="94" text-anchor="middle" font-size="13.5" font-weight="800" fill="#8a6100">DUT + 반송</text>
         <text x="802" y="114" text-anchor="middle" font-size="11" fill="#2a3448">프로버(웨이퍼) / 핸들러(칩)</text>
         <text x="802" y="132" text-anchor="middle" font-size="11" fill="#8a6100">정렬 · 온도 제어</text>
+        <g class="anim-smil">
+          <circle r="6" fill="#3d7bfd" opacity=".3">
+            <animateMotion dur="3.5s" repeatCount="indefinite" path="M130 110 L802 110"/>
+          </circle>
+          <circle r="3.5" fill="#3d7bfd">
+            <animateMotion dur="3.5s" repeatCount="indefinite" path="M130 110 L802 110"/>
+          </circle>
+        </g>
         <rect x="30" y="192" width="860" height="42" rx="10" fill="#f8fafb" stroke="#e3e7ec"/>
         <text x="460" y="219" text-anchor="middle" font-size="13" fill="#2a3448" font-family="JetBrains Mono,monospace">테스터 수요 = 물량 × 칩당 테스트 시간(↑↑) ÷ 병렬도</text>
       </g>
@@ -325,8 +360,8 @@ footer .mono{font-size:12px}
         <text x="145" y="228" text-anchor="middle" font-size="11.5" fill="#2a3448">CoWoS · 이종집적(GPU+HBM)</text>
         <text x="145" y="247" text-anchor="middle" font-size="11.5" fill="#2a3448">하이브리드 본딩 · 패널레벨</text>
         <text x="145" y="266" text-anchor="middle" font-size="11.5" fill="#2a3448">패키지당 다이 수 ↑</text>
-        <line x1="270" y1="85"  x2="330" y2="120" stroke="#00775f" stroke-width="2" marker-end="url(#ar4)"/>
-        <line x1="270" y1="231" x2="330" y2="196" stroke="#00775f" stroke-width="2" marker-end="url(#ar4)"/>
+        <line class="flowline" x1="270" y1="85"  x2="330" y2="120" stroke="#00775f" stroke-width="2" marker-end="url(#ar4)"/>
+        <line class="flowline" x1="270" y1="231" x2="330" y2="196" stroke="#00775f" stroke-width="2" marker-end="url(#ar4)"/>
         <rect x="336" y="72" width="250" height="172" rx="12" fill="#e0f6ef" stroke="#00b894" stroke-width="1.5"/>
         <text x="461" y="100" text-anchor="middle" font-size="13.5" font-weight="800" fill="#00775f">테스트에 생기는 일</text>
         <g font-size="11.5" fill="#2a3448">
@@ -336,9 +371,9 @@ footer .mono{font-size:12px}
           <text x="356" y="200">▸ SLT 등 신규 인서션 추가</text>
           <text x="356" y="224">▸ 핀 수 2배 → 프로브카드 · 소켓 사양 ↑</text>
         </g>
-        <line x1="586" y1="120" x2="646" y2="95" stroke="#00775f" stroke-width="2" marker-end="url(#ar4)"/>
-        <line x1="586" y1="158" x2="646" y2="158" stroke="#00775f" stroke-width="2" marker-end="url(#ar4)"/>
-        <line x1="586" y1="196" x2="646" y2="221" stroke="#00775f" stroke-width="2" marker-end="url(#ar4)"/>
+        <line class="flowline" x1="586" y1="120" x2="646" y2="95" stroke="#00775f" stroke-width="2" marker-end="url(#ar4)"/>
+        <line class="flowline" x1="586" y1="158" x2="646" y2="158" stroke="#00775f" stroke-width="2" marker-end="url(#ar4)"/>
+        <line class="flowline" x1="586" y1="196" x2="646" y2="221" stroke="#00775f" stroke-width="2" marker-end="url(#ar4)"/>
         <g font-size="12" fill="#2a3448">
           <rect x="652" y="64" width="248" height="58" rx="10" fill="#fff" stroke="#e3e7ec" stroke-width="1.5"/>
           <text x="668" y="88" font-weight="800">ATE · SLT</text>

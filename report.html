@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>반도체 테스트 산업분석 · Semiconductor Test Desk</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.19/index.min.css">
+<style>
+:root{
+  --ink:#0d1321; --paper:#f4f6f8; --card:#ffffff;
+  --text:#1a2233; --muted:#5c6675; --line:#e3e7ec;
+  --signal:#00b894; --signal-dark:#00775f;
+  --probe:#f0a500; --probe-dark:#8a6100;
+  --fail:#e2504a; --accent:#3d7bfd;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;
+  background:var(--paper);color:var(--text);line-height:1.75;font-size:15.5px}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+
+/* 히어로 */
+.hero{background:var(--ink);color:#eef1f6;padding:56px 24px 60px}
+.hero-inner{max-width:880px;margin:0 auto}
+.crumb{font-size:13px;color:#8b95a5;margin-bottom:20px}
+.crumb a{color:#8b95a5;text-decoration:none}
+.crumb a:hover{color:#fff}
+.eyebrow{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;
+  font-size:12.5px;letter-spacing:.22em;color:var(--signal);text-transform:uppercase;margin-bottom:18px}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--signal);
+  box-shadow:0 0 10px var(--signal)}
+.hero h1{font-size:clamp(28px,4.5vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+.hero p{max-width:640px;color:#b8c0cd;font-size:15.5px}
+
+/* 목차 내비 */
+.toc{position:sticky;top:0;z-index:50;background:rgba(244,246,248,.92);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line)}
+.toc-inner{max-width:880px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:0 16px}
+.toc a{flex-shrink:0;padding:13px 14px;font-size:13.5px;font-weight:600;color:var(--muted);
+  text-decoration:none;border-bottom:2.5px solid transparent}
+.toc a:hover{color:var(--text)}
+.toc a .n{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--signal-dark);margin-right:5px}
+
+/* 본문 */
+main{max-width:880px;margin:0 auto;padding:16px 24px 40px}
+section{padding-top:44px}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+.sec-num{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--signal-dark);font-weight:700}
+h2{font-size:25px;font-weight:800;letter-spacing:-.01em}
+.sec-sub{color:var(--muted);font-size:14.5px;margin-bottom:22px}
+h3{font-size:18px;font-weight:700;margin:30px 0 10px}
+p{margin-bottom:14px}
+p.note{font-size:13px;color:var(--muted)}
+strong{font-weight:700}
+em.hl{font-style:normal;background:linear-gradient(transparent 62%, rgba(0,184,148,.25) 62%)}
+
+.figure{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 20px 14px;margin:20px 0}
+.figure figcaption{font-size:12.5px;color:var(--muted);text-align:center;padding-top:10px;
+  border-top:1px dashed var(--line);margin-top:12px}
+.figure svg{width:100%;height:auto;display:block}
+
+/* 지표 카드 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.stat .v{font-family:"JetBrains Mono",monospace;font-size:21px;font-weight:700;color:var(--signal-dark)}
+.stat .v.gold{color:var(--probe-dark)}
+.stat .l{font-size:12.5px;color:var(--muted);margin-top:3px}
+
+/* 인용 박스 */
+.callout{border-left:3px solid var(--signal);background:var(--card);border-radius:0 12px 12px 0;
+  padding:16px 20px;margin:18px 0;font-size:14.5px}
+.callout .tag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11px;
+  letter-spacing:.12em;color:var(--signal-dark);margin-bottom:6px;text-transform:uppercase}
+
+/* 탑픽 카드 */
+.picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin:20px 0}
+.pick{background:var(--card);border:1.5px solid var(--signal);border-radius:var(--radius);padding:24px}
+.pick .badge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11px;
+  letter-spacing:.14em;background:#e0f6ef;color:var(--signal-dark);padding:4px 10px;
+  border-radius:6px;margin-bottom:12px;text-transform:uppercase}
+.pick h4{font-size:19px;font-weight:800;margin-bottom:2px}
+.pick .ticker{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.pick ul{list-style:none}
+.pick li{position:relative;padding-left:20px;margin-bottom:10px;font-size:14px}
+.pick li::before{content:"▸";position:absolute;left:0;color:var(--signal-dark)}
+.pick li .k{font-weight:700}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:16px 0;background:var(--card);
+  border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+th{background:#eef2f6;text-align:left;padding:10px 14px;font-size:12.5px;color:#42506a}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+td .mono{font-size:12.5px}
+
+.risk{background:#fdf0ef;border:1px solid #f2c7c4;border-radius:12px;padding:16px 20px;margin:18px 0;font-size:14px}
+.risk .t{font-weight:700;color:#a13530;margin-bottom:6px}
+
+footer{border-top:1px solid var(--line);margin-top:48px;padding:26px 24px 44px;
+  text-align:center;font-size:12.5px;color:var(--muted)}
+@media(max-width:560px){.hero{padding:44px 20px 48px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="crumb"><a href="index.html">← 홈</a> / 산업분석</div>
+    <div class="eyebrow">Semiconductor Test Desk · Deep Dive</div>
+    <h1>반도체 테스트 산업분석</h1>
+    <p>칩은 만드는 것보다 검증하는 게 어려워지고 있다. HBM4 전환과 첨단 패키징 확산이 테스트를 AI 공급망의 다음 병목으로 만드는 구조를 추적하고, 그 위에서 탑픽을 도출한다.</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="목차">
+  <div class="toc-inner">
+    <a href="#why-now"><span class="n">01</span>Why now</a>
+    <a href="#flow"><span class="n">02</span>업황과 테스트 플로우</a>
+    <a href="#valuechain"><span class="n">03</span>테스트 밸류체인</a>
+    <a href="#picks"><span class="n">04</span>탑픽 &amp; 바스켓</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ 01 WHY NOW ============ -->
+<section id="why-now">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Why now — 왜 지금 테스트인가</h2></div>
+  <p class="sec-sub">두 개의 축이 동시에 테스트를 향해 수렴하고 있다</p>
+
+  <p>AI 반도체 사이클에서 시장의 시선은 GPU → HBM → 첨단 패키징(CoWoS) 순서로 이동해왔다. 각 단계에서 병목이 확인될 때마다 해당 밸류체인이 리레이팅됐다. 우리의 주장은 단순하다. <em class="hl">다음 병목은 테스트다.</em> 그리고 이 병목은 우연이 아니라, 지금 진행 중인 두 개의 기술 전환이 만들어내는 구조적 결과다.</p>
+
+  <h3>축 1 — HBM4로의 전환</h3>
+  <p>HBM4는 단순한 세대 교체가 아니다. <strong>I/O 핀 수가 HBM3E의 1,024개에서 2,048개로 두 배</strong>가 되고, 적층은 12단에서 16단으로 올라가며, 베이스 다이는 로직 공정(4nm)으로 넘어간다. 테스트 관점에서 이것은 세 가지를 의미한다. 접촉해야 할 핀이 두 배, 검증해야 할 다이가 층수만큼 증가, 그리고 로직 다이까지 별도 테스트 대상에 추가. 테스트 시간과 테스트 접점(콘택트) 수가 곱으로 늘어난다.</p>
+
+  <h3>축 2 — 첨단 패키징의 도입</h3>
+  <p>CoWoS류 2.5D 패키징의 본질은 "비싼 다이들을 한 패키지에 묶는 것"이다. 문제는 수율 산식이 곱셈이라는 점이다. GPU 다이 하나, HBM 스택 8개, 인터포저가 결합된 패키지에서 <strong>불량 다이 하나가 패키지 전체($30K~70K)를 폐기시킨다.</strong> 그래서 결합 전에 모든 다이가 양품임을 보증하는 KGD(Known Good Die)가 선택이 아닌 필수가 됐다. KGD는 곧 "붙이기 전에 더 많이, 더 세게 테스트하라"는 명령이고, 이는 웨이퍼 레벨 테스트·검사 강도를 구조적으로 끌어올린다.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 800 430" role="img" aria-label="HBM4 전환과 첨단 패키징이 테스트 병목으로 수렴하는 구조">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M1 1L9 5L1 9" fill="none" stroke="#00775f" stroke-width="1.8" stroke-linecap="round"/>
+        </marker>
+      </defs>
+      <!-- 축 1 박스 -->
+      <rect x="30" y="30" width="330" height="130" rx="14" fill="#e7efff" stroke="#3d7bfd" stroke-width="1.2"/>
+      <text x="195" y="62" text-anchor="middle" font-size="16.5" font-weight="800" fill="#1d3f8f">축 1 · HBM4 전환</text>
+      <text x="195" y="92" text-anchor="middle" font-size="13" fill="#33477a">I/O 1,024 → 2,048핀 (2배)</text>
+      <text x="195" y="114" text-anchor="middle" font-size="13" fill="#33477a">12단 → 16단 적층 · 속도 상향</text>
+      <text x="195" y="136" text-anchor="middle" font-size="13" fill="#33477a">베이스 다이 로직화 (4nm)</text>
+      <!-- 축 2 박스 -->
+      <rect x="440" y="30" width="330" height="130" rx="14" fill="#fdf3dc" stroke="#f0a500" stroke-width="1.2"/>
+      <text x="605" y="62" text-anchor="middle" font-size="16.5" font-weight="800" fill="#7a5600">축 2 · 첨단 패키징</text>
+      <text x="605" y="92" text-anchor="middle" font-size="13" fill="#6e5a1e">이종집적 · 다이 수 증가</text>
+      <text x="605" y="114" text-anchor="middle" font-size="13" fill="#6e5a1e">불량 1개 = 패키지 전체 폐기</text>
+      <text x="605" y="136" text-anchor="middle" font-size="13" fill="#6e5a1e">KGD 보증이 필수화</text>
+      <!-- 수렴 화살표 -->
+      <path d="M195 160 L195 205 Q195 225 230 225 L345 225" fill="none" stroke="#00775f" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M605 160 L605 205 Q605 225 570 225 L455 225" fill="none" stroke="#00775f" stroke-width="2" marker-end="url(#ah)"/>
+      <!-- 중앙 병목 -->
+      <rect x="290" y="195" width="220" height="62" rx="31" fill="#0d1321"/>
+      <text x="400" y="221" text-anchor="middle" font-size="15.5" font-weight="800" fill="#00d9a6">테스트 = 다음 병목</text>
+      <text x="400" y="242" text-anchor="middle" font-size="11.5" fill="#8b95a5">시간 × 접점 × 인서션의 동시 증가</text>
+      <!-- 아래 결과 -->
+      <line x1="400" y1="257" x2="400" y2="292" stroke="#00775f" stroke-width="2" marker-end="url(#ah)"/>
+      <rect x="60" y="300" width="215" height="92" rx="12" fill="#ffffff" stroke="#e3e7ec"/>
+      <text x="167" y="330" text-anchor="middle" font-size="14" font-weight="700" fill="#1a2233">테스트 시간 ↑</text>
+      <text x="167" y="352" text-anchor="middle" font-size="12" fill="#5c6675">ATE 대수 · 가동시간</text>
+      <text x="167" y="370" text-anchor="middle" font-size="12" fill="#5c6675">→ Advantest</text>
+      <rect x="293" y="300" width="215" height="92" rx="12" fill="#ffffff" stroke="#e3e7ec"/>
+      <text x="400" y="330" text-anchor="middle" font-size="14" font-weight="700" fill="#1a2233">접점 · 소모품 ↑</text>
+      <text x="400" y="352" text-anchor="middle" font-size="12" fill="#5c6675">프로브카드 · 소켓 교체</text>
+      <text x="400" y="370" text-anchor="middle" font-size="12" fill="#5c6675">→ FormFactor</text>
+      <rect x="526" y="300" width="215" height="92" rx="12" fill="#ffffff" stroke="#e3e7ec"/>
+      <text x="633" y="330" text-anchor="middle" font-size="14" font-weight="700" fill="#1a2233">검사 · 계측 ↑</text>
+      <text x="633" y="352" text-anchor="middle" font-size="12" fill="#5c6675">공정 삽입 지점 증가</text>
+      <text x="633" y="370" text-anchor="middle" font-size="12" fill="#5c6675">→ Onto · KLA</text>
+    </svg>
+    <figcaption>그림 1. 두 축의 수렴 — HBM4와 첨단 패키징이 각각 테스트 강도를 끌어올리고, 수혜는 세 갈래로 흐른다</figcaption>
+  </figure>
+
+  <p>이 수렴의 결과는 이미 숫자로 확인된다. 첨단 AI 칩에서 <strong>칩 판가 대비 테스트 비용 비중은 과거 2% 미만에서 5~7% 수준으로 약 3배</strong> 상승한 것으로 추정된다. 그럼에도 고객은 테스트를 줄일 수 없다. 수만 달러짜리 패키지의 수율 경제학 앞에서 테스트 비용은 보험료이기 때문이다. <em class="hl">줄일 수 없는 비용이 구조적으로 늘어나는 곳 — 그곳이 투자할 곳이다.</em></p>
+</section>
+
+<!-- ============ 02 업황과 테스트 플로우 ============ -->
+<section id="flow">
+  <div class="sec-head"><span class="sec-num">02</span><h2>업황과 테스트 플로우</h2></div>
+  <p class="sec-sub">두 축이 실제 공정 흐름 어디에서 무엇을 늘리고 있는가</p>
+
+  <p>테스트 플로우를 따라가 보면, HBM4와 첨단 패키징이 늘리는 것은 세 종류다. ① 기존 인서션(test insertion)의 <strong>시간과 강도</strong>, ② 공정 사이에 새로 끼어드는 <strong>인서션 자체의 개수</strong>, ③ 각 인서션에서 소모되는 <strong>접촉 부품(프로브카드·소켓)</strong>.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 800 400" role="img" aria-label="테스트 플로우와 늘어나는 인서션">
+      <defs>
+        <marker id="af" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M1 1L9 5L1 9" fill="none" stroke="#5c6675" stroke-width="1.6" stroke-linecap="round"/>
+        </marker>
+      </defs>
+      <!-- 검사·계측 레이어 -->
+      <rect x="30" y="26" width="740" height="66" rx="12" fill="#fdf3dc" stroke="#f0a500" stroke-dasharray="5 4"/>
+      <text x="52" y="53" font-size="13.5" font-weight="700" fill="#7a5600">검사 · 계측 레이어 (공정 전반에 삽입)</text>
+      <text x="52" y="74" font-size="12" fill="#6e5a1e">범프 높이 · TSV · 본딩 오버레이 · 휨(warpage) — 인서션 지점이 계속 늘어나는 중 → Onto · KLA · Camtek</text>
+      <!-- 연결 점선 -->
+      <line x1="140" y1="92" x2="140" y2="150" stroke="#f0a500" stroke-dasharray="4 4"/>
+      <line x1="400" y1="92" x2="400" y2="150" stroke="#f0a500" stroke-dasharray="4 4"/>
+      <line x1="660" y1="92" x2="660" y2="150" stroke="#f0a500" stroke-dasharray="4 4"/>
+      <!-- 메인 플로우 -->
+      <g font-size="13.5" font-weight="700">
+        <rect x="30" y="150" width="130" height="76" rx="12" fill="#e7efff" stroke="#3d7bfd"/>
+        <text x="95" y="180" text-anchor="middle" fill="#1d3f8f">CP · 웨이퍼</text>
+        <text x="95" y="198" text-anchor="middle" fill="#1d3f8f">테스트</text>
+        <text x="95" y="216" text-anchor="middle" font-size="11" font-weight="400" fill="#33477a">프로버 · 프로브카드</text>
+
+        <rect x="192" y="150" width="130" height="76" rx="12" fill="#e0f6ef" stroke="#00b894"/>
+        <text x="257" y="180" text-anchor="middle" fill="#00594a">적층 · 본딩</text>
+        <text x="257" y="198" text-anchor="middle" fill="#00594a">중간 검증</text>
+        <text x="257" y="216" text-anchor="middle" font-size="11" font-weight="400" fill="#0a6b58">KGSD · 베이스 다이</text>
+
+        <rect x="354" y="150" width="130" height="76" rx="12" fill="#eef2f6" stroke="#b9c3cf"/>
+        <text x="419" y="185" text-anchor="middle" fill="#34405a">번인</text>
+        <text x="419" y="212" text-anchor="middle" font-size="11" font-weight="400" fill="#5c6675">고온 스트레스 선별</text>
+
+        <rect x="516" y="150" width="130" height="76" rx="12" fill="#eef2f6" stroke="#b9c3cf"/>
+        <text x="581" y="180" text-anchor="middle" fill="#34405a">FT · 파이널</text>
+        <text x="581" y="198" text-anchor="middle" fill="#34405a">테스트</text>
+        <text x="581" y="216" text-anchor="middle" font-size="11" font-weight="400" fill="#5c6675">소켓 · 핸들러 · ATE</text>
+
+        <rect x="678" y="150" width="92" height="76" rx="12" fill="#e0f6ef" stroke="#00b894"/>
+        <text x="724" y="185" text-anchor="middle" fill="#00594a">SLT</text>
+        <text x="724" y="212" text-anchor="middle" font-size="11" font-weight="400" fill="#0a6b58">실사용 부하</text>
+      </g>
+      <line x1="160" y1="188" x2="188" y2="188" stroke="#5c6675" stroke-width="1.6" marker-end="url(#af)"/>
+      <line x1="322" y1="188" x2="350" y2="188" stroke="#5c6675" stroke-width="1.6" marker-end="url(#af)"/>
+      <line x1="484" y1="188" x2="512" y2="188" stroke="#5c6675" stroke-width="1.6" marker-end="url(#af)"/>
+      <line x1="646" y1="188" x2="674" y2="188" stroke="#5c6675" stroke-width="1.6" marker-end="url(#af)"/>
+      <!-- 증가 배지 -->
+      <g font-family="JetBrains Mono,monospace" font-size="11" font-weight="700">
+        <rect x="42" y="240" width="106" height="24" rx="12" fill="#00b894"/>
+        <text x="95" y="256" text-anchor="middle" fill="#fff">핀 2배 · 카드↑</text>
+        <rect x="204" y="240" width="106" height="24" rx="12" fill="#00b894"/>
+        <text x="257" y="256" text-anchor="middle" fill="#fff">신규 인서션</text>
+        <rect x="528" y="240" width="106" height="24" rx="12" fill="#00b894"/>
+        <text x="581" y="256" text-anchor="middle" fill="#fff">고전력 소켓↑</text>
+        <rect x="672" y="240" width="104" height="24" rx="12" fill="#00b894"/>
+        <text x="724" y="256" text-anchor="middle" fill="#fff">채택 확산</text>
+      </g>
+      <!-- 하단 설명 -->
+      <rect x="30" y="290" width="740" height="86" rx="12" fill="#ffffff" stroke="#e3e7ec"/>
+      <text x="52" y="318" font-size="13" font-weight="700" fill="#1a2233">HBM4 · 첨단 패키징이 플로우에 끼워 넣는 것들</text>
+      <text x="52" y="340" font-size="12.5" fill="#5c6675">적층 전 KGD 웨이퍼 소트 강화 → 적층 후 스택 테스트 추가 → 로직 베이스 다이 별도 테스트 → 본딩 후 검사</text>
+      <text x="52" y="360" font-size="12.5" fill="#5c6675">→ 1,000W급 칩의 발열 제어형 FT → 실제 AI 워크로드 기반 SLT. 인서션 하나하나가 장비 · 소모품 매출이다.</text>
+    </svg>
+    <figcaption>그림 2. 테스트 플로우 — 초록 배지가 두 축이 만들어낸 증분. 위의 검사·계측 레이어는 플로우 전 구간에 병렬로 삽입된다</figcaption>
+  </figure>
+
+  <h3>업황: 숫자가 말해주는 것</h3>
+  <div class="stats">
+    <div class="stat"><div class="v">$6.9B → $8.7~9.5B</div><div class="l">SoC 테스터 시장, CY25 → CY26 (Advantest 추정)</div></div>
+    <div class="stat"><div class="v">+70%</div><div class="l">Advantest FY2026 영업이익 가이던스 (기존 +26%에서 상향)</div></div>
+    <div class="stat"><div class="v gold">50% → 80%</div><div class="l">Onto 2026 첨단 패키징 매출 성장 전망 (3개월 만에 상향)</div></div>
+    <div class="stat"><div class="v gold">&lt;2% → 5~7%</div><div class="l">AI 칩 판가 대비 테스트 비용 비중 (약 3배)</div></div>
+  </div>
+
+  <p>업황의 성격을 정확히 읽는 게 중요하다. 이것은 단순한 캐파 증설 사이클이 아니라 <em class="hl">"단위당 테스트 콘텐츠"가 늘어나는 사이클</em>이다. Onto의 컨콜에서 드러난 핵심은 장비 수요가 칩 출하량보다 빠르게 늘고 있다는 점 — 고객들이 검사·계측을 <strong>추가 공정 스텝에 새로 삽입</strong>하고 있기 때문이다. Advantest 역시 SoC 테스터 생산능력을 연 3,000대에서 5,000대, 장기적으로 10,000대까지 끌어올리는 중이고, 평균 리드타임은 6개월을 넘는다.</p>
+
+  <div class="callout">
+    <div class="tag">소모품의 재발견</div>
+    프로브카드와 소켓은 장비가 아니라 <strong>소모품</strong>이다. 매출이 고객 capex가 아닌 <strong>웨이퍼 투입량 × 테스트 강도</strong>에 연동되고, 칩 설계가 바뀔 때마다 신규 설계가 필요하다. HBM4의 핀 수 2배는 카드당 단가(ASP)를 올리는 동시에 <strong>마모를 가속해 교체 주기를 단축</strong>시킨다. 프로브카드 시장은 2026년 $3.5~5.5B 규모로 성장이 전망되며, KGD 확산이 웨이퍼당 프로브카드 소비량을 구조적으로 늘리고 있다.
+  </div>
+</section>
+
+<!-- ============ 03 테스트 밸류체인 ============ -->
+<section id="valuechain">
+  <div class="sec-head"><span class="sec-num">03</span><h2>테스트 밸류체인</h2></div>
+  <p class="sec-sub">돈이 흐르는 네 개의 노드 — 각 노드의 매출 드라이버는 다르다</p>
+
+  <p>테스트 밸류체인은 하나의 시장이 아니다. 매출 드라이버가 서로 다른 네 개의 노드로 구성되며, 이 구분이 뒤의 바스켓 전략의 뼈대가 된다.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 800 480" role="img" aria-label="테스트 밸류체인 4개 노드와 주요 플레이어">
+      <!-- 노드 1: 검사·계측 -->
+      <rect x="20" y="20" width="376" height="200" rx="14" fill="#fdf3dc" stroke="#f0a500" stroke-width="1.2"/>
+      <text x="42" y="52" font-size="15.5" font-weight="800" fill="#7a5600">① 검사 · 계측</text>
+      <text x="42" y="76" font-size="12.5" fill="#6e5a1e">모양과 치수를 본다 (범프 · TSV · 오버레이 · 휨)</text>
+      <text x="42" y="104" font-size="12" font-weight="700" fill="#8a6100">드라이버: 공정 capex + 인서션 지점 수</text>
+      <g font-size="12.5" fill="#4a3d14">
+        <text x="42" y="134">글로벌 — <tspan font-weight="700">KLA · Onto Innovation · Camtek</tspan></text>
+        <text x="42" y="156">국내 — 인텍플러스 · 고영</text>
+        <text x="42" y="186" font-size="11.5" fill="#8a6100">AP 검사에서 Onto Dragonfly G5가 tool of record 교체 중</text>
+      </g>
+      <!-- 노드 2: ATE -->
+      <rect x="404" y="20" width="376" height="200" rx="14" fill="#e7efff" stroke="#3d7bfd" stroke-width="1.2"/>
+      <text x="426" y="52" font-size="15.5" font-weight="800" fill="#1d3f8f">② ATE (테스터)</text>
+      <text x="426" y="76" font-size="12.5" fill="#33477a">동작을 본다 (전기적 기능 · 속도 · 전력)</text>
+      <text x="426" y="104" font-size="12" font-weight="700" fill="#2456c8">드라이버: 테스트 시간 × 칩 물량 → 장비 대수</text>
+      <g font-size="12.5" fill="#1d2f5c">
+        <text x="426" y="134">글로벌 — <tspan font-weight="700">Advantest · Teradyne</tspan> (합산 ~80% 과점)</text>
+        <text x="426" y="156">국내 — 엑시콘 · 네오셈 · 와이아이케이 · 유니테스트</text>
+        <text x="426" y="186" font-size="11.5" fill="#2456c8">HBM 테스터는 Advantest T5503 계열이 사실상 표준</text>
+      </g>
+      <!-- 노드 3: 소모품 -->
+      <rect x="20" y="240" width="376" height="200" rx="14" fill="#e0f6ef" stroke="#00b894" stroke-width="1.2"/>
+      <text x="42" y="272" font-size="15.5" font-weight="800" fill="#00594a">③ 접촉 소모품</text>
+      <text x="42" y="296" font-size="12.5" fill="#0a6b58">칩과 테스터를 잇는다 (프로브카드 · 소켓 · 인터페이스)</text>
+      <text x="42" y="324" font-size="12" font-weight="700" fill="#00775f">드라이버: 웨이퍼 투입량 × 테스트 강도 (소모성)</text>
+      <g font-size="12.5" fill="#043d33">
+        <text x="42" y="354">글로벌 — <tspan font-weight="700">FormFactor · Technoprobe</tspan> · MJC · JEM</text>
+        <text x="42" y="376">국내 — 리노공업 · ISC · 티에스이 · 마이크로프랜드</text>
+        <text x="42" y="406" font-size="11.5" fill="#00775f">HBM 프로브카드는 FormFactor가 70%+ 점유</text>
+      </g>
+      <!-- 노드 4: 핸들링·하우스 -->
+      <rect x="404" y="240" width="376" height="200" rx="14" fill="#eef2f6" stroke="#b9c3cf" stroke-width="1.2"/>
+      <text x="426" y="272" font-size="15.5" font-weight="800" fill="#34405a">④ 핸들링 · 테스트 하우스</text>
+      <text x="426" y="296" font-size="12.5" fill="#5c6675">칩을 옮기고 실행한다 (프로버 · 핸들러 · OSAT)</text>
+      <text x="426" y="324" font-size="12" font-weight="700" fill="#42506a">드라이버: 물량 · 가동률 (상대적 저마진)</text>
+      <g font-size="12.5" fill="#2c3648">
+        <text x="426" y="354">글로벌 — TEL · Cohu · ASE · Amkor</text>
+        <text x="426" y="376">국내 — 테크윙 · 두산테스나 · LB세미콘 · SFA반도체</text>
+        <text x="426" y="406" font-size="11.5" fill="#5c6675">1,000W급 칩 → 발열 제어형 핸들러로 고도화 진행</text>
+      </g>
+      <!-- 하단 축 -->
+      <text x="400" y="466" text-anchor="middle" font-size="12" fill="#5c6675" font-family="JetBrains Mono,monospace">과점도 · 진입장벽: ② ATE ≥ ③ 소모품(설계 락인) &gt; ① 검사(퀄 장벽) &gt; ④ 핸들링</text>
+    </svg>
+    <figcaption>그림 3. 밸류체인 지도 — 같은 "테스트 수혜주"라도 매출 드라이버가 다르다. 이 차이가 포트폴리오 분산의 근거다</figcaption>
+  </figure>
+
+  <p>주목할 구조적 특징 두 가지. 첫째, <strong>과점의 밀도가 높다.</strong> ATE는 Advantest·Teradyne 2사가 약 80%, HBM 프로브카드는 FormFactor가 70% 이상, AP 검사는 소수 업체의 퀄 경쟁이다. 병목 산업에서 과점은 가격 결정력으로 직결된다. 둘째, <strong>생태계가 수직으로 묶이고 있다.</strong> Advantest가 FormFactor에 전략적 투자를 집행하며 ATE-프로브카드 통합 최적화가 진행 중이고, 이는 후발 주자의 진입 장벽을 한층 높인다.</p>
+</section>
+
+<!-- ============ 04 탑픽 ============ -->
+<section id="picks">
+  <div class="sec-head"><span class="sec-num">04</span><h2>탑픽 &amp; 바스켓 전략</h2></div>
+  <p class="sec-sub">병목의 소유자 중에서, 증분이 가장 가파른 곳을 고른다</p>
+
+  <p>탑픽 선정 로직은 세 개의 필터를 통과시키는 것이다. <strong>① 병목 노드의 과점 사업자인가</strong> (가격 결정력), <strong>② 두 축(HBM4·첨단 패키징)의 증분이 매출 산식에 직접 곱해지는가</strong> (레버리지), <strong>③ 그 증분이 이미 수주·가이던스로 확인되는가</strong> (검증 가능성). 이 필터를 모두 통과하는 이름이 FormFactor와 Onto Innovation이다.</p>
+
+  <div class="picks">
+    <div class="pick">
+      <span class="badge">Top pick 1 · 소모품</span>
+      <h4>FormFactor</h4>
+      <div class="ticker">NASDAQ: FORM · HBM 프로브카드 70%+ 점유</div>
+      <ul>
+        <li><span class="k">필터 ① 과점:</span> HBM 프로브카드 점유율 70% 이상, top-3 HBM 3사(SK하이닉스·삼성·마이크론) 모두에 공급하는 유일한 구도.</li>
+        <li><span class="k">필터 ② 레버리지:</span> 매출 = 웨이퍼 투입량 × 테스트 강도 × 카드 단가. HBM4는 세 변수를 동시에 올린다 — 물량(캐파 증설), 강도(KGD·핀 2배), 단가(고핀수 카드 ASP↑). 게다가 핀 수 증가는 <strong>마모 가속 → 교체 주기 단축</strong>이라는 소모품 특유의 복리 효과를 만든다.</li>
+        <li><span class="k">필터 ③ 검증:</span> 1Q26 매출 $226M(+32% YoY) 사상 최대, 2개 분기 연속 신기록. 파운드리·로직 GPU 프로브카드도 최대 파운드리에서 퀄 마무리 단계 — HBM 단일 스토리를 넘어서는 중.</li>
+        <li><span class="k">보너스:</span> Advantest의 전략적 지분 투자로 ATE 생태계에 결합. CPO(공동패키지 광학) 테스트로 차기 성장축 확보.</li>
+      </ul>
+    </div>
+    <div class="pick">
+      <span class="badge">Top pick 2 · 검사</span>
+      <h4>Onto Innovation</h4>
+      <div class="ticker">NYSE: ONTO · AP 검사의 신흥 표준</div>
+      <ul>
+        <li><span class="k">필터 ① 과점(진행형):</span> Dragonfly G5가 TSMC 2.5D 신규 장비 선정 퀄을 통과하고, 선두 HBM 업체에서 기존 tool of record를 교체하며 선정 — AP 검사의 표준 지위를 굳히는 국면.</li>
+        <li><span class="k">필터 ② 레버리지:</span> 검사·계측은 인서션 "지점 수"에 연동된다. 하이브리드 본딩·16단 적층·패널레벨로 갈수록 검사 지점은 칩 물량보다 빠르게 늘어난다 — 밸류체인에서 증분 기울기가 가장 가파른 노드.</li>
+        <li><span class="k">필터 ③ 검증:</span> 2026 AP 매출 성장 가이던스를 50%에서 80%로 3개월 만에 재상향. 백로그 $1.1B+(30~40%는 2027년분), 단일 OSAT에서 Dragonfly $200M+ 수주.</li>
+        <li><span class="k">보너스:</span> Rigaku 지분 27% 인수로 X-ray 계측 확장 — 적층이 깊어질수록 필요한 "속을 보는" 기술을 선점.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>바스켓: KLA + Onto / Advantest / FormFactor</h3>
+  <p>탑픽 2종의 집중 리스크를 분산하되 테스트 논지는 유지하는 방법으로, <strong>밸류체인의 세 노드를 하나씩 담는 바스켓</strong>을 제안한다. 핵심은 세 노드의 매출 드라이버가 서로 다르다는 점이다 — 같은 논지 안에서 사이클 타이밍이 분산된다.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 800 320" role="img" aria-label="바스켓 구성 — 검사, ATE, 소모품 세 노드">
+      <rect x="30" y="30" width="235" height="180" rx="14" fill="#fdf3dc" stroke="#f0a500" stroke-width="1.2"/>
+      <text x="147" y="62" text-anchor="middle" font-size="14.5" font-weight="800" fill="#7a5600">검사 · 계측</text>
+      <text x="147" y="92" text-anchor="middle" font-size="16" font-weight="800" fill="#4a3d14">KLA + Onto</text>
+      <text x="147" y="122" text-anchor="middle" font-size="12" fill="#6e5a1e">드라이버: 공정 capex</text>
+      <text x="147" y="141" text-anchor="middle" font-size="12" fill="#6e5a1e">+ 인서션 지점 수</text>
+      <text x="147" y="172" text-anchor="middle" font-size="11.5" fill="#8a6100">KLA = 안정성 · 프론트엔드</text>
+      <text x="147" y="190" text-anchor="middle" font-size="11.5" fill="#8a6100">Onto = AP 순도 · 성장성</text>
+
+      <rect x="283" y="30" width="235" height="180" rx="14" fill="#e7efff" stroke="#3d7bfd" stroke-width="1.2"/>
+      <text x="400" y="62" text-anchor="middle" font-size="14.5" font-weight="800" fill="#1d3f8f">ATE</text>
+      <text x="400" y="92" text-anchor="middle" font-size="16" font-weight="800" fill="#1d2f5c">Advantest</text>
+      <text x="400" y="122" text-anchor="middle" font-size="12" fill="#33477a">드라이버: 테스트 시간</text>
+      <text x="400" y="141" text-anchor="middle" font-size="12" fill="#33477a">× 칩 물량</text>
+      <text x="400" y="172" text-anchor="middle" font-size="11.5" fill="#2456c8">HBM 테스터 사실상 표준</text>
+      <text x="400" y="190" text-anchor="middle" font-size="11.5" fill="#2456c8">SLT · 인터페이스로 확장</text>
+
+      <rect x="536" y="30" width="235" height="180" rx="14" fill="#e0f6ef" stroke="#00b894" stroke-width="1.2"/>
+      <text x="653" y="62" text-anchor="middle" font-size="14.5" font-weight="800" fill="#00594a">접촉 소모품</text>
+      <text x="653" y="92" text-anchor="middle" font-size="16" font-weight="800" fill="#043d33">FormFactor</text>
+      <text x="653" y="122" text-anchor="middle" font-size="12" fill="#0a6b58">드라이버: 웨이퍼 투입량</text>
+      <text x="653" y="141" text-anchor="middle" font-size="12" fill="#0a6b58">× 테스트 강도 (반복 구매)</text>
+      <text x="653" y="172" text-anchor="middle" font-size="11.5" fill="#00775f">capex 둔화 국면에서도</text>
+      <text x="653" y="190" text-anchor="middle" font-size="11.5" fill="#00775f">가동만 되면 매출 발생</text>
+
+      <path d="M147 210 L147 250 Q147 268 170 268 L360 268" fill="none" stroke="#5c6675" stroke-width="1.4"/>
+      <path d="M653 210 L653 250 Q653 268 630 268 L440 268" fill="none" stroke="#5c6675" stroke-width="1.4"/>
+      <line x1="400" y1="210" x2="400" y2="256" stroke="#5c6675" stroke-width="1.4"/>
+      <rect x="300" y="256" width="200" height="42" rx="21" fill="#0d1321"/>
+      <text x="400" y="282" text-anchor="middle" font-size="13.5" font-weight="800" fill="#00d9a6">테스트 병목 바스켓</text>
+    </svg>
+    <figcaption>그림 4. 바스켓 구조 — 세 노드의 드라이버(capex / 시간×물량 / 소모)가 달라 같은 논지 안에서 리스크가 분산된다</figcaption>
+  </figure>
+
+  <table>
+    <thead><tr><th>구성</th><th>노드</th><th>역할</th><th>핵심 리스크</th></tr></thead>
+    <tbody>
+      <tr><td class="mono"><strong>KLA + Onto</strong></td><td>검사 · 계측</td><td>KLA가 프론트엔드 공정제어의 안정적 현금흐름을, Onto가 AP 검사의 고성장 순도를 담당하는 페어</td><td>고객 capex 지연 · Camtek 등과의 점유 경쟁</td></tr>
+      <tr><td class="mono"><strong>Advantest</strong></td><td>ATE</td><td>테스트 시간 증가의 가장 직접적인 수혜. HBM 테스터 표준 + SLT·소모성 인터페이스로 확장</td><td>높은 밸류에이션 — 사이클 정점 논쟁</td></tr>
+      <tr><td class="mono"><strong>FormFactor</strong></td><td>소모품</td><td>capex가 아닌 가동률에 연동되는 반복 매출. 사이클 후반부 방어력</td><td>고객 집중(SK하이닉스 ~30%) · 급등 후 밸류에이션</td></tr>
+    </tbody>
+  </table>
+
+  <div class="risk">
+    <div class="t">논지가 깨지는 조건 (리스크 체크리스트)</div>
+    ① AI capex 사이클 자체의 급랭 — 테스트는 병목이지만 전방 수요의 파생이다. ② 테스트 시간을 단축하는 기술 점프(DFT 고도화, 자가 테스트 내재화)가 예상보다 빠른 경우. ③ 탑픽 공통: 1년 새 주가가 크게 오른 상태라 실적이 가이던스를 소폭만 하회해도 변동성이 크다. ④ FormFactor의 고객 집중, Onto의 Camtek 경쟁 구도는 분기마다 재확인 필요.
+  </div>
+
+  <p class="note">본 페이지는 개인 리서치 정리이며 특정 종목의 매수·매도 권유가 아닙니다. 수치는 각사 IR·컨콜·업계 보도(2026년 상반기 기준) 기반이며, 인용 전 원문으로 재확인하세요.</p>
+</section>
+
+</main>
+
+<footer>
+  반도체 테스트 투자 리서치 데스크 · 발표 자료 인용 전 원문(IR·공시·어닝콜)으로 재확인하세요.<br>
+  <span class="mono">semiconductor-test-desk / deep-dive</span>
+</footer>
+
+</body>
+</html>

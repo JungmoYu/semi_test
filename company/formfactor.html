@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FormFactor 기업분석 — 반도체 테스트 투자 리서치</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.19/index.min.css">
+<style>
+:root{
+  --ink:#0d1321;--paper:#f4f6f8;--card:#ffffff;--text:#1a2233;--muted:#5c6675;
+  --line:#e3e7ec;--signal:#00b894;--signal-dark:#00775f;--probe:#f0a500;
+  --fail:#e2504a;--accent:#3d7bfd;--radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  background:var(--paper);color:var(--text);line-height:1.7;font-feature-settings:"ss05"}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.hero{background:var(--ink);color:#eef1f6;padding:44px 24px 52px}
+.hero-inner{max-width:880px;margin:0 auto}
+.crumb{font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.06em;margin-bottom:26px}
+.crumb a{color:#8b95a6;text-decoration:none}
+.crumb a:hover{color:var(--signal)}
+.crumb .sep{color:#4a5468;margin:0 8px}
+.crumb .here{color:var(--signal)}
+.eyebrow{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;
+  font-size:12.5px;letter-spacing:.22em;color:var(--signal);text-transform:uppercase;margin-bottom:18px}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--signal);
+  box-shadow:0 0 10px var(--signal)}
+.hero h1{font-size:clamp(28px,4.5vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+.hero .meta span{font-family:"JetBrains Mono",monospace;font-size:12px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  padding:5px 12px;border-radius:99px;color:#dfe4ec}
+.hero p.lede{max-width:680px;font-size:15.5px;color:#b8c0cd}
+.headstats{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+.hstat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);
+  border-radius:12px;padding:14px 20px;min-width:200px}
+.hstat .v{font-family:"JetBrains Mono",monospace;font-size:21px;font-weight:700;color:var(--signal)}
+.hstat .l{font-size:12.5px;color:#9aa5b5;margin-top:2px}
+main{max-width:880px;margin:0 auto;padding:44px 24px 32px}
+section{margin-bottom:52px}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;border-bottom:1.5px solid var(--line);padding-bottom:10px}
+.sec-num{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--signal-dark);font-weight:700}
+.sec-head h2{font-size:21px;font-weight:800;letter-spacing:-.01em}
+section p{font-size:14.5px;color:#2a3448;margin-bottom:14px}
+section p em.hl{font-style:normal;background:linear-gradient(transparent 62%,#c9f3e6 62%);font-weight:700}
+h3{font-size:16px;font-weight:800;margin:22px 0 10px}
+.infocards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:13px;margin:16px 0}
+.icard{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:16px 18px 14px}
+.icard .k{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.icard ul{list-style:none}
+.icard li{font-size:13.5px;padding:3px 0 3px 16px;position:relative;color:#2a3448}
+.icard li::before{content:"▸";position:absolute;left:0;color:var(--signal-dark);font-size:11px;top:6px}
+.icard li b{font-weight:700}
+.chartbox{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px 14px;margin:16px 0}
+.chartbox .ct{font-size:14px;font-weight:700;margin-bottom:2px}
+.chartbox .cs{font-size:12px;color:var(--muted);margin-bottom:12px}
+.chartbox svg{width:100%;height:auto}
+figcaption{font-size:12.5px;color:var(--muted);margin-top:8px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:13px;margin:16px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:16px 18px}
+.stat .v{font-family:"JetBrains Mono",monospace;font-size:19px;font-weight:700;color:var(--signal-dark)}
+.stat .l{font-size:12.5px;color:var(--muted);margin-top:3px}
+.callout{background:#fdf9ee;border:1px solid #f3dfae;border-radius:11px;padding:15px 18px;
+  font-size:13.5px;color:#5c4a12;margin:16px 0}
+.callout b{font-weight:700}
+.alpha,.risk{border-radius:11px;padding:16px 20px 14px;margin:12px 0}
+.alpha{background:#f0fbf7;border:1px solid #bfe9db}
+.risk{background:#fdf1f0;border:1px solid #f2cdca}
+.alpha .k,.risk .k{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;margin-bottom:9px}
+.alpha .k{color:var(--signal-dark)}
+.risk .k{color:#a83a34}
+.alpha ul,.risk ul{list-style:none}
+.alpha li,.risk li{font-size:13.5px;padding:3px 0 3px 16px;position:relative}
+.alpha li::before{content:"▸";position:absolute;left:0;color:var(--signal-dark);font-size:11px;top:6px}
+.risk li::before{content:"▸";position:absolute;left:0;color:var(--fail);font-size:11px;top:6px}
+.tblwrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:660px}
+th{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-align:right;padding:12px 14px;border-bottom:1.5px solid var(--line);background:#fafbfc}
+th:first-child{text-align:left}
+td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:right;color:#2a3448;font-variant-numeric:tabular-nums}
+td:first-child{text-align:left;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600}
+tr:last-child td{border-bottom:none}
+tr.hot td{background:#f2fbf8;font-weight:600}
+.fn{font-size:12px;color:var(--muted);margin-top:-6px}
+.call{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px 16px;margin:14px 0}
+.call .dt{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--signal-dark);letter-spacing:.08em;margin-bottom:4px}
+.call h4{font-size:15px;font-weight:800;margin-bottom:10px}
+.call ul{list-style:none;margin-bottom:6px}
+.call li{font-size:13.5px;padding:3px 0 3px 16px;position:relative;color:#2a3448}
+.call li::before{content:"▸";position:absolute;left:0;color:var(--signal-dark);font-size:11px;top:6px}
+.srcbox{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:16px 20px;font-size:12.5px;color:var(--muted)}
+.srcbox a{color:var(--accent);text-decoration:none}
+.srcbox a:hover{text-decoration:underline}
+.backrow{margin-top:8px}
+.backrow a{font-family:"JetBrains Mono",monospace;font-size:13.5px;color:var(--signal-dark);text-decoration:none}
+.backrow a:hover{text-decoration:underline}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;
+  text-align:center;font-size:12.5px;color:var(--muted)}
+footer .mono{font-size:12px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="crumb"><a href="../index.html">HOME</a><span class="sep">/</span><a href="index.html">COMPANY</a><span class="sep">/</span><span class="here">FORMFACTOR</span></div>
+    <div class="eyebrow">Company Deep Dive</div>
+    <h1>FormFactor</h1>
+    <div class="meta">
+      <span>NASDAQ: FORM</span><span>프로브카드 · 테스트 인터페이스</span><span>12월 결산</span><span>USD</span>
+    </div>
+    <p class="lede">칩과 테스터를 잇는 접촉 소모품의 최상단. HBM 프로브카드 70%+ 점유로 3대 HBM 메이커(SK하이닉스·삼성·마이크론) 모두에 공급하는 유일한 구도이며, 매출이 고객 capex가 아닌 웨이퍼 투입량 × 테스트 강도에 연동되는 소모품 비즈니스다.</p>
+    <div class="headstats">
+      <div class="hstat"><div class="v">$258.2M</div><div class="l">2Q26 매출 — 사상 최대 (+31.9% YoY)</div></div>
+      <div class="hstat"><div class="v">53.3%</div><div class="l">2Q26 non-GAAP 매출총이익률 (4개 분기 +1,500bp)</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 01 개요 ============ -->
+<section id="overview">
+  <div class="sec-head"><span class="sec-num">01</span><h2>개요</h2></div>
+  <p>FormFactor는 웨이퍼 상태의 다이와 테스터를 전기적으로 연결하는 <em class="hl">프로브카드 세계 1위</em> 업체다. 매출의 약 88%가 프로브카드 세그먼트에서 나오고, 나머지는 계측 시스템(Systems) 세그먼트다. 프로브카드는 칩 설계가 바뀔 때마다 신규 설계·제작이 필요한 커스텀 소모품으로, 반복 구매가 구조적으로 발생한다.</p>
+  <div class="infocards">
+    <div class="icard"><div class="k">사업 구성</div>
+      <ul>
+        <li><b>프로브카드</b> — Foundry &amp; Logic · DRAM(HBM 포함) · Flash <span style="color:var(--muted)">(매출 ~88%)</span></li>
+        <li><b>Systems</b> — 프로브 스테이션 · 계측, CPO 테스트 플랫폼 <b>Triton</b></li>
+      </ul>
+    </div>
+    <div class="icard"><div class="k">경영진</div>
+      <ul>
+        <li>CEO — <b>Mike Slessor</b></li>
+        <li>본사 — 미국 캘리포니아 리버모어</li>
+      </ul>
+    </div>
+    <div class="icard"><div class="k">최근 전략 행보</div>
+      <ul>
+        <li>텍사스 Farmers Branch <b>신규 캐파 증설</b></li>
+        <li><b>Keystone Photonics 인수</b> — 광학·데이터센터 확장</li>
+        <li>대만 Keystone Microtech <b>파트너십 확대</b> (2Q26)</li>
+        <li><b>Advantest의 전략적 지분 투자</b> — ATE 생태계 결합</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 분기 실적 ============ -->
+<section id="financials">
+  <div class="sec-head"><span class="sec-num">02</span><h2>분기 실적 추이</h2></div>
+  <p>2025년 상반기를 바닥으로 HBM 수요가 실적을 끌어올리는 국면. 4Q25부터 3개 분기 연속 사상 최대 매출을 경신 중이며, 마진 개선 속도가 매출 성장보다 가파르다 — CEO는 2Q26 콜에서 <em class="hl">"4개 분기 만에 매출 +30%, non-GAAP GM +1,500bp, EPS 3배"</em>로 요약했다.</p>
+
+  <figure class="chartbox">
+    <div class="ct">분기 매출 추이 ($M)</div>
+    <div class="cs">3Q24 → 2Q26 · 파란 점선 = 3Q26 가이던스 중간값($270M)</div>
+    <svg viewBox="0 0 800 290" role="img" aria-label="FormFactor 분기 매출 막대 차트, 3Q24 207.9에서 2Q26 258.2까지">
+      <line x1="30" y1="250" x2="790" y2="250" stroke="#e3e7ec" stroke-width="1.5"/>
+      <line x1="30" y1="52" x2="790" y2="52" stroke="#3d7bfd" stroke-width="1.5" stroke-dasharray="6 5" opacity=".55"/>
+      <text x="786" y="44" text-anchor="end" font-size="11" fill="#3d7bfd" font-family="JetBrains Mono,monospace">3Q26 guide $270M</text>
+      <!-- bars -->
+      <g fill="#cdd7e1">
+        <rect x="40"  y="97"  width="62" height="153" rx="4"/>
+        <rect x="132" y="111" width="62" height="139" rx="4"/>
+        <rect x="224" y="124" width="62" height="126" rx="4"/>
+        <rect x="316" y="106" width="62" height="144" rx="4"/>
+        <rect x="408" y="101" width="62" height="149" rx="4"/>
+      </g>
+      <g fill="#00b894">
+        <rect x="500" y="92" width="62" height="158" rx="4"/>
+        <rect x="592" y="84" width="62" height="166" rx="4"/>
+        <rect x="684" y="60" width="62" height="190" rx="4"/>
+      </g>
+      <!-- values -->
+      <g font-size="11.5" text-anchor="middle" fill="#5c6675" font-family="JetBrains Mono,monospace">
+        <text x="71"  y="90">207.9</text>
+        <text x="163" y="104">189.5</text>
+        <text x="255" y="117">171.4</text>
+        <text x="347" y="99">195.8</text>
+        <text x="439" y="94">202.7</text>
+      </g>
+      <g font-size="11.5" text-anchor="middle" fill="#00775f" font-weight="700" font-family="JetBrains Mono,monospace">
+        <text x="531" y="85">215.2</text>
+        <text x="623" y="77">226.1</text>
+        <text x="715" y="53">258.2</text>
+      </g>
+      <!-- labels -->
+      <g font-size="11" text-anchor="middle" fill="#5c6675" font-family="JetBrains Mono,monospace">
+        <text x="71"  y="270">3Q24</text>
+        <text x="163" y="270">4Q24</text>
+        <text x="255" y="270">1Q25</text>
+        <text x="347" y="270">2Q25</text>
+        <text x="439" y="270">3Q25</text>
+        <text x="531" y="270">4Q25</text>
+        <text x="623" y="270">1Q26</text>
+        <text x="715" y="270">2Q26</text>
+      </g>
+    </svg>
+    <figcaption>녹색 = 사상 최대 경신 구간. 출처: 회사 실적 발표 자료</figcaption>
+  </figure>
+
+  <div class="stats">
+    <div class="stat"><div class="v">$484.4M</div><div class="l">2026 상반기 매출 (+31.9% YoY)</div></div>
+    <div class="stat"><div class="v">$0.82</div><div class="l">2Q26 non-GAAP 희석 EPS (전년 $0.27)</div></div>
+    <div class="stat"><div class="v">$52.6M</div><div class="l">2Q26 잉여현금흐름 (전년 −$47.1M)</div></div>
+    <div class="stat"><div class="v">$270M ± 10</div><div class="l">3Q26 매출 가이던스 · non-GAAP GM 54.0% ± 1.5</div></div>
+  </div>
+
+  <div class="callout"><b>왜 non-GAAP을 함께 보나.</b> 인수 관련 무형자산 상각과 일회성 항목이 GAAP 마진을 왜곡하는 분기가 있다(특히 1Q26). 추세 판단은 non-GAAP, 절대 수준 확인은 GAAP을 병행하는 것이 안전하다.</div>
+</section>
+
+<!-- ============ 03 시장별 매출 ============ -->
+<section id="markets">
+  <div class="sec-head"><span class="sec-num">03</span><h2>시장별 매출 — HBM이 끌고 CPO가 민다</h2></div>
+  <p>2Q26 성장의 축은 셋이다. <em class="hl">DRAM(HBM 포함) $85.0M, +49% YoY</em> — 생성형 AI향 HBM 설계 수요가 직접 반영되는 라인. Foundry &amp; Logic — 최대 파운드리에서 GPU용 프로브카드 퀄 마무리 단계로, HBM 단일 스토리를 넘어서는 중. Systems — 신규 대량 CPO(공동패키지 광학) 테스트 플랫폼 <b>Triton</b>이 성장을 주도.</p>
+  <div class="infocards">
+    <div class="icard"><div class="k">DRAM · HBM</div>
+      <ul>
+        <li>2Q26 매출 <b>$85.0M (+49% YoY)</b></li>
+        <li>HBM 프로브카드 점유율 <b>70%+</b></li>
+        <li>HBM4 핀 수 2배 → ASP↑ · 교체 주기 단축</li>
+      </ul>
+    </div>
+    <div class="icard"><div class="k">Foundry &amp; Logic</div>
+      <ul>
+        <li>최대 파운드리 GPU 프로브카드 <b>퀄 마무리 단계</b></li>
+        <li>KGD 확산 → 웨이퍼당 카드 소비량 증가</li>
+      </ul>
+    </div>
+    <div class="icard"><div class="k">Systems · CPO</div>
+      <ul>
+        <li>CPO 테스트 플랫폼 <b>Triton</b> 이 성장 견인</li>
+        <li>Keystone Photonics 인수로 광학 역량 보강</li>
+      </ul>
+    </div>
+  </div>
+  <p>지역별로는 1Q26 기준 한국 35.6%, 대만 31.3%, 미국 13%, 중국 5% — <em class="hl">한국 비중 1위</em>는 HBM 3사 중 2곳(SK하이닉스·삼성)의 소재지라는 점과 정합적이다.</p>
+</section>
+
+<!-- ============ 04 알파 포인트 · 리스크 ============ -->
+<section id="alpha">
+  <div class="sec-head"><span class="sec-num">04</span><h2>알파 포인트 · 리스크</h2></div>
+  <div class="alpha">
+    <div class="k">Alpha Points</div>
+    <ul>
+      <li><b>과점 + 소모품의 결합</b> — HBM 프로브카드 70%+ 점유에, 매출은 웨이퍼 투입량 × 테스트 강도에 연동. capex 사이클보다 완만하고 반복적.</li>
+      <li><b>HBM4가 단가와 수량을 동시에 올린다</b> — 핀 수 2배는 카드당 ASP를 올리는 동시에 마모를 가속해 교체 주기를 단축.</li>
+      <li><b>마진 레버리지 진행 중</b> — non-GAAP GM 38.5%(2Q25) → 53.3%(2Q26). 가이던스는 54%로 추가 확장.</li>
+      <li><b>Advantest 지분 투자</b> — ATE-프로브카드 통합 최적화로 생태계에 결합, 후발 진입 장벽 상승.</li>
+      <li><b>CPO라는 두 번째 엔진</b> — Triton 플랫폼과 Keystone Photonics 인수로 HBM 이후 성장축 선점.</li>
+    </ul>
+  </div>
+  <div class="risk">
+    <div class="k">Risks</div>
+    <ul>
+      <li><b>고객 집중</b> — HBM 3사 + 대형 파운드리에 매출이 몰려 있어 단일 고객의 재고 조정에 민감.</li>
+      <li><b>기술 전환 리스크</b> — 차세대 HBM 테스트 방식(예: 적층 전 테스트 구조 변화)이 카드 소비량 공식을 바꿀 수 있음.</li>
+      <li><b>경쟁 추격</b> — Technoprobe 등 경쟁사의 HBM 시장 진입 시도, 국내 업체의 로컬라이제이션 압력.</li>
+      <li><b>밸류에이션</b> — 사상 최대 실적 경신이 이미 주가에 상당 부분 반영됐다는 평가 존재.</li>
+      <li><b>지정학 · 관세</b> — 한국·대만·중국 비중이 높아 무역 정책 변화에 노출.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 05 데이터 테이블 ============ -->
+<section id="data">
+  <div class="sec-head"><span class="sec-num">05</span><h2>분기 데이터 테이블</h2></div>
+  <div class="tblwrap">
+    <table>
+      <thead>
+        <tr><th>분기</th><th>매출 ($M)</th><th>GAAP GM</th><th>Non-GAAP GM</th><th>GAAP EPS</th><th>Non-GAAP EPS</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1Q24</td><td>168.7</td><td>37.2%</td><td>38.7%</td><td>$0.28¹</td><td>$0.18</td></tr>
+        <tr><td>3Q24</td><td>207.9</td><td>40.7%</td><td>42.2%</td><td>$0.24</td><td>$0.35</td></tr>
+        <tr><td>4Q24</td><td>189.5</td><td>38.8%</td><td>40.2%</td><td>$0.12</td><td>$0.27</td></tr>
+        <tr><td>1Q25</td><td>171.4</td><td>37.7%</td><td>39.2%</td><td>$0.08</td><td>$0.23</td></tr>
+        <tr><td>2Q25</td><td>195.8</td><td>37.3%</td><td>38.5%</td><td>$0.12</td><td>$0.27</td></tr>
+        <tr><td>3Q25</td><td>202.7</td><td>39.8%</td><td>41.0%</td><td>$0.20</td><td>$0.33</td></tr>
+        <tr><td>4Q25</td><td>215.2</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>1Q26</td><td>226.1</td><td>38.4%²</td><td>49.0%</td><td>—</td><td>—</td></tr>
+        <tr class="hot"><td>2Q26</td><td>258.2</td><td>50.7%</td><td>53.3%</td><td>$0.71</td><td>$0.82</td></tr>
+        <tr><td>3Q26E</td><td>270 ± 10</td><td>—</td><td>54.0% ± 1.5</td><td>$0.75 ± 0.09</td><td>$0.86 ± 0.09</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="fn">¹ 1Q24 GAAP EPS는 일회성 이익 포함으로 non-GAAP보다 높음. &nbsp;² 1Q26 GAAP GM은 일회성 항목 영향으로 non-GAAP과 괴리 큼. — 표기는 원문 미확인 항목. 2Q24는 자료 미수집으로 생략.</p>
+</section>
+
+<!-- ============ 06 어닝콜 하이라이트 ============ -->
+<section id="calls">
+  <div class="sec-head"><span class="sec-num">06</span><h2>어닝콜 하이라이트</h2></div>
+  <div class="call">
+    <div class="dt">2026-07-29 · 2Q26</div>
+    <h4>사상 최대 매출·EPS — "4개 분기 만에 매출 +30%, GM +1,500bp, EPS 3배"</h4>
+    <ul>
+      <li>매출 $258.2M(+14.2% QoQ, +31.9% YoY), non-GAAP EPS $0.82 — 모두 사상 최대.</li>
+      <li>수요 축은 <b>HBM과 CPO</b>. DRAM·Foundry&amp;Logic·Systems 전 부문 강세.</li>
+      <li>3Q26 가이던스 $270M ± 10, non-GAAP GM 54.0% ± 1.5 — 추가 확장 제시.</li>
+      <li>대만 Keystone Microtech 파트너십 확대 발표.</li>
+    </ul>
+  </div>
+  <div class="call">
+    <div class="dt">2026-02 · 4Q25</div>
+    <h4>HBM 주도의 사상 최대 분기·연간 매출, 2026 전망 상향</h4>
+    <ul>
+      <li>매출 $215.2M — 분기·연간 모두 기록 경신, HBM 테스트 수요를 직접 지목.</li>
+      <li>텍사스 Farmers Branch 캐파 증설, Keystone Photonics 인수로 광학·데이터센터 확장.</li>
+      <li>발표 후 주가 +14%대 반응.</li>
+    </ul>
+  </div>
+  <div class="call">
+    <div class="dt">2025-10-29 · 3Q25</div>
+    <h4>가이던스 상단 달성 — 회복 사이클 진입 확인</h4>
+    <ul>
+      <li>매출 $202.7M, non-GAAP GM 41.0% — 매출·마진·EPS 모두 가이던스 중간값 상회.</li>
+      <li>4Q25 가이던스 $210M ± 5 제시(실제 $215.2M로 상회 마감).</li>
+      <li>마진 개선 이니셔티브와 첨단 패키징 수요를 회복 근거로 제시.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 출처 ============ -->
+<section id="sources">
+  <div class="sec-head"><span class="sec-num">A</span><h2>출처</h2></div>
+  <div class="srcbox">
+    FormFactor IR 보도자료 (<a href="https://investors.formfactor.com" target="_blank" rel="noopener">investors.formfactor.com</a>) ·
+    2Q26 실적 발표 및 10-Q ·
+    3Q25 실적 발표 ·
+    1Q25 실적 발표 (GlobeNewswire) ·
+    2Q26 어닝콜 (2026-07-29) 요약.<br>
+    본 페이지는 투자 참고 자료이며 투자 권유가 아닙니다. 인용 전 SEC 공시·어닝콜 원문으로 재확인하세요. · 최종 업데이트 2026-08-19
+  </div>
+</section>
+
+<div class="backrow"><a href="index.html">← 기업 분석 목록으로</a></div>
+
+</main>
+
+<footer>
+  반도체 테스트 투자 리서치 데스크 · 발표 자료 인용 전 원문(IR·공시·어닝콜)으로 재확인하세요.<br>
+  <span class="mono">semiconductor-test-desk / company / formfactor</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기업 분석 — 반도체 테스트 투자 리서치</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.19/index.min.css">
+<style>
+:root{
+  --ink:#0d1321;--paper:#f4f6f8;--card:#ffffff;--text:#1a2233;--muted:#5c6675;
+  --line:#e3e7ec;--signal:#00b894;--signal-dark:#00775f;--probe:#f0a500;
+  --fail:#e2504a;--accent:#3d7bfd;--radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  background:var(--paper);color:var(--text);line-height:1.65;font-feature-settings:"ss05"}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.hero{background:var(--ink);color:#eef1f6;padding:44px 24px 56px}
+.hero-inner{max-width:960px;margin:0 auto}
+.crumb{font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.06em;margin-bottom:26px}
+.crumb a{color:#8b95a6;text-decoration:none}
+.crumb a:hover{color:var(--signal)}
+.crumb .sep{color:#4a5468;margin:0 8px}
+.crumb .here{color:var(--signal)}
+.eyebrow{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;
+  font-size:13px;letter-spacing:.22em;color:var(--signal);text-transform:uppercase;margin-bottom:18px}
+.eyebrow::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--signal);
+  box-shadow:0 0 10px var(--signal);animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+@media(prefers-reduced-motion:reduce){.eyebrow::before{animation:none}}
+.hero h1{font-size:clamp(26px,4.5vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+.hero p.lede{max-width:660px;font-size:16px;color:#b8c0cd}
+main{max-width:960px;margin:0 auto;padding:44px 24px 32px}
+.section-label{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;
+  color:var(--muted);text-transform:uppercase;margin:0 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 26px 22px;text-decoration:none;color:inherit;position:relative;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+a.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(13,19,33,.09);border-color:#c9d2dd}
+a.card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.card.featured{border:1.5px solid var(--signal)}
+.card.soon-card{opacity:.75}
+.card .ticker{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--signal-dark);
+  letter-spacing:.06em;margin-bottom:8px}
+.card h2{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+.card .pos{font-size:12.5px;font-weight:600;color:#8a6100;margin-bottom:10px}
+.card p{font-size:14px;color:var(--muted);margin-bottom:16px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:7px;background:#eef2f6;color:#42506a}
+.tag.green{background:#e0f6ef;color:var(--signal-dark)}
+.tag.gold{background:#fdf3dc;color:#8a6100}
+.tag.soon{background:#f1f1f1;color:#9aa1ab;font-weight:500}
+.card .go{font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--signal-dark);
+  transition:transform .18s ease;display:inline-block}
+a.card:hover .go{transform:translateX(4px)}
+footer{border-top:1px solid var(--line);margin-top:48px;padding:26px 24px 40px;
+  text-align:center;font-size:12.5px;color:var(--muted)}
+footer .mono{font-size:12px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="crumb"><a href="../index.html">HOME</a><span class="sep">/</span><span class="here">COMPANY</span></div>
+    <div class="eyebrow">Company Deep Dive</div>
+    <h1>기업 분석</h1>
+    <p class="lede">테스트 밸류체인 핵심 기업을 IR·공시·어닝콜 원문 기반으로 정리한다. 재무 추이, 시장별 매출, 알파 포인트와 리스크까지 기업당 한 페이지 딥다이브.</p>
+  </div>
+</header>
+
+<main>
+  <div class="section-label">등록 기업</div>
+
+  <div class="grid">
+    <a class="card featured" href="formfactor.html">
+      <div class="ticker">NASDAQ: FORM</div>
+      <h2>FormFactor</h2>
+      <div class="pos">프로브카드 세계 1위 · HBM 프로브카드 70%+ 점유</div>
+      <p>칩과 테스터를 잇는 접촉 소모품의 최상단. 2Q26 매출 $258.2M 사상 최대, 4개 분기 만에 non-GAAP 매출총이익률 1,500bp 확장. HBM4·CPO가 차기 성장축.</p>
+      <div class="tags"><span class="tag green">딥다이브 공개</span><span class="tag">프로브카드</span><span class="tag gold">HBM</span><span class="tag gold">CPO</span></div>
+      <span class="go">→</span>
+    </a>
+
+    <div class="card soon-card">
+      <div class="ticker">TSE: 6857</div>
+      <h2>Advantest</h2>
+      <div class="pos">ATE 세계 1위 · HBM 테스터 사실상 표준</div>
+      <p>테스트 시간 증가의 가장 직접적인 수혜. SoC 테스터 캐파 연 3,000→5,000대 확장 중, FY2026 영업이익 가이던스 +70% 상향. FormFactor 전략 투자로 생태계 수직 결합.</p>
+      <div class="tags"><span class="tag">ATE</span><span class="tag gold">HBM 테스터</span><span class="tag soon">준비 중</span></div>
+    </div>
+
+    <div class="card soon-card">
+      <div class="ticker">NASDAQ: TER</div>
+      <h2>Teradyne</h2>
+      <div class="pos">ATE 세계 2위 · SoC 테스터 양강</div>
+      <p>Advantest와 합산 ATE 시장 ~80% 과점의 한 축. 로보틱스 사업 병행. AI 가속기·네트워킹 칩 테스트 수요 확대의 동반 수혜.</p>
+      <div class="tags"><span class="tag">ATE</span><span class="tag soon">준비 중</span></div>
+    </div>
+
+    <div class="card soon-card">
+      <div class="ticker">KOSDAQ: 058470</div>
+      <h2>리노공업</h2>
+      <div class="pos">테스트 소켓 · 핀 국내 대표</div>
+      <p>비메모리 테스트 소켓(리노핀)의 고마진 구조. 칩 설계 변경마다 신규 수주가 발생하는 소모품 비즈니스 모델.</p>
+      <div class="tags"><span class="tag">소켓</span><span class="tag soon">준비 중</span></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  반도체 테스트 투자 리서치 데스크 · 발표 자료 인용 전 원문(IR·공시·어닝콜)으로 재확인하세요.<br>
+  <span class="mono">semiconductor-test-desk / company</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>개념 정리 — 반도체 테스트 투자 리서치</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.19/index.min.css">
+<style>
+:root{
+  --ink:#0d1321;--paper:#f4f6f8;--card:#ffffff;--text:#1a2233;--muted:#5c6675;
+  --line:#e3e7ec;--signal:#00b894;--signal-dark:#00775f;--probe:#f0a500;
+  --fail:#e2504a;--accent:#3d7bfd;--radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  background:var(--paper);color:var(--text);line-height:1.65;font-feature-settings:"ss05"}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.hero{background:var(--ink);color:#eef1f6;padding:44px 24px 56px}
+.hero-inner{max-width:960px;margin:0 auto}
+.crumb{font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.06em;margin-bottom:26px}
+.crumb a{color:#8b95a6;text-decoration:none}
+.crumb a:hover{color:var(--signal)}
+.crumb .sep{color:#4a5468;margin:0 8px}
+.crumb .here{color:var(--signal)}
+.eyebrow{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;
+  font-size:13px;letter-spacing:.22em;color:var(--signal);text-transform:uppercase;margin-bottom:18px}
+.eyebrow::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--signal);
+  box-shadow:0 0 10px var(--signal);animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+@media(prefers-reduced-motion:reduce){.eyebrow::before{animation:none}}
+.hero h1{font-size:clamp(26px,4.5vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+.hero p.lede{max-width:660px;font-size:16px;color:#b8c0cd}
+main{max-width:960px;margin:0 auto;padding:44px 24px 32px}
+.soonbox{background:var(--card);border:1.5px dashed #c9d2dd;border-radius:var(--radius);
+  padding:52px 32px;text-align:center}
+.soonbox .badge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:12px;
+  letter-spacing:.18em;text-transform:uppercase;color:#8a6100;background:#fdf3dc;
+  padding:6px 14px;border-radius:99px;margin-bottom:18px}
+.soonbox h2{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-bottom:10px}
+.soonbox p{font-size:14.5px;color:var(--muted);max-width:520px;margin:0 auto 24px}
+.soonbox .plan{display:inline-block;text-align:left;background:var(--paper);border:1px solid var(--line);
+  border-radius:11px;padding:18px 24px;font-size:13.5px;color:#2a3448}
+.soonbox .plan .k{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px}
+.soonbox .plan li{list-style:none;padding:2px 0 2px 16px;position:relative}
+.soonbox .plan li::before{content:"▸";position:absolute;left:0;color:var(--signal-dark);font-size:11px}
+.backrow{margin-top:32px;text-align:center}
+.backrow a{font-family:"JetBrains Mono",monospace;font-size:13.5px;color:var(--signal-dark);text-decoration:none}
+.backrow a:hover{text-decoration:underline}
+footer{border-top:1px solid var(--line);margin-top:48px;padding:26px 24px 40px;
+  text-align:center;font-size:12.5px;color:var(--muted)}
+footer .mono{font-size:12px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="crumb"><a href="../index.html">HOME</a><span class="sep">/</span><span class="here">CONCEPT</span></div>
+    <div class="eyebrow">Test Concepts</div>
+    <h1>개념 정리</h1>
+    <p class="lede">CP·FT·SLT·번인, KGD, 프로브카드와 소켓의 차이, ATE 구조 등 테스트 핵심 개념을 정리합니다. 뉴스와 기업 분석을 빠르게 해석하기 위한 기술 기반.</p>
+  </div>
+</header>
+
+<main>
+  <div class="soonbox">
+    <span class="badge">Coming Soon</span>
+    <h2>준비 중인 섹션입니다</h2>
+    <p>개념 사전을 작성 중입니다. 오픈되면 용어별 카드와 도식으로 빠르게 찾아볼 수 있습니다.</p>
+    <div class="plan">
+      <span class="k">Roadmap</span>
+      <ul>
+        <li>테스트 인서션별 개념 카드 (CP · 번인 · FT · SLT)</li>
+        <li>KGD · 빈 분류 · 테스트 커버리지 용어 사전</li>
+        <li>프로브카드 vs 소켓, ATE 구조 도식</li>
+      </ul>
+    </div>
+  </div>
+  <div class="backrow"><a href="../index.html">← 홈으로 돌아가기</a></div>
+</main>
+
+<footer>
+  반도체 테스트 투자 리서치 데스크 · 발표 자료 인용 전 원문(IR·공시·어닝콜)으로 재확인하세요.<br>
+  <span class="mono">semiconductor-test-desk / concept</span>
+</footer>
+
+</body>
+</html>

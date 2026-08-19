@@ -22,6 +22,34 @@ section>p{font-size:14.5px;color:#2a3448;margin-bottom:14px;max-width:840px}.hl{
 .diagram{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px 14px;margin:16px 0;overflow-x:auto}.diagram .ct{font-size:14px;font-weight:700;margin-bottom:10px}.diagram svg{width:100%;height:auto;min-width:700px}figcaption{font-size:12.5px;color:var(--muted);margin-top:8px}.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:16px 0}.pair .diagram{overflow:hidden}.pair .diagram svg{min-width:0;width:100%;max-width:100%;display:block}
 .callout{background:#fdf9ee;border:1px solid #f3dfae;border-radius:11px;padding:15px 18px;font-size:13.5px;color:#5c4a12;margin:16px 0;max-width:840px}
 .tblwrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin:16px 0}table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:700px}th{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:13px 16px;border-bottom:1.5px solid var(--line);background:#fafbfc}td{padding:11px 16px;border-bottom:1px solid var(--line);vertical-align:top}tr:last-child td{border-bottom:none}td:first-child{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:700;white-space:nowrap}
+
+/* 개념 이해에 직접 도움이 되는 선택적 애니메이션만 유지 */
+.probe-move{
+  animation:probeDip 2.8s ease-in-out infinite;
+  transform-box:fill-box;
+  transform-origin:center;
+}
+@keyframes probeDip{
+  0%,100%{transform:translateY(-8px)}
+  45%,60%{transform:translateY(0)}
+}
+.chip-in{
+  animation:chipInsert 3.2s ease-in-out infinite;
+  transform-box:fill-box;
+  transform-origin:center;
+}
+@keyframes chipInsert{
+  0%,100%{transform:translateY(0)}
+  40%,65%{transform:translateY(-20px)}
+}
+.bad-die{animation:badBlink 1.6s ease-in-out infinite}
+@keyframes badBlink{0%,100%{opacity:1}50%{opacity:.28}}
+.bad-stack{animation:badFade 4.6s ease-in-out infinite}
+@keyframes badFade{0%,55%{opacity:1}75%,90%{opacity:.42}100%{opacity:1}}
+@media(prefers-reduced-motion:reduce){
+  .probe-move,.chip-in,.bad-die,.bad-stack{animation:none}
+}
+
 .linkline{margin-top:6px}.linkline a{font-family:"JetBrains Mono",monospace;font-size:13.5px;color:var(--signal-dark);text-decoration:none}
 footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;text-align:center;font-size:12.5px;color:var(--muted)}
 @media(max-width:700px){.diagram svg{min-width:720px}.pair{grid-template-columns:1fr}.pair .diagram svg{min-width:0}}
@@ -75,7 +103,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;t
         <g fill="#bfe9db"><rect x="52" y="50" width="96" height="15" rx="3"/><rect x="52" y="70" width="96" height="15" rx="3"/><rect x="52" y="90" width="96" height="15" rx="3"/><rect x="52" y="110" width="96" height="15" rx="3"/><rect x="52" y="130" width="96" height="15" rx="3"/><rect x="52" y="150" width="96" height="15" rx="3"/></g><rect x="42" y="174" width="116" height="17" rx="3" fill="#8fd8c3"/>
         <text x="100" y="222" text-anchor="middle" font-size="12.5" font-weight="800" fill="#00775f">✓ 다음 공정으로</text>
         <text x="315" y="28" text-anchor="middle" font-size="13" font-weight="800" fill="#a83a34">불량 혼입</text>
-        <g fill="#e6ebef"><rect x="267" y="50" width="96" height="15" rx="3"/><rect x="267" y="70" width="96" height="15" rx="3"/><rect x="267" y="90" width="96" height="15" rx="3"/><rect x="267" y="110" width="96" height="15" rx="3"/><rect x="267" y="130" width="96" height="15" rx="3"/><rect x="267" y="150" width="96" height="15" rx="3"/></g><rect x="267" y="110" width="96" height="15" rx="3" fill="#e2504a"/><rect x="257" y="174" width="116" height="17" rx="3" fill="#d7dde3"/>
+        <g class="bad-stack"><g fill="#e6ebef"><rect x="267" y="50" width="96" height="15" rx="3"/><rect x="267" y="70" width="96" height="15" rx="3"/><rect x="267" y="90" width="96" height="15" rx="3"/><rect x="267" y="110" width="96" height="15" rx="3"/><rect x="267" y="130" width="96" height="15" rx="3"/><rect x="267" y="150" width="96" height="15" rx="3"/></g><rect class="bad-die" x="267" y="110" width="96" height="15" rx="3" fill="#e2504a"/><rect x="257" y="174" width="116" height="17" rx="3" fill="#d7dde3"/></g>
         <text x="315" y="222" text-anchor="middle" font-size="12.5" font-weight="800" fill="#a83a34">✕ 스택 가치 손실</text>
         <text x="210" y="253" text-anchor="middle" font-size="12" fill="#5c6675">적층 단수·후공정 가치가 커질수록 사전 test의 경제적 가치가 커진다</text>
       </g></svg></figure>
@@ -94,40 +122,70 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;t
 
 <section id="kgsd">
   <div class="sec-head"><span class="sec-num">03</span><h2>KGSD — 적층 후 다시 확인하는 두 번째 gate</h2></div>
-  <p>KGSD(Known Good Stacked Die), 또는 KGS(Known Good Stack)는 <em class="hl">적층과 본딩을 끝낸 뒤 양품임이 확인된 HBM 스택</em>이다. KGD가 “좋은 다이만 쌓자”는 gate라면, KGSD는 “쌓는 과정에서 새로 생긴 결함까지 확인한 좋은 스택만 GPU·ASIC과 묶자”는 gate다.</p>
-  <figure class="diagram"><div class="ct">KGD와 KGSD의 차이 — 검사 대상과 보호하는 가치가 다르다</div>
-    <svg viewBox="0 0 920 310" role="img" aria-label="KGD와 KGSD 비교">
-      <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5c6675"/></marker></defs>
-      <g font-family="Pretendard,system-ui,sans-serif">
-        <rect x="28" y="55" width="220" height="185" rx="14" fill="#e7efff" stroke="#3d7bfd"/>
-        <text x="138" y="85" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f8f">KGD</text>
-        <text x="138" y="110" text-anchor="middle" font-size="11.5" fill="#33477a">적층 전 · 개별 다이</text>
-        <text x="48" y="145" font-size="11.5" fill="#2a3448">• memory cell · speed · current</text>
-        <text x="48" y="169" font-size="11.5" fill="#2a3448">• 잠재 불량 · wafer-level 기능</text>
-        <text x="48" y="200" font-size="11.5" font-weight="700" fill="#2456c8">보호: 적층 공정 + 다른 양품 다이</text>
+  <p>KGSD(Known Good Stacked Die), 또는 KGS(Known Good Stack)는 <em class="hl">적층과 본딩을 마친 뒤 양품임이 확인된 HBM 스택</em>이다. KGD가 불량 다이가 적층으로 들어가는 것을 막는다면, KGSD는 적층·본딩 과정에서 새로 생긴 결함까지 걸러 고가 GPU·ASIC 통합 공정으로 넘어가는 것을 막는다.</p>
 
-        <line x1="248" y1="148" x2="337" y2="148" stroke="#5c6675" stroke-width="1.6" marker-end="url(#ar2)"/>
-        <rect x="344" y="78" width="230" height="140" rx="14" fill="#fdf3dc" stroke="#f0a500"/>
-        <text x="459" y="108" text-anchor="middle" font-size="14" font-weight="800" fill="#7a5600">Stack · Bond</text>
-        <text x="459" y="136" text-anchor="middle" font-size="11.5" fill="#6e5a1e">TSV · micro-bump · bond</text>
-        <text x="459" y="161" text-anchor="middle" font-size="11.5" fill="#6e5a1e">warpage · overlay · void</text>
-        <text x="459" y="190" text-anchor="middle" font-size="11" fill="#8a6100">조립 과정에서 새로운 결함 가능성 발생</text>
+  <div class="pair">
+    <figure class="diagram">
+      <div class="ct">KGD에서 KGSD까지</div>
+      <svg viewBox="0 0 420 285" role="img" aria-label="KGD에서 KGSD까지의 흐름">
+        <defs><marker id="kgArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5c6675"/></marker></defs>
+        <g font-family="Pretendard,system-ui,sans-serif" text-anchor="middle">
+          <rect x="18" y="82" width="90" height="72" rx="11" fill="#e7efff" stroke="#3d7bfd"/>
+          <text x="63" y="109" font-size="14" font-weight="800" fill="#1d3f8f">KGD</text>
+          <text x="63" y="131" font-size="10.5" fill="#33477a">개별 양품 다이</text>
 
-        <line x1="574" y1="148" x2="663" y2="148" stroke="#5c6675" stroke-width="1.6" marker-end="url(#ar2)"/>
-        <rect x="670" y="55" width="222" height="185" rx="14" fill="#e0f6ef" stroke="#00b894"/>
-        <text x="781" y="85" text-anchor="middle" font-size="15" font-weight="800" fill="#00594a">KGSD / KGS</text>
-        <text x="781" y="110" text-anchor="middle" font-size="11.5" fill="#0a6b58">적층 후 · HBM 스택</text>
-        <text x="690" y="145" font-size="11.5" fill="#2a3448">• TSV continuity · core 동작</text>
-        <text x="690" y="169" font-size="11.5" fill="#2a3448">• speed · link · stack 기능</text>
-        <text x="690" y="200" font-size="11.5" font-weight="700" fill="#00775f">보호: 고가 GPU·ASIC 통합 공정</text>
+          <line x1="108" y1="118" x2="139" y2="118" stroke="#5c6675" stroke-width="1.5" marker-end="url(#kgArrow)"/>
 
-        <rect x="250" y="262" width="420" height="34" rx="17" fill="#0d1321"/>
-        <text x="460" y="284" text-anchor="middle" font-size="12" font-weight="800" fill="#70e0c5">KGD → 조립 결함은 못 막음 → Stack test → KGSD</text>
-      </g>
-    </svg>
-    <figcaption>그림 3. KGD와 KGSD는 중복 개념이 아니다. 조립 전 양품과 조립 후 양품을 각각 다른 시점에서 보증한다.</figcaption>
-  </figure>
-  <div class="callout"><b>투자 연결.</b> KGSD가 중요한 이유는 HBM 스택 자체의 가치보다 그 다음 단계가 더 비싸기 때문이다. 불량 HBM 스택을 GPU·ASIC 및 2.5D/3D 패키징 공정에 투입하기 전에 막을 수 있다면, stack test의 경제적 가치는 커진다.</div>
+          <rect x="146" y="66" width="116" height="104" rx="11" fill="#fdf3dc" stroke="#f0a500"/>
+          <text x="204" y="94" font-size="13.5" font-weight="800" fill="#7a5600">Stack · Bond</text>
+          <text x="204" y="118" font-size="10.5" fill="#6e5a1e">TSV · micro-bump</text>
+          <text x="204" y="137" font-size="10.5" fill="#6e5a1e">overlay · void</text>
+          <text x="204" y="156" font-size="10" fill="#a13530">새 결함 가능성</text>
+
+          <line x1="262" y1="118" x2="293" y2="118" stroke="#5c6675" stroke-width="1.5" marker-end="url(#kgArrow)"/>
+
+          <rect x="300" y="82" width="102" height="72" rx="11" fill="#e0f6ef" stroke="#00b894"/>
+          <text x="351" y="108" font-size="13.5" font-weight="800" fill="#00594a">Stack test</text>
+          <text x="351" y="131" font-size="10.5" fill="#0a6b58">→ KGSD / KGS</text>
+
+          <rect x="54" y="205" width="312" height="48" rx="12" fill="#0d1321"/>
+          <text x="210" y="225" font-size="10.5" fill="#70e0c5" font-family="JetBrains Mono,monospace">SECOND RELEASE GATE</text>
+          <text x="210" y="243" font-size="11" fill="#dfe4ec">조립 후 새로 생긴 결함을 여기서 다시 걸러낸다</text>
+        </g>
+      </svg>
+    </figure>
+
+    <figure class="diagram">
+      <div class="ct">KGSD가 보호하는 가치</div>
+      <svg viewBox="0 0 420 285" role="img" aria-label="KGSD가 고가 GPU ASIC 통합 공정을 보호하는 구조">
+        <defs><marker id="kgArrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#00775f"/></marker></defs>
+        <g font-family="Pretendard,system-ui,sans-serif" text-anchor="middle">
+          <text x="92" y="34" font-size="13" font-weight="800" fill="#00775f">KGSD PASS</text>
+          <g fill="#bfe9db">
+            <rect x="48" y="52" width="88" height="12" rx="3"/><rect x="48" y="68" width="88" height="12" rx="3"/>
+            <rect x="48" y="84" width="88" height="12" rx="3"/><rect x="48" y="100" width="88" height="12" rx="3"/>
+            <rect x="48" y="116" width="88" height="12" rx="3"/><rect x="48" y="132" width="88" height="12" rx="3"/>
+          </g>
+          <rect x="40" y="151" width="104" height="14" rx="3" fill="#8fd8c3"/>
+          <text x="92" y="188" font-size="11" fill="#5c6675">검증된 HBM stack</text>
+
+          <line x1="150" y1="112" x2="205" y2="112" stroke="#00775f" stroke-width="1.7" marker-end="url(#kgArrow2)"/>
+          <text x="178" y="96" font-size="10.5" fill="#00775f">통합</text>
+
+          <rect x="215" y="63" width="164" height="102" rx="13" fill="#e7efff" stroke="#3d7bfd"/>
+          <text x="297" y="93" font-size="14" font-weight="800" fill="#1d3f8f">GPU · ASIC Package</text>
+          <text x="297" y="118" font-size="11" fill="#33477a">logic die + HBM + interposer</text>
+          <text x="297" y="143" font-size="11" font-weight="700" fill="#2456c8">누적 투입 가치가 큰 단계</text>
+
+          <rect x="51" y="218" width="318" height="42" rx="11" fill="#fdf0ef" stroke="#f2c7c4"/>
+          <text x="210" y="237" font-size="11.5" font-weight="800" fill="#a13530">불량 stack을 여기까지 보내지 않는 것이 KGSD의 경제성</text>
+          <text x="210" y="253" font-size="10.5" fill="#7f3c38">late-stage scrap 방지</text>
+        </g>
+      </svg>
+    </figure>
+  </div>
+
+  <div class="callout"><b>KGD와 KGSD의 차이.</b> KGD는 <b>적층 전 개별 다이</b>를 보증하고, KGSD는 <b>적층 후 완성된 HBM 스택</b>을 보증한다. 둘은 같은 검사를 반복하는 것이 아니라 서로 다른 시점의 결함을 차단하는 두 개의 release gate다.</div>
 </section>
 
 <section id="probe-socket">
@@ -137,14 +195,14 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;t
     <g font-family="Pretendard,system-ui,sans-serif">
       <text x="235" y="30" text-anchor="middle" font-size="14.5" font-weight="800" fill="#00775f">프로브카드 — 웨이퍼·다이 단계</text>
       <rect x="110" y="50" width="250" height="34" rx="8" fill="#0d1321"/><text x="235" y="72" text-anchor="middle" font-size="12" fill="#eef1f6">ATE 테스트 헤드</text>
-      <g><rect x="130" y="96" width="210" height="22" rx="5" fill="#e0f6ef" stroke="#00b894"/><text x="235" y="111" text-anchor="middle" font-size="11.5" fill="#00775f" font-weight="700">프로브카드</text><g stroke="#00775f" stroke-width="1.6"><line x1="165" y1="118" x2="165" y2="150"/><line x1="193" y1="118" x2="193" y2="150"/><line x1="221" y1="118" x2="221" y2="150"/><line x1="249" y1="118" x2="249" y2="150"/><line x1="277" y1="118" x2="277" y2="150"/><line x1="305" y1="118" x2="305" y2="150"/></g></g>
+      <g class="probe-move"><rect x="130" y="96" width="210" height="22" rx="5" fill="#e0f6ef" stroke="#00b894"/><text x="235" y="111" text-anchor="middle" font-size="11.5" fill="#00775f" font-weight="700">프로브카드</text><g stroke="#00775f" stroke-width="1.6"><line x1="165" y1="118" x2="165" y2="150"/><line x1="193" y1="118" x2="193" y2="150"/><line x1="221" y1="118" x2="221" y2="150"/><line x1="249" y1="118" x2="249" y2="150"/><line x1="277" y1="118" x2="277" y2="150"/><line x1="305" y1="118" x2="305" y2="150"/></g></g>
       <ellipse cx="235" cy="176" rx="150" ry="26" fill="#e7efff" stroke="#3d7bfd"/><text x="235" y="181" text-anchor="middle" font-size="11.5" fill="#2456c8">웨이퍼 / 다이</text>
       <text x="235" y="236" text-anchor="middle" font-size="11.5" fill="#5c6675">미세 pitch · contact resistance · 평탄도 · thermal alignment</text>
       <line x1="460" y1="40" x2="460" y2="270" stroke="#e3e7ec" stroke-width="1.5" stroke-dasharray="6 5"/>
       <text x="690" y="30" text-anchor="middle" font-size="14.5" font-weight="800" fill="#8a6100">소켓 — 스택·패키지·Final·SLT</text>
       <rect x="565" y="50" width="250" height="34" rx="8" fill="#0d1321"/><text x="690" y="72" text-anchor="middle" font-size="12" fill="#eef1f6">ATE / load board / burn-in board</text>
       <path d="M600 140 L600 110 L640 110 L640 126 L740 126 L740 110 L780 110 L780 140 Z" fill="#fdf3dc" stroke="#f0a500"/>
-      <g><rect x="645" y="148" width="90" height="26" rx="4" fill="#e6ebef" stroke="#9aa6b4"/><text x="690" y="165" text-anchor="middle" font-size="11" fill="#42506a">stack / package</text></g>
+      <g class="chip-in"><rect x="645" y="148" width="90" height="26" rx="4" fill="#e6ebef" stroke="#9aa6b4"/><text x="690" y="165" text-anchor="middle" font-size="11" fill="#42506a">stack / package</text></g>
       <text x="690" y="224" text-anchor="middle" font-size="11.5" fill="#5c6675">고전류 · 고전력 · 반복 접촉 · 온도 제어</text>
       <text x="460" y="275" text-anchor="middle" font-size="11.5" fill="#5c6675">프로브카드는 웨이퍼 단계, 소켓은 패키지 단계에서 DUT와 테스트 시스템을 연결한다.</text>
     </g>

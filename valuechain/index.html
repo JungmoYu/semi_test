@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>테스트 밸류체인 — 반도체 테스트 투자 리서치</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.19/index.min.css">
+<style>
+:root{
+  --ink:#0d1321;
+  --paper:#f4f6f8;
+  --card:#ffffff;
+  --text:#1a2233;
+  --muted:#5c6675;
+  --line:#e3e7ec;
+  --signal:#00b894;
+  --signal-dark:#00775f;
+  --probe:#f0a500;
+  --fail:#e2504a;
+  --accent:#3d7bfd;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  background:var(--paper);color:var(--text);line-height:1.65;
+  font-feature-settings:"ss05";
+}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+
+/* ---------- 히어로 ---------- */
+.hero{background:var(--ink);color:#eef1f6;padding:44px 24px 56px;position:relative;overflow:hidden}
+.hero-inner{max-width:960px;margin:0 auto;position:relative;z-index:2}
+.crumb{font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.06em;margin-bottom:26px}
+.crumb a{color:#8b95a6;text-decoration:none}
+.crumb a:hover{color:var(--signal)}
+.crumb .sep{color:#4a5468;margin:0 8px}
+.crumb .here{color:var(--signal)}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;
+  font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.22em;
+  color:var(--signal);text-transform:uppercase;margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--signal);
+  box-shadow:0 0 10px var(--signal);animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-size:clamp(26px,4.5vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+.hero p.lede{max-width:660px;font-size:16px;color:#b8c0cd}
+@media(prefers-reduced-motion:reduce){.eyebrow::before{animation:none}}
+
+/* ---------- 본문 ---------- */
+main{max-width:960px;margin:0 auto;padding:44px 24px 32px}
+.section-label{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;
+  color:var(--muted);text-transform:uppercase;margin:40px 0 16px}
+.section-label:first-child{margin-top:0}
+.note{font-size:14px;color:var(--muted);margin-bottom:20px;max-width:720px}
+
+/* ---------- 인터랙티브 공정 플로우 ---------- */
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin-bottom:14px}
+.flow .stage{
+  flex:1 1 150px;min-width:140px;cursor:pointer;text-align:left;
+  background:var(--card);border:1.5px solid var(--line);border-radius:12px;
+  padding:14px 14px 12px;font-family:inherit;color:var(--text);
+  transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;
+  position:relative;
+}
+.flow .stage:hover{transform:translateY(-2px);border-color:#c9d2dd;box-shadow:0 8px 20px rgba(13,19,33,.08)}
+.flow .stage:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.flow .stage .num{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:.14em}
+.flow .stage .nm{display:block;font-size:15px;font-weight:700;margin:4px 0 2px;letter-spacing:-.01em}
+.flow .stage .ds{display:block;font-size:11.5px;color:var(--muted)}
+.flow .stage[aria-selected="true"]{border-color:var(--signal);background:#f2fbf8}
+.flow .stage[aria-selected="true"] .num{color:var(--signal-dark)}
+.flow .stage[aria-selected="true"]::after{
+  content:"";position:absolute;left:50%;bottom:-9px;transform:translateX(-50%) rotate(45deg);
+  width:12px;height:12px;background:#f2fbf8;border-right:1.5px solid var(--signal);border-bottom:1.5px solid var(--signal);
+}
+.flow .fa{align-self:center;color:var(--signal-dark);font-family:"JetBrains Mono",monospace;font-size:14px}
+@media(max-width:700px){.flow .fa{display:none}}
+
+.detail{
+  background:var(--card);border:1.5px solid var(--signal);border-radius:var(--radius);
+  padding:26px 28px 24px;margin-bottom:8px;
+}
+.detail h2{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:2px}
+.detail .en{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--signal-dark);letter-spacing:.1em;margin-bottom:14px}
+.detail p.summary{font-size:14.5px;color:#34405a;margin-bottom:20px;max-width:760px}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.dbox{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:16px 17px 14px}
+.dbox .k{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:9px}
+.dbox ul{list-style:none}
+.dbox li{font-size:13.5px;padding:3px 0 3px 16px;position:relative;color:#2a3448}
+.dbox li::before{content:"▸";position:absolute;left:0;color:var(--signal-dark);font-size:11px;top:6px}
+.dbox li b{font-weight:700}
+.dbox li .sub{color:var(--muted);font-size:12px}
+.dbox.invest{border-color:#f3dfae;background:#fdf9ee}
+.dbox.invest .k{color:#8a6100}
+.dbox.invest li::before{color:var(--probe)}
+
+/* ---------- 4노드 지도 ---------- */
+.nodes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.nodecard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 24px 20px}
+.nodecard .nn{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--signal-dark);letter-spacing:.12em;margin-bottom:6px}
+.nodecard h3{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+.nodecard .drv{display:inline-block;font-size:12px;font-weight:600;padding:4px 10px;border-radius:7px;
+  background:#e0f6ef;color:var(--signal-dark);margin-bottom:12px}
+.nodecard .drv.capex{background:#e7efff;color:#2456c8}
+.nodecard .drv.mixed{background:#fdf3dc;color:#8a6100}
+.nodecard p{font-size:13.5px;color:var(--muted);margin-bottom:12px}
+.nodecard .pl{font-size:13px;color:#2a3448;border-top:1px dashed var(--line);padding-top:11px}
+.nodecard .pl b{font-weight:700}
+.nodecard .pl .g{color:var(--muted);font-size:12px}
+
+/* ---------- 매트릭스 표 ---------- */
+.tblwrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+th{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);text-align:left;padding:14px 16px;border-bottom:1.5px solid var(--line);background:#fafbfc}
+td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;color:#2a3448}
+tr:last-child td{border-bottom:none}
+td .chip{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:6px;
+  background:#eef2f6;color:#42506a;margin:1px 2px 1px 0;white-space:nowrap}
+td .chip.hot{background:#e0f6ef;color:var(--signal-dark)}
+
+.backrow{margin-top:36px}
+.backrow a{font-family:"JetBrains Mono",monospace;font-size:13.5px;color:var(--signal-dark);text-decoration:none}
+.backrow a:hover{text-decoration:underline}
+
+footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;
+  text-align:center;font-size:12.5px;color:var(--muted)}
+footer .mono{font-size:12px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="crumb"><a href="../">HOME</a><span class="sep">/</span><span class="here">VALUECHAIN</span></div>
+    <div class="eyebrow">Test Value Chain</div>
+    <h1>테스트 밸류체인 — 웨이퍼에서 출하까지</h1>
+    <p class="lede">칩 하나가 출하되기까지 거치는 테스트 인서션을 단계별로 따라간다. 각 단계에서 무엇을 검증하고, 어떤 도구가 필요하며, 누가 그 자리를 차지하고 있는지 — 아래 단계를 클릭해 확인하세요.</p>
+  </div>
+</header>
+
+<main>
+  <div class="section-label">01 · 공정 플로우 — 단계를 클릭하세요</div>
+
+  <div class="flow" role="tablist" aria-label="테스트 공정 단계">
+    <button class="stage" role="tab" id="tab-cp" aria-selected="true" aria-controls="panel" data-stage="cp">
+      <span class="num">STEP 1</span><span class="nm">CP · 웨이퍼 테스트</span><span class="ds">프로버 · 프로브카드</span>
+    </button>
+    <span class="fa" aria-hidden="true">→</span>
+    <button class="stage" role="tab" id="tab-bi" aria-selected="false" aria-controls="panel" data-stage="bi">
+      <span class="num">STEP 2</span><span class="nm">번인</span><span class="ds">고온 · 고전압 스트레스</span>
+    </button>
+    <span class="fa" aria-hidden="true">→</span>
+    <button class="stage" role="tab" id="tab-ft" aria-selected="false" aria-controls="panel" data-stage="ft">
+      <span class="num">STEP 3</span><span class="nm">FT · 파이널 테스트</span><span class="ds">소켓 · 핸들러 · ATE</span>
+    </button>
+    <span class="fa" aria-hidden="true">→</span>
+    <button class="stage" role="tab" id="tab-slt" aria-selected="false" aria-controls="panel" data-stage="slt">
+      <span class="num">STEP 4</span><span class="nm">SLT</span><span class="ds">실사용 워크로드</span>
+    </button>
+    <span class="fa" aria-hidden="true">→</span>
+    <button class="stage" role="tab" id="tab-ship" aria-selected="false" aria-controls="panel" data-stage="ship">
+      <span class="num">STEP 5</span><span class="nm">출하</span><span class="ds">PASS 판정 · 빈 분류</span>
+    </button>
+  </div>
+
+  <div class="detail" id="panel" role="tabpanel" aria-live="polite"></div>
+
+  <div class="section-label">02 · 매출 드라이버로 본 4개 노드</div>
+  <p class="note">테스트 밸류체인은 하나의 시장이 아니다. 매출이 무엇에 연동되는지가 서로 다른 네 개의 노드로 구성되며, 같은 "테스트 수혜주"라도 사이클 타이밍이 갈리는 이유가 여기에 있다.</p>
+
+  <div class="nodes">
+    <div class="nodecard">
+      <div class="nn">NODE ①</div>
+      <h3>ATE — 테스터 본체</h3>
+      <span class="drv capex">드라이버: 고객 capex · 테스트 시간</span>
+      <p>전기 신호를 넣고 판정하는 두뇌. 테스트 시간이 늘어날수록 필요한 테스터 대수가 정비례로 증가한다. 리드타임 6개월+.</p>
+      <div class="pl"><b>Advantest · Teradyne</b> (합산 ~80% 과점)<br><span class="g">HBM 테스터는 Advantest T5503 계열이 사실상 표준</span></div>
+    </div>
+    <div class="nodecard">
+      <div class="nn">NODE ②</div>
+      <h3>접촉 소모품 — 프로브카드 · 소켓</h3>
+      <span class="drv">드라이버: 웨이퍼 투입량 × 테스트 강도</span>
+      <p>칩과 테스터를 잇는 소모품. 설계가 바뀔 때마다 신규 제작, 핀 수 증가는 ASP 상승과 교체 주기 단축을 동시에 만든다.</p>
+      <div class="pl"><b>FormFactor</b> (HBM 프로브카드 70%+) · Technoprobe<br><span class="g">국내 — 리노공업 · ISC · 티에스이 · 마이크로프랜드</span></div>
+    </div>
+    <div class="nodecard">
+      <div class="nn">NODE ③</div>
+      <h3>검사 · 계측</h3>
+      <span class="drv mixed">드라이버: 인서션 지점 수</span>
+      <p>적층·본딩 공정 사이에 새로 끼어드는 검사 스텝. 검사 지점은 칩 물량보다 빠르게 늘어 증분 기울기가 가장 가파른 노드.</p>
+      <div class="pl"><b>KLA · Onto Innovation</b><br><span class="g">하이브리드 본딩 · 16단 적층 · 패널레벨로 갈수록 지점 수↑</span></div>
+    </div>
+    <div class="nodecard">
+      <div class="nn">NODE ④</div>
+      <h3>핸들링 · 테스트 하우스</h3>
+      <span class="drv mixed">드라이버: 물량 · 테스트 아웃소싱</span>
+      <p>칩을 옮기고 테스트를 실행하는 물류와 실행의 층. 1,000W급 칩 등장으로 발열 제어형 핸들러로 고도화가 진행 중.</p>
+      <div class="pl"><b>프로버 — TEL · TSE</b> · 핸들러 — 코휴 · 테크윙<br><span class="g">테스트 하우스(OSAT) — ASE · Amkor · 국내 OSAT</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">03 · 단계 × 노드 매트릭스</div>
+  <p class="note">어느 공정 단계가 어느 노드의 매출을 만드는지 한 장으로. HBM4·첨단 패키징이 강화하는 지점은 <span class="chip hot" style="font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:6px;background:#e0f6ef;color:#00775f">녹색</span>으로 표시.</p>
+
+  <div class="tblwrap">
+    <table>
+      <thead>
+        <tr><th>단계</th><th>검증 대상</th><th>매출이 발생하는 노드</th><th>HBM4 · 첨단 패키징 영향</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono"><strong>CP</strong></td>
+          <td>다이 단위 전기적 양불 (KGD 선별)</td>
+          <td><span class="chip hot">ATE</span><span class="chip hot">프로브카드</span><span class="chip">프로버</span></td>
+          <td>KGD 필수화로 웨이퍼당 프로브카드 소비량 구조적 증가, 핀 수 2배</td>
+        </tr>
+        <tr>
+          <td class="mono"><strong>번인</strong></td>
+          <td>초기 불량(유아사망) 가속 선별</td>
+          <td><span class="chip">번인 장비</span><span class="chip">번인 소켓</span></td>
+          <td>고전력 칩의 스트레스 조건 강화 — 시간·소켓 사양 상향</td>
+        </tr>
+        <tr>
+          <td class="mono"><strong>FT</strong></td>
+          <td>패키지 완성품의 전 기능 · 스펙</td>
+          <td><span class="chip hot">ATE</span><span class="chip hot">소켓</span><span class="chip hot">핸들러</span></td>
+          <td>이종집적으로 테스트 항목·시간 증가, 고전력 소켓·발열 제어 핸들러 수요</td>
+        </tr>
+        <tr>
+          <td class="mono"><strong>SLT</strong></td>
+          <td>실사용 워크로드 하 시스템 동작</td>
+          <td><span class="chip hot">SLT 장비</span><span class="chip">소켓</span></td>
+          <td>ATE로 못 잡는 결함 증가 → 인서션 자체가 새로 추가되는 단계</td>
+        </tr>
+        <tr>
+          <td class="mono"><strong>출하</strong></td>
+          <td>성능 등급(빈) 분류 · 최종 판정</td>
+          <td><span class="chip">핸들러</span><span class="chip">테스트 하우스</span></td>
+          <td>등급 세분화로 분류 스텝 정교화 — OSAT 테스트 매출 비중 확대</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="backrow">
+    <a href="../report.html">→ 산업분석 리포트에서 밸류체인 투자 전략 보기</a>
+  </div>
+</main>
+
+<footer>
+  반도체 테스트 투자 리서치 데스크 · 발표 자료 인용 전 원문(IR·공시·어닝콜)으로 재확인하세요.<br>
+  <span class="mono">semiconductor-test-desk / valuechain</span>
+</footer>
+
+<script>
+const STAGES = {
+  cp: {
+    name: "CP · 웨이퍼 테스트",
+    en: "CIRCUIT PROBE / WAFER SORT",
+    summary: "패키징 전, 웨이퍼 상태의 다이 하나하나에 프로브카드의 미세 핀을 접촉시켜 전기적 양불을 가려낸다. 불량 다이를 비싼 패키징 공정에 태우지 않는 것, 그리고 KGD(Known Good Die)를 선별하는 것이 목적이다.",
+    verify: ["다이 단위 <b>전기적 개통 · 기본 동작</b>", "KGD 선별 — <b>적층 전 양품 확정</b>", "불량 좌표 맵핑 (잉킹/빈맵)"],
+    tools: ["프로버 <span class='sub'>— 웨이퍼를 옮기고 정렬</span>", "프로브카드 <span class='sub'>— 다이와 테스터 접촉</span>", "ATE <span class='sub'>— 신호 인가 · 판정</span>"],
+    players: ["ATE — <b>Advantest · Teradyne</b>", "프로브카드 — <b>FormFactor</b>(HBM 70%+) · Technoprobe · 마이크로프랜드", "프로버 — TEL · TSE"],
+    invest: ["HBM4 핀 수 2배 → 프로브카드 <b>ASP↑ + 교체 주기 단축</b>", "KGD 확산 → 웨이퍼당 프로브카드 소비량 구조적 증가", "프로브카드 시장 2026년 $3.5~5.5B 전망"]
+  },
+  bi: {
+    name: "번인",
+    en: "BURN-IN",
+    summary: "고온 · 고전압 스트레스를 걸어 초기 불량(유아 사망)을 출하 전에 미리 터뜨린다. 오래 쓸수록 안정되는 반도체의 수명 곡선에서, 초반 급락 구간을 공장 안에서 소진시키는 공정이다.",
+    verify: ["<b>초기 불량 가속 선별</b> — 시간이 지나야 드러날 결함을 미리", "고온 · 고전압 하 동작 마진", "신뢰성 스크리닝 (차량 · 서버용 필수)"],
+    tools: ["번인 챔버 · 번인 보드", "번인 소켓 <span class='sub'>— 장시간 고온 접촉</span>", "모니터링 시스템"],
+    players: ["번인 소켓 — <b>ISC · 마이크로컨텍솔</b> 등 국내 강세", "번인 장비 — 디아이 · 네오셈 등", "고전력 칩용 사양 상향 진행 중"],
+    invest: ["HBM · AI 칩의 발열 → <b>스트레스 조건 강화, 소켓 사양 상향</b>", "차량용 · 서버용 물량 확대 시 번인 수요 동반 성장", "소켓은 소모품 — 물량 연동 매출 구조"]
+  },
+  ft: {
+    name: "FT · 파이널 테스트",
+    en: "FINAL TEST",
+    summary: "패키징이 끝난 완성품을 소켓에 꽂고 전체 기능과 스펙을 검증하는 최종 관문. 핸들러가 칩을 옮기고, 소켓이 접촉을 만들고, ATE가 판정한다 — 테스트 시간과 장비 수요가 가장 직접적으로 만나는 단계다.",
+    verify: ["패키지 완성품의 <b>전 기능 · 전 스펙</b>", "속도 · 전력 등 성능 파라미터", "온도 조건별 동작 (핫/콜드 테스트)"],
+    tools: ["ATE <span class='sub'>— 테스트 프로그램 실행 · 판정</span>", "테스트 소켓 <span class='sub'>— 패키지 접촉</span>", "핸들러 <span class='sub'>— 반송 · 온도 제어</span>"],
+    players: ["ATE — <b>Advantest · Teradyne</b> (~80% 과점)", "소켓 — <b>리노공업 · ISC</b> · 티에스이", "핸들러 — 코휴 · 테크윙"],
+    invest: ["테스트 시간↑ = <b>테스터 대수↑</b> — ATE 수요의 정비례 구조", "1,000W급 칩 → 발열 제어형 핸들러 · 고전력 소켓으로 고도화", "소켓은 칩 설계 변경마다 신규 수주 발생"]
+  },
+  slt: {
+    name: "SLT · 시스템 레벨 테스트",
+    en: "SYSTEM LEVEL TEST",
+    summary: "실제 사용 환경과 같은 워크로드를 돌려, ATE의 패턴 테스트로는 잡히지 않는 결함을 찾아낸다. 칩이 복잡해질수록 ATE 커버리지의 빈틈이 커지고 — SLT는 기존 플로우에 '새로 추가되는' 인서션이라는 점이 핵심이다.",
+    verify: ["<b>실사용 워크로드</b> 하 시스템 동작", "ATE가 못 잡는 상호작용 · 마진 결함", "펌웨어 · OS 부팅 레벨 검증"],
+    tools: ["SLT 장비 <span class='sub'>— 실장 보드 기반 대량 병렬</span>", "SLT 소켓 · 트레이", "열 제어 유닛"],
+    players: ["<b>Advantest</b>(구 Essai · Astronics 인수로 확장) · 코휴", "테크윙 등 핸들링 연계 진입", "AP · GPU 등 대형 SoC 중심 채택 확대"],
+    invest: ["기존 인서션의 연장이 아닌 <b>신규 인서션</b> — 순증 수요", "이종집적 칩일수록 SLT 필수화 경향", "ATE사들의 차기 성장축으로 M&A 활발"]
+  },
+  ship: {
+    name: "출하 · 빈 분류",
+    en: "BINNING & SHIPMENT",
+    summary: "모든 관문을 통과한 칩에 최종 PASS를 찍고, 성능 등급(빈)별로 분류해 출하한다. 같은 웨이퍼에서 나온 칩도 속도 · 전력 특성에 따라 다른 제품, 다른 가격이 된다 — 테스트 데이터가 곧 수익 배분표가 되는 단계다.",
+    verify: ["최종 <b>PASS/FAIL 판정</b> 확정", "성능 등급(스피드 빈 · 전력 빈) 분류", "외관 · 마킹 · 패킹 검사"],
+    tools: ["핸들러 <span class='sub'>— 빈별 자동 분류</span>", "테이핑 · 패킹 장비", "수율 데이터 시스템"],
+    players: ["테스트 하우스(OSAT) — <b>ASE · Amkor</b> · 국내 OSAT", "핸들러 — 코휴 · 테크윙", "팹리스의 테스트 아웃소싱 확대 수혜"],
+    invest: ["등급 세분화 → 분류 스텝 정교화, <b>OSAT 테스트 매출 비중 확대</b>", "테스트 아웃소싱 트렌드의 종착 수혜처", "수율 데이터 분석(테스트 인텔리전스)이 부가가치로 부상"]
+  }
+};
+
+const panel = document.getElementById("panel");
+const tabs = Array.from(document.querySelectorAll(".stage"));
+
+function render(key){
+  const s = STAGES[key];
+  const li = a => a.map(x => "<li>"+x+"</li>").join("");
+  panel.innerHTML =
+    '<h2>'+s.name+'</h2><div class="en">'+s.en+'</div>'+
+    '<p class="summary">'+s.summary+'</p>'+
+    '<div class="dgrid">'+
+      '<div class="dbox"><div class="k">무엇을 검증하나</div><ul>'+li(s.verify)+'</ul></div>'+
+      '<div class="dbox"><div class="k">필요한 도구</div><ul>'+li(s.tools)+'</ul></div>'+
+      '<div class="dbox"><div class="k">누가 차지하고 있나</div><ul>'+li(s.players)+'</ul></div>'+
+      '<div class="dbox invest"><div class="k">투자 포인트</div><ul>'+li(s.invest)+'</ul></div>'+
+    '</div>';
+  tabs.forEach(t => t.setAttribute("aria-selected", t.dataset.stage === key ? "true" : "false"));
+}
+
+tabs.forEach(t => t.addEventListener("click", () => render(t.dataset.stage)));
+tabs.forEach((t,i) => t.addEventListener("keydown", e => {
+  if(e.key==="ArrowRight"||e.key==="ArrowLeft"){
+    e.preventDefault();
+    const n=(i+(e.key==="ArrowRight"?1:tabs.length-1))%tabs.length;
+    tabs[n].focus(); render(tabs[n].dataset.stage);
+  }
+}));
+render("cp");
+</script>
+
+</body>
+</html>

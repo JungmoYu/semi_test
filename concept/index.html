@@ -19,14 +19,12 @@ body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFo
 .thesis{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:24px;font-size:13.5px;color:#dfe4ec}.thesis .step{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:6px 13px;border-radius:99px}.thesis .arrow{color:var(--signal);font-family:"JetBrains Mono",monospace}.thesis .hot{border-color:var(--signal);background:rgba(0,184,148,.12)}
 main{max-width:960px;margin:0 auto;padding:44px 24px 32px}section{margin-bottom:56px}.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;border-bottom:1.5px solid var(--line);padding-bottom:10px}.sec-num{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--signal-dark);font-weight:700}.sec-head h2{font-size:21px;font-weight:800}
 section>p{font-size:14.5px;color:#2a3448;margin-bottom:14px;max-width:840px}.hl{font-style:normal;background:linear-gradient(transparent 62%,#c9f3e6 62%);font-weight:700}
-.diagram{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px 14px;margin:16px 0;overflow-x:auto}.diagram .ct{font-size:14px;font-weight:700;margin-bottom:10px}.diagram svg{width:100%;height:auto;min-width:700px}figcaption{font-size:12.5px;color:var(--muted);margin-top:8px}.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:16px 0}
+.diagram{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px 14px;margin:16px 0;overflow-x:auto}.diagram .ct{font-size:14px;font-weight:700;margin-bottom:10px}.diagram svg{width:100%;height:auto;min-width:700px}figcaption{font-size:12.5px;color:var(--muted);margin-top:8px}.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:16px 0}.pair .diagram{overflow:hidden}.pair .diagram svg{min-width:0;width:100%;max-width:100%;display:block}
 .callout{background:#fdf9ee;border:1px solid #f3dfae;border-radius:11px;padding:15px 18px;font-size:13.5px;color:#5c4a12;margin:16px 0;max-width:840px}
 .tblwrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin:16px 0}table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:700px}th{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:13px 16px;border-bottom:1.5px solid var(--line);background:#fafbfc}td{padding:11px 16px;border-bottom:1px solid var(--line);vertical-align:top}tr:last-child td{border-bottom:none}td:first-child{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:700;white-space:nowrap}
 .linkline{margin-top:6px}.linkline a{font-family:"JetBrains Mono",monospace;font-size:13.5px;color:var(--signal-dark);text-decoration:none}
-.probe-move{animation:dip 2.8s ease-in-out infinite}@keyframes dip{0%,100%{transform:translateY(-8px)}45%,60%{transform:translateY(0)}}.chip-in{animation:chipin 3.2s ease-in-out infinite}@keyframes chipin{0%,100%{transform:translateY(0)}40%,65%{transform:translateY(-24px)}}
-@media(prefers-reduced-motion:reduce){.probe-move,.chip-in{animation:none}}
 footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;text-align:center;font-size:12.5px;color:var(--muted)}
-@media(max-width:700px){.diagram svg{min-width:720px}.pair{grid-template-columns:1fr}}
+@media(max-width:700px){.diagram svg{min-width:720px}.pair{grid-template-columns:1fr}.pair .diagram svg{min-width:0}}
 </style>
 </head>
 <body>
@@ -42,7 +40,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;t
 <section id="flow">
   <div class="sec-head"><span class="sec-num">01</span><h2>테스트 플로우 — HBM은 단계마다 release gate를 둔다</h2></div>
   <p>HBM은 웨이퍼 테스트 한 번과 최종 테스트 한 번으로 끝나는 구조가 아니다. <em class="hl">Wafer test → Die-level → Stack·Bond → Stack test → Final·Burn-in → SLT</em>로 이어지며, 검사·계측은 이 전 과정의 공정 전후에 겹쳐진다.</p>
-  <figure class="diagram"><div class="ct">전체 플로우 — 산업분석·밸류체인 페이지와 동일한 기준</div>
+  <figure class="diagram"><div class="ct">전체 플로우</div>
     <svg viewBox="0 0 920 300" role="img" aria-label="HBM 테스트 전체 플로우">
       <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5c6675"/></marker></defs>
       <g font-family="Pretendard,system-ui,sans-serif">
@@ -62,7 +60,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;t
         <text x="460" y="255" text-anchor="middle" font-size="12.5" fill="#dfe4ec">KGD는 불량 다이의 적층 투입을 막고, KGSD는 불량 스택의 GPU·ASIC 통합 투입을 막는다.</text>
       </g>
     </svg>
-    <figcaption>그림 1. 초록색 이동 원 애니메이션을 제거하고, report.html의 HBM 테스트 플로우와 동일한 단계로 맞췄다.</figcaption>
+    <figcaption>그림 1. HBM은 KGD와 KGSD를 포함한 단계별 release gate를 거쳐 최종 시스템 테스트까지 이어진다.</figcaption>
   </figure>
   <div class="linkline"><a href="../valuechain/">→ 각 단계별 장비·플레이어는 밸류체인 페이지에서</a></div>
 </section>
@@ -139,16 +137,16 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;t
     <g font-family="Pretendard,system-ui,sans-serif">
       <text x="235" y="30" text-anchor="middle" font-size="14.5" font-weight="800" fill="#00775f">프로브카드 — 웨이퍼·다이 단계</text>
       <rect x="110" y="50" width="250" height="34" rx="8" fill="#0d1321"/><text x="235" y="72" text-anchor="middle" font-size="12" fill="#eef1f6">ATE 테스트 헤드</text>
-      <g class="probe-move"><rect x="130" y="96" width="210" height="22" rx="5" fill="#e0f6ef" stroke="#00b894"/><text x="235" y="111" text-anchor="middle" font-size="11.5" fill="#00775f" font-weight="700">프로브카드</text><g stroke="#00775f" stroke-width="1.6"><line x1="165" y1="118" x2="165" y2="150"/><line x1="193" y1="118" x2="193" y2="150"/><line x1="221" y1="118" x2="221" y2="150"/><line x1="249" y1="118" x2="249" y2="150"/><line x1="277" y1="118" x2="277" y2="150"/><line x1="305" y1="118" x2="305" y2="150"/></g></g>
+      <g><rect x="130" y="96" width="210" height="22" rx="5" fill="#e0f6ef" stroke="#00b894"/><text x="235" y="111" text-anchor="middle" font-size="11.5" fill="#00775f" font-weight="700">프로브카드</text><g stroke="#00775f" stroke-width="1.6"><line x1="165" y1="118" x2="165" y2="150"/><line x1="193" y1="118" x2="193" y2="150"/><line x1="221" y1="118" x2="221" y2="150"/><line x1="249" y1="118" x2="249" y2="150"/><line x1="277" y1="118" x2="277" y2="150"/><line x1="305" y1="118" x2="305" y2="150"/></g></g>
       <ellipse cx="235" cy="176" rx="150" ry="26" fill="#e7efff" stroke="#3d7bfd"/><text x="235" y="181" text-anchor="middle" font-size="11.5" fill="#2456c8">웨이퍼 / 다이</text>
       <text x="235" y="236" text-anchor="middle" font-size="11.5" fill="#5c6675">미세 pitch · contact resistance · 평탄도 · thermal alignment</text>
       <line x1="460" y1="40" x2="460" y2="270" stroke="#e3e7ec" stroke-width="1.5" stroke-dasharray="6 5"/>
       <text x="690" y="30" text-anchor="middle" font-size="14.5" font-weight="800" fill="#8a6100">소켓 — 스택·패키지·Final·SLT</text>
       <rect x="565" y="50" width="250" height="34" rx="8" fill="#0d1321"/><text x="690" y="72" text-anchor="middle" font-size="12" fill="#eef1f6">ATE / load board / burn-in board</text>
       <path d="M600 140 L600 110 L640 110 L640 126 L740 126 L740 110 L780 110 L780 140 Z" fill="#fdf3dc" stroke="#f0a500"/>
-      <g class="chip-in"><rect x="645" y="148" width="90" height="26" rx="4" fill="#e6ebef" stroke="#9aa6b4"/><text x="690" y="165" text-anchor="middle" font-size="11" fill="#42506a">stack / package</text></g>
+      <g><rect x="645" y="148" width="90" height="26" rx="4" fill="#e6ebef" stroke="#9aa6b4"/><text x="690" y="165" text-anchor="middle" font-size="11" fill="#42506a">stack / package</text></g>
       <text x="690" y="224" text-anchor="middle" font-size="11.5" fill="#5c6675">고전류 · 고전력 · 반복 접촉 · 온도 제어</text>
-      <text x="460" y="275" text-anchor="middle" font-size="11.5" fill="#5c6675">자동 이동 원은 없애고, 접촉 자체를 설명하는 작은 동작만 유지</text>
+      <text x="460" y="275" text-anchor="middle" font-size="11.5" fill="#5c6675">프로브카드는 웨이퍼 단계, 소켓은 패키지 단계에서 DUT와 테스트 시스템을 연결한다.</text>
     </g>
   </svg></figure>
 </section>
@@ -156,7 +154,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;t
 <section id="ate">
   <div class="sec-head"><span class="sec-num">05</span><h2>ATE의 구조 — 장비보다 테스트 셀 전체를 본다</h2></div>
   <p>ATE는 패턴을 만들고 전원을 공급하며 응답을 판정하는 시스템의 두뇌다. 실제 테스트에서는 테스터 본체만이 아니라 <em class="hl">테스트 헤드 → 인터페이스 → DUT → 프로버·핸들러 → thermal control</em>이 한 셀로 동작한다. HBM4에서는 이 전체 경로가 고속·고전류·열 조건을 함께 만족해야 한다.</p>
-  <figure class="diagram"><div class="ct">ATE 시스템 구성 — 자동 이동 원 제거</div><svg viewBox="0 0 920 250" role="img" aria-label="ATE 시스템 구성">
+  <figure class="diagram"><div class="ct">ATE 시스템 구성</div><svg viewBox="0 0 920 250" role="img" aria-label="ATE 시스템 구성">
     <defs><marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#42506a"/></marker></defs>
     <g font-family="Pretendard,system-ui,sans-serif">
       <rect x="30" y="50" width="200" height="120" rx="12" fill="#0d1321"/><text x="130" y="95" text-anchor="middle" font-size="14" font-weight="800" fill="#eef1f6">테스터 본체</text><text x="130" y="116" text-anchor="middle" font-size="11" fill="#9aa5b5">패턴 · 전원 · 판정</text>

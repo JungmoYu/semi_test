@@ -103,7 +103,10 @@ main{max-width:960px;margin:0 auto;padding:48px 24px 32px}
 .chainstrip .sub{font-size:13px;color:var(--muted);margin-bottom:18px}
 .chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .chain .node{font-size:13px;font-weight:600;padding:8px 13px;border-radius:9px;
-  background:var(--paper);border:1px solid var(--line);color:#34405a;white-space:nowrap}
+  background:var(--paper);border:1px solid var(--line);color:#34405a;white-space:nowrap;
+  text-decoration:none;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.chain a.node:hover{transform:translateY(-2px);border-color:var(--signal);box-shadow:0 6px 16px rgba(13,19,33,.08)}
+.chain a.node:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .chain .node em{font-style:normal;display:block;font-weight:500;font-size:11px;color:var(--muted)}
 .chain .arr{color:var(--signal-dark);font-family:"JetBrains Mono",monospace;font-size:13px}
 
@@ -195,17 +198,17 @@ footer .mono{font-size:12px}
 
   <div class="chainstrip">
     <h3>한눈에 보는 테스트 밸류체인</h3>
-    <div class="sub">각 단계를 클릭하면 상세 페이지로 이동합니다 (준비 중 단계는 순차 오픈)</div>
+    <div class="sub">각 단계를 클릭하면 밸류체인 페이지의 해당 단계로 이동합니다</div>
     <div class="chain" aria-label="테스트 공정 흐름">
-      <span class="node">CP · 웨이퍼 테스트<em>프로버 · 프로브카드</em></span>
+      <a class="node" href="valuechain/#cp">CP · 웨이퍼 테스트<em>프로버 · 프로브카드</em></a>
       <span class="arr">→</span>
-      <span class="node">번인<em>고온 · 고전압 스트레스</em></span>
+      <a class="node" href="valuechain/#bi">번인<em>고온 · 고전압 스트레스</em></a>
       <span class="arr">→</span>
-      <span class="node">FT · 파이널 테스트<em>소켓 · 핸들러 · ATE</em></span>
+      <a class="node" href="valuechain/#ft">FT · 파이널 테스트<em>소켓 · 핸들러 · ATE</em></a>
       <span class="arr">→</span>
-      <span class="node">SLT<em>실사용 워크로드</em></span>
+      <a class="node" href="valuechain/#slt">SLT<em>실사용 워크로드</em></a>
       <span class="arr">→</span>
-      <span class="node">출하<em>PASS 판정 · 빈 분류</em></span>
+      <a class="node" href="valuechain/#ship">출하<em>PASS 판정 · 빈 분류</em></a>
     </div>
   </div>
 </main>

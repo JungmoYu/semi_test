@@ -335,7 +335,12 @@ tabs.forEach((t,i) => t.addEventListener("keydown", e => {
     tabs[n].focus(); render(tabs[n].dataset.stage);
   }
 }));
-render("cp");
+const initial = location.hash.replace("#","");
+render(STAGES[initial] ? initial : "cp");
+window.addEventListener("hashchange", () => {
+  const k = location.hash.replace("#","");
+  if(STAGES[k]) render(k);
+});
 </script>
 
 </body>

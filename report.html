@@ -761,27 +761,29 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
 
 <section id="valuechain">
   <div class="sec-head"><span class="sec-num">03</span><h2>테스트 밸류체인</h2></div>
-  <p class="sec-sub">HBM4는 electrical test를, 첨단 패키징은 inspection·metrology를 동시에 키운다</p>
+  <p class="sec-sub">HBM4는 electrical test와 적층 inspection을 함께 키우고, 첨단 패키징 전반은 process control의 범위를 더 넓힌다</p>
 
   <figure class="figure">
-    <svg viewBox="0 0 860 430" role="img" aria-label="HBM4와 첨단 패키징에서 테스트 밸류체인으로 이어지는 수혜 지도">
+    <svg viewBox="0 0 860 430" role="img" aria-label="HBM4의 전기 스케일링과 HBM4를 포함한 3D 적층 공정 복잡도가 테스트 및 검사 밸류체인으로 이어지는 수혜 지도">
       <g font-family="Pretendard,system-ui,sans-serif">
         <!-- demand drivers -->
         <rect x="35" y="24" width="340" height="82" rx="14" fill="#e0f6ef" stroke="#00b894" stroke-width="1.3"/>
-        <text x="55" y="47" font-size="9.5" font-weight="800" letter-spacing="1.4" fill="#00775f">DRIVER A · ELECTRICAL TEST</text>
-        <text x="205" y="72" text-anchor="middle" font-size="16" font-weight="850" fill="#00594a">HBM4</text>
+        <text x="55" y="47" font-size="9.5" font-weight="800" letter-spacing="1.4" fill="#00775f">DRIVER A · HBM4 ELECTRICAL SCALING</text>
+        <text x="205" y="72" text-anchor="middle" font-size="16" font-weight="850" fill="#00594a">2,048 I/O Test</text>
         <text x="205" y="92" text-anchor="middle" font-size="11.2" fill="#0a6b58">test seconds · contact density · power · thermal</text>
         <rect x="485" y="24" width="340" height="82" rx="14" fill="#fff4dc" stroke="#f0a500" stroke-width="1.3"/>
-        <text x="505" y="47" font-size="9.5" font-weight="800" letter-spacing="1.4" fill="#8a6100">DRIVER B · PROCESS CONTROL</text>
-        <text x="655" y="72" text-anchor="middle" font-size="16" font-weight="850" fill="#7a5600">Advanced Packaging</text>
-        <text x="655" y="92" text-anchor="middle" font-size="11.2" fill="#6e5a1e">inspection steps · bonding · hidden interface</text>
+        <text x="505" y="47" font-size="9.5" font-weight="800" letter-spacing="1.4" fill="#8a6100">DRIVER B · HBM4 / ADV. PACKAGING</text>
+        <text x="655" y="72" text-anchor="middle" font-size="16" font-weight="850" fill="#7a5600">3D Stacking · Process Control</text>
+        <text x="655" y="92" text-anchor="middle" font-size="11.2" fill="#6e5a1e">bump · bonding · warpage · void · hidden interface</text>
 
-        <!-- clean dual buses: Prober / Handler is the shared node -->
-        <path d="M205 106 V140 H430" fill="none" stroke="#00b894" stroke-width="1.6"/>
-        <path d="M655 106 V140 H430" fill="none" stroke="#f0a500" stroke-width="1.6"/>
-        <path d="M100 140 H205 M100 140 V162 M265 140 V162" fill="none" stroke="#00b894" stroke-width="1.4"/>
-        <path d="M430 140 H760 M595 140 V162 M760 140 V162" fill="none" stroke="#f0a500" stroke-width="1.4"/>
-        <path d="M430 140 V162" fill="none" stroke="#8a93a0" stroke-width="1.4"/>
+        <!-- parallel demand buses: HBM4 also drives stack inspection -->
+        <path d="M205 106 V139 H100 M205 139 H595" fill="none" stroke="#00b894" stroke-width="1.6"/>
+        <path d="M655 106 V143 H430 M655 143 H760" fill="none" stroke="#f0a500" stroke-width="1.6"/>
+        <path d="M100 139 V162 M265 139 V162" fill="none" stroke="#00b894" stroke-width="1.4"/>
+        <path d="M427 139 V162" fill="none" stroke="#00b894" stroke-width="1.4"/>
+        <path d="M433 143 V162" fill="none" stroke="#f0a500" stroke-width="1.4"/>
+        <path d="M592 139 V162" fill="none" stroke="#00b894" stroke-width="1.4"/>
+        <path d="M598 143 V162 M760 143 V162" fill="none" stroke="#f0a500" stroke-width="1.4"/>
 
         <!-- beneficiary cards -->
         <g text-anchor="middle">
@@ -804,11 +806,12 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
           <text x="430" y="236" font-size="10.4" fill="#5c6675">ACCRETECH</text><text x="430" y="251" font-size="10.4" fill="#5c6675">Cohu · AEM</text>
           <rect x="370" y="258" width="120" height="22" rx="7" fill="#fff" stroke="#dfe3e8"/><text x="430" y="273" font-size="9.2" fill="#42506a">sites · thermal option</text>
 
-          <rect x="520" y="162" width="150" height="132" rx="13" fill="#fff8e8" stroke="#f0a500"/>
-          <rect x="536" y="176" width="62" height="17" rx="8.5" fill="#f9e9bd"/><text x="567" y="188" font-size="8.5" font-weight="800" fill="#8a6100">INSPECTION</text>
-          <text x="595" y="216" font-size="14" font-weight="850" fill="#7a5600">Inspection</text>
-          <text x="595" y="236" font-size="10.4" fill="#6e5a1e">KLA · Onto · Camtek</text>
-          <rect x="535" y="258" width="120" height="22" rx="7" fill="#fff" stroke="#eee0bc"/><text x="595" y="273" font-size="9.2" fill="#42506a">insertion · sampling</text>
+          <rect x="520" y="162" width="150" height="132" rx="13" fill="#f7faf8" stroke="#b9c3cf" stroke-width="1.2"/>
+          <rect x="536" y="176" width="50" height="17" rx="8.5" fill="#e9edf2"/><text x="561" y="188" font-size="8.5" font-weight="800" fill="#5c6675">SHARED</text>
+          <circle cx="598" cy="184.5" r="3.2" fill="#00b894"/><circle cx="607" cy="184.5" r="3.2" fill="#f0a500"/>
+          <text x="595" y="216" font-size="14" font-weight="850" fill="#34405a">Inspection · Metrology</text>
+          <text x="595" y="236" font-size="10.4" fill="#5c6675">KLA · Onto · Camtek</text>
+          <rect x="535" y="258" width="120" height="22" rx="7" fill="#fff" stroke="#dfe3e8"/><text x="595" y="273" font-size="9.2" fill="#42506a">HBM4/AP insertion</text>
 
           <rect x="685" y="162" width="150" height="132" rx="13" fill="#f7f8fa" stroke="#b9c3cf"/>
           <rect x="701" y="176" width="48" height="17" rx="8.5" fill="#e9edf2"/><text x="725" y="188" font-size="8.5" font-weight="800" fill="#5c6675">SERVICE</text>
@@ -833,7 +836,7 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
         <text x="430" y="391" text-anchor="middle" font-size="10.5" fill="#5c6675">검증 KPI · tester orders · probe-card ASP/교체 · inspection insertion · tool-of-record · utilization</text>
       </g>
     </svg>
-    <figcaption>그림 10. 밸류체인 지도 — 같은 테스트 테마라도 HBM4와 첨단 패키징이 매출로 연결되는 경로와 확인할 KPI는 서로 다르다.</figcaption>
+    <figcaption>그림 10. 밸류체인 지도 — HBM4는 2,048 I/O 전기 테스트뿐 아니라 적층의 bump·bonding·warpage·void 검사 수요도 만들며, 첨단 패키징 전반은 이 process-control 범위를 더 넓힌다.</figcaption>
   </figure>
 
   <table><thead><tr><th>영역</th><th>역할</th><th>주요 기업</th><th>확인할 KPI</th></tr></thead><tbody>
@@ -846,7 +849,7 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
 
   <h3>① ATE — 테스트 시간 증가를 장비 대수로 전환</h3><p><strong>Advantest</strong>는 AI SoC와 HBM 메모리 테스트 양쪽에 노출돼 있다. 핵심은 단순 테스터 대수가 아니라 제품당 test seconds와 플랫폼 점유율이다. <strong>Teradyne</strong>은 Magnum 7H를 통해 HBM 베이스 다이와 스택 테스트에서 점유율 회복을 노리는 옵션 성격이 강하다.</p><div class="kpi"><span class="green">Test seconds</span><span>Platform share</span><span>Tester orders</span></div>
   <h3>② Probe Card — HBM4의 물리적·전기적 접점</h3><p><strong>FormFactor</strong>는 2,048 I/O, 미세 피치, 고속 신호, 고전류, 열팽창이라는 요구가 동시에 모이는 지점에 있다. 프로브카드는 사용 과정에서 마모되기 때문에 신규 qualification뿐 아니라 반복 교체 수요가 생긴다.</p><div class="kpi"><span class="green">Card ASP</span><span>교체 주기</span><span>고전류·thermal mix</span><span>고객 qualification</span></div>
-  <h3>③ Inspection — 2.5D에서 3D로 갈수록 검사 지점이 계층화</h3><p><strong>KLA</strong>는 넓은 공정제어 포트폴리오와 설치 기반·서비스 해자가 강점이다. <strong>Onto Innovation</strong>은 2D optical, 3D metrology, IR 검사에 집중해 HBM·첨단패키징 매출 순도가 더 높고, 작은 매출 기반에서 대형 수주가 실적으로 전환될 때 탄력이 크다.</p><div class="kpi"><span class="green">Inspection steps</span><span>Sampling</span><span>Backlog</span><span>Tool of record</span></div>
+  <h3>③ Inspection — HBM4와 3D 패키징에서 검사 지점이 함께 계층화</h3><p><strong>KLA</strong>는 넓은 공정제어 포트폴리오와 설치 기반·서비스 해자가 강점이다. <strong>Onto Innovation</strong>은 2D optical, 3D metrology, IR 검사에 집중해 HBM4 적층과 첨단패키징 양쪽에 직접 노출되며, 작은 매출 기반에서 대형 수주가 실적으로 전환될 때 탄력이 크다.</p><div class="kpi"><span class="green">HBM4 inspection</span><span>Inspection steps</span><span>Sampling</span><span>Backlog</span><span>Tool of record</span></div>
 </section>
 
 <section id="picks">
@@ -855,14 +858,14 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
 
   <div class="logic-list">
     <div class="logic-item"><div class="n">01 · HBM4</div><strong>Test seconds · 접점 난도 상승</strong><span>ATE 주문, probe card ASP·교체 수요로 연결되는가</span></div>
-    <div class="logic-item"><div class="n">02 · ADV. PACKAGING</div><strong>Inspection insertion 증가</strong><span>tool-of-record, sampling, 장비 수주로 확인되는가</span></div>
+    <div class="logic-item"><div class="n">02 · HBM4 / ADV. PACKAGING</div><strong>Inspection insertion 증가</strong><span>HBM4 적층과 3D packaging에서 tool-of-record·장비 수주로 확인되는가</span></div>
     <div class="logic-item"><div class="n">03 · ECONOMICS</div><strong>Late-stage scrap 회피</strong><span>KGD·KGSD·pre/post-bond gate가 실제 양산에 정착하는가</span></div>
   </div>
 
   <h3>대표 노출 — 두 축에서 직접성이 높은 기업</h3>
   <div class="exposure-grid">
     <div class="exposure"><div class="axis">HBM4 · ELECTRICAL TEST</div><h4>FormFactor</h4><p><strong>프로브카드라는 물리적 접점</strong>에 HBM4의 2,048 I/O·고속·고전류·열 요구가 직접 반영된다. 신규 qualification뿐 아니라 마모에 따른 반복 교체 수요가 있다는 점이 특징이다.</p></div>
-    <div class="exposure"><div class="axis">ADVANCED PACKAGING · INSPECTION</div><h4>Onto Innovation</h4><p><strong>2D optical · 3D metrology · IR</strong>로 bump, bonding, subsurface defect를 본다. 2.5D에서 3D로 갈수록 검사 단계가 계층화될 때 실적 탄력이 큰 쪽에 가깝다.</p></div>
+    <div class="exposure"><div class="axis">HBM4 · ADVANCED PACKAGING · INSPECTION</div><h4>Onto Innovation</h4><p><strong>2D optical · 3D metrology · IR</strong>로 bump, bonding, subsurface defect를 본다. HBM4 적층과 2.5D·3D 전반에서 검사 단계가 계층화될 때 실적 탄력이 큰 쪽에 가깝다.</p></div>
   </div>
 
   <h3>바스켓으로 보면</h3>
@@ -870,7 +873,7 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
     <tr><td><strong>Advantest</strong></td><td>AI SoC + HBM 전기 테스트</td><td>test seconds와 tester demand의 직접 수혜</td></tr>
     <tr><td><strong>FormFactor</strong></td><td>HBM4 접점</td><td>반복 교체 수요 · 테스트 강도 직접 노출</td></tr>
     <tr><td><strong>KLA</strong></td><td>공정제어</td><td>넓은 설치 기반·서비스 해자 · 하방 방어</td></tr>
-    <tr><td><strong>Onto Innovation</strong></td><td>첨단패키징 검사</td><td>HBM·AP 매출 순도 · 높은 실적 탄력</td></tr>
+    <tr><td><strong>Onto Innovation</strong></td><td>HBM4·첨단패키징 검사</td><td>HBM·AP 매출 순도 · 높은 실적 탄력</td></tr>
   </tbody></table>
 
   <div class="checklist"><h4>산업 논지를 반복해서 검증할 6가지 질문</h4><ol>

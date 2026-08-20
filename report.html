@@ -640,7 +640,10 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
   <div class="sec-head"><span class="sec-num">02</span><h2>업황과 테스트 플로우</h2></div>
   <p class="sec-sub">최종 테스트 한 번이 아니라, 단계별 release gate가 늘어난다</p>
 
-  <figure class="figure"><svg viewBox="0 0 860 290" role="img" aria-label="공정 단계와 판정 결과를 구분한 HBM 테스트 플로우"><defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#5c6675" stroke-width="1.5"/></marker></defs><g font-family="Pretendard,system-ui,sans-serif" text-anchor="middle">
+  <figure class="figure"><svg viewBox="0 0 860 290" role="img" aria-label="웨이퍼 및 선택적 다이 레벨의 pre-bond KGD gate와 본딩 이후 검사를 구분한 HBM 테스트 플로우"><defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#5c6675" stroke-width="1.5"/></marker></defs><g font-family="Pretendard,system-ui,sans-serif" text-anchor="middle">
+    <rect x="10" y="68" width="275" height="112" rx="15" fill="#f7fbff" stroke="#7aa7ff" stroke-dasharray="5 4"/>
+    <rect x="77" y="69" width="141" height="17" rx="8.5" fill="#e7efff"/>
+    <text x="147.5" y="81" font-size="9.2" font-weight="800" fill="#2456c8" font-family="JetBrains Mono,monospace">PRE-BOND TEST · KGD GATE</text>
     <rect x="15" y="88" width="125" height="86" rx="12" fill="#e0f6ef" stroke="#00b894"/><text x="77.5" y="111" font-size="13" font-weight="800" fill="#00594a">Wafer-level test</text><text x="77.5" y="131" font-size="10.5" fill="#33477a">CP / Wafer Sort</text><text x="77.5" y="149" font-size="9.6" fill="#5c6675">optional WLBI</text><text x="77.5" y="164" font-size="10" font-weight="700" fill="#00775f">→ KGD qualification</text>
     <rect x="160" y="88" width="120" height="86" rx="12" fill="#eef2f6" stroke="#b9c3cf" stroke-dasharray="4 3"/><text x="220" y="111" font-size="13" font-weight="800" fill="#34405a">Die-level test*</text><text x="220" y="132" font-size="10.2" fill="#5c6675">after dicing</text><text x="220" y="150" font-size="9.6" fill="#5c6675">damage · electrical re-test</text><text x="220" y="165" font-size="9.6" font-weight="700" fill="#42506a">→ high-confidence KGD</text>
     <rect x="300" y="88" width="112" height="86" rx="12" fill="#fdf3dc" stroke="#f0a500"/><text x="356" y="116" font-size="13" font-weight="800" fill="#7a5600">Stack · Bond</text><text x="356" y="138" font-size="10.3" fill="#8a6100">TSV · micro-bump</text><text x="356" y="156" font-size="9.6" fill="#6e5a1e">hybrid bonding</text>
@@ -648,11 +651,13 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
     <rect x="580" y="88" width="130" height="86" rx="12" fill="#eef2f6" stroke="#b9c3cf"/><text x="645" y="117" font-size="13" font-weight="800" fill="#34405a">Final · Burn-in</text><text x="645" y="139" font-size="10.3" fill="#5c6675">integrated package</text><text x="645" y="157" font-size="9.6" fill="#5c6675">spec · reliability</text>
     <rect x="735" y="88" width="105" height="86" rx="12" fill="#eef2f6" stroke="#b9c3cf"/><text x="787.5" y="119" font-size="13.5" font-weight="800" fill="#34405a">SLT</text><text x="787.5" y="141" font-size="10.5" fill="#5c6675">system workload</text><text x="787.5" y="159" font-size="9.6" fill="#5c6675">escape screening</text>
     <g stroke="#5c6675" marker-end="url(#a)"><line x1="140" y1="131" x2="155" y2="131"/><line x1="280" y1="131" x2="295" y2="131"/><line x1="412" y1="131" x2="430" y2="131"/><line x1="560" y1="131" x2="575" y2="131"/><line x1="710" y1="131" x2="730" y2="131"/></g>
+    <line x1="290" y1="71" x2="290" y2="181" stroke="#e2504a" stroke-width="1.3" stroke-dasharray="4 4"/>
+    <text x="290" y="76" transform="rotate(-90 290 76)" text-anchor="end" font-size="8.3" font-weight="800" fill="#a13530" font-family="JetBrains Mono,monospace">BONDING START</text>
     <rect x="15" y="22" width="825" height="42" rx="10" fill="#fff8e7" stroke="#e6b63f" stroke-dasharray="5 4"/><text x="427.5" y="40" font-size="11.8" font-weight="800" fill="#7a5600">Inspection · Metrology — 전기 테스트와 별도의 병렬 품질 레인</text><text x="427.5" y="55" font-size="10.2" fill="#8a6100">pre-bond · bond control · post-bond에서 surface · bump · overlay · warpage · void를 확인</text>
     <text x="427.5" y="212" font-size="12.3" font-weight="800" fill="#1a2233">CP는 웨이퍼 전기 테스트 방식, WLBI는 선택적 신뢰성 검사, KGD·KGS/KGSD는 통과 후의 품질 판정이다.</text>
     <text x="427.5" y="237" font-size="11.5" fill="#5c6675">* Die-level test는 모든 제품의 고정 공정이 아니라 제품·조립 방식에 따라 추가되는 선택적 insertion</text>
     <text x="427.5" y="263" font-size="11.5" fill="#5c6675">공정 단계와 판정 결과를 분리하면 wafer test → bond → stack/final test의 release gate가 명확해진다.</text>
-  </g></svg><figcaption>그림 7. HBM 테스트 플로우 — 전기 테스트 공정, 선택적 insertion, 검사·계측, 그리고 KGD·KGS/KGSD라는 판정 결과를 구분했다.</figcaption></figure>
+  </g></svg><figcaption>그림 7. HBM 테스트 플로우 — wafer-level CP와 선택적 die-level re-test가 pre-bond KGD gate를 이루고, Stack · Bond 이후에는 연결·스택·패키지·시스템 검증으로 이어진다.</figcaption></figure>
 
   <div class="logic-test-block" aria-labelledby="base-die-test-title">
     <div class="logic-test-head">

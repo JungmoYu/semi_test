@@ -76,26 +76,51 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
 
   <h3>HBM4 — 왜 테스트 셀 전체가 어려워지는가</h3>
   <figure class="figure">
-    <svg viewBox="0 0 860 360" role="img" aria-label="HBM4에서 접촉 신호 전력 열의 네 가지 테스트 병목">
+    <svg viewBox="0 0 860 500" role="img" aria-label="HBM4의 2,048개 입출력 병목과 로직 베이스 다이의 확대된 테스트 콘텐츠">
       <g font-family="Pretendard,system-ui,sans-serif">
-        <rect x="330" y="105" width="200" height="120" rx="20" fill="#0d1321"/>
-        <text x="430" y="140" text-anchor="middle" font-size="12" fill="#70e0c5" font-family="JetBrains Mono,monospace">HBM4 TEST CELL</text>
-        <text x="430" y="170" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">2,048 I/O</text>
-        <text x="430" y="194" text-anchor="middle" font-size="12" fill="#b8c0cd">ATE · Probe Card · Prober · Handler</text>
+        <rect x="330" y="99" width="200" height="132" rx="20" fill="#0d1321"/>
+        <text x="430" y="128" text-anchor="middle" font-size="12" fill="#70e0c5" font-family="JetBrains Mono,monospace">HBM4 TEST CELL</text>
+        <text x="430" y="158" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">2,048 I/O</text>
+        <text x="430" y="182" text-anchor="middle" font-size="14" font-weight="750" fill="#8fb4ff">+ Logic Base Die</text>
+        <text x="430" y="207" text-anchor="middle" font-size="11.5" fill="#b8c0cd">ATE · Probe Card · Prober · Handler</text>
         <rect x="40" y="35" width="250" height="105" rx="13" fill="#e0f6ef" stroke="#00b894"/><text x="60" y="65" font-size="14" font-weight="800" fill="#00594a">① 접촉</text><text x="60" y="91" font-size="12.5" fill="#0a6b58">미세 피치에서 접촉저항·평탄도 유지</text><text x="60" y="114" font-size="11.5" fill="#5c6675">불안정 → false fail · 재접촉 · throughput↓</text>
         <rect x="570" y="35" width="250" height="105" rx="13" fill="#e7efff" stroke="#3d7bfd"/><text x="590" y="65" font-size="14" font-weight="800" fill="#1d3f8f">② 신호</text><text x="590" y="91" font-size="12.5" fill="#33477a">고속 신호 무결성·타이밍 마진 확보</text><text x="590" y="114" font-size="11.5" fill="#5c6675">ATE뿐 아니라 전체 signal path가 병목</text>
         <rect x="40" y="225" width="250" height="105" rx="13" fill="#fdf3dc" stroke="#f0a500"/><text x="60" y="255" font-size="14" font-weight="800" fill="#7a5600">③ 전력</text><text x="60" y="281" font-size="12.5" fill="#6e5a1e">동시 검사 핀·DUT 증가 → 전류 요구 상승</text><text x="60" y="304" font-size="11.5" fill="#5c6675">ATE 전원 + 인터페이스 전류 전달 능력 필요</text>
         <rect x="570" y="225" width="250" height="105" rx="13" fill="#fdf0ef" stroke="#e2504a"/><text x="590" y="255" font-size="14" font-weight="800" fill="#a13530">④ 열</text><text x="590" y="281" font-size="12.5" fill="#7f3c38">병렬화 → 셀프 히팅·온도 편차·열팽창</text><text x="590" y="304" font-size="11.5" fill="#5c6675">정렬·접촉저항·측정 반복성을 동시에 흔듦</text>
         <g stroke="#9aa6b4" stroke-width="1.4"><line x1="290" y1="110" x2="330" y2="145"/><line x1="570" y1="110" x2="530" y2="145"/><line x1="290" y1="275" x2="330" y2="195"/><line x1="570" y1="275" x2="530" y2="195"/></g>
+
+        <rect x="40" y="352" width="780" height="132" rx="15" fill="#f7f9fc" stroke="#cbd5e1"/>
+        <rect x="40" y="352" width="780" height="35" rx="15" fill="#e9eef8"/>
+        <rect x="40" y="372" width="780" height="15" fill="#e9eef8"/>
+        <text x="60" y="375" font-size="12" font-weight="800" fill="#33477a" font-family="JetBrains Mono,monospace">LOGIC BASE DIE · EXPANDED TEST CONTENT</text>
+        <text x="800" y="375" text-anchor="end" font-size="10.5" fill="#5c6675">첨단 로직 공정 · PHY/제어 · 고객 맞춤 기능</text>
+
+        <rect x="60" y="399" width="340" height="58" rx="10" fill="#e7efff" stroke="#8fb4ff"/>
+        <text x="78" y="420" font-size="10.5" font-weight="800" fill="#2456c8" font-family="JetBrains Mono,monospace">PRE-STACK · BASE-DIE WAFER TEST</text>
+        <text x="78" y="442" font-size="11.5" fill="#33477a">Scan/ATPG · MBIST/BIST · PHY loopback · clock/power</text>
+
+        <path d="M414 428H446" stroke="#7d8ca3" stroke-width="1.6"/>
+        <path d="M440 422L447 428L440 434" fill="none" stroke="#7d8ca3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+        <rect x="460" y="399" width="340" height="58" rx="10" fill="#e0f6ef" stroke="#70d1b9"/>
+        <text x="478" y="420" font-size="10.5" font-weight="800" fill="#00775f" font-family="JetBrains Mono,monospace">POST-STACK · STACK/LINK TEST</text>
+        <text x="478" y="442" font-size="11.5" fill="#0a6b58">TSV/microbump · end-to-end PHY · lane repair · functional</text>
+        <text x="430" y="476" text-anchor="middle" font-size="10" fill="#7d8795">예시 항목이며 실제 test insertion·coverage는 HBM 제조사·고객별로 달라질 수 있음</text>
       </g>
     </svg>
-    <figcaption>그림 2. HBM4의 테스트 난도는 테스터 한 대의 스펙 문제가 아니라 접촉·신호·전력·열이 동시에 얽힌 테스트 셀 문제다.</figcaption>
+    <figcaption>그림 2. HBM4의 테스트 난도는 2,048 I/O가 만드는 접촉·신호·전력·열 문제에 더해, 첨단 로직 베이스 다이의 scan·BIST·PHY·interconnect 테스트 콘텐츠가 확대되는 복합적인 테스트 셀 문제다.</figcaption>
   </figure>
+  <p class="micro-note">기존 HBM도 베이스 다이에 I/O·제어 기능이 있었다. HBM4의 변화는 로직이 처음 생긴다는 뜻이 아니라, 첨단 로직 공정과 추가·맞춤 기능을 담으면서 SoC급 DFT와 PHY·연결 검증의 비중이 커진다는 의미다.</p>
+  <div class="evidence-links">
+    <a href="https://news.skhynix.com/en/sk-hynix-partners-with-tsmc-to-strengthen-hbm-technological-leadership/" target="_blank" rel="noopener">SK hynix · TSMC HBM4 base die</a>
+    <a href="https://qacf-www.synopsys.com/designware-ip/interface-ip/hbm4-phy.html" target="_blank" rel="noopener">Synopsys · HBM4 PHY test features</a>
+    <a href="https://www.synopsys.com/articles/test-die-to-die-phy.html" target="_blank" rel="noopener">Synopsys · multi-die test flow</a>
+  </div>
 
   <table><thead><tr><th>항목</th><th>HBM3E</th><th>HBM4·HBM4E 방향</th><th>테스트 함의</th></tr></thead><tbody>
     <tr><td>인터페이스</td><td>1,024 I/O</td><td><strong>2,048 I/O</strong></td><td>접점 밀도·신호·전원 요구 증가</td></tr>
     <tr><td>적층</td><td>8단·12단</td><td>12단 양산 → 16단 로드맵</td><td>KGD·스택 검증 가치 상승</td></tr>
-    <tr><td>베이스 다이</td><td>표준형 중심</td><td>첨단 로직·고객 맞춤화</td><td>전기적 검증 범위 확대</td></tr>
+    <tr><td>베이스 다이</td><td>전용 베이스 다이·표준 기능 중심</td><td>첨단 로직·고객 맞춤화</td><td>Scan/ATPG·BIST·PHY 등 SoC급 test content 확대</td></tr>
     <tr><td>전력·열</td><td>상대적으로 낮음</td><td>고전류·고열</td><td>병렬 효율·thermal control 제약</td></tr>
   </tbody></table>
 

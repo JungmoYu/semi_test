@@ -119,6 +119,218 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
     <figcaption>그림 3. 2.5D에서 3D로 갈수록 숨은 계면과 연결부가 늘고, 접합 후에는 관측성이 낮아져 조기 검사와 KGD의 경제적 가치가 커진다.</figcaption>
   </figure>
 
+  <h4>첨단 패키징은 하나가 아니다 — CoWoS와 EMIB는 실리콘을 쓰는 방식이 다르다</h4>
+  <p>“첨단 패키징이 검사를 앞단으로 끌어당긴다”는 명제를 구체화하려면 <strong>어떤 구조가 어떤 검사 지점을 새로 만드는지</strong>를 봐야 한다. 현재 AI 가속기 패키징은 크게 두 갈래다. TSMC의 <strong>CoWoS</strong>는 칩 아래에 실리콘 인터포저를 깔고 그 위에 칩을 붙이는 방식이고, Intel의 <strong>EMIB</strong>는 인터포저 없이 유기 기판 안에 작은 실리콘 브리지만 묻어 칩끼리 직접 연결한다. 실리콘을 “면”으로 쓰느냐 “점”으로 쓰느냐의 차이이고, 이 차이가 그대로 검사·계측 항목의 차이로 이어진다.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 860 410" role="img" aria-label="CoWoS-S, CoWoS-L, EMIB-T의 단면 구조 비교와 각 구조에서 새로 생기는 검사 지점">
+      <defs>
+        <linearGradient id="apSub" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c6cede"/><stop offset="1" stop-color="#a8b2c4"/></linearGradient>
+      </defs>
+      <g font-family="Pretendard,system-ui,sans-serif">
+
+        <rect x="14" y="46" width="272" height="222" rx="12" fill="#fbfcfd" stroke="#e3e7ec"/>
+        <rect x="294" y="46" width="272" height="222" rx="12" fill="#fbfcfd" stroke="#e3e7ec"/>
+        <rect x="574" y="46" width="272" height="222" rx="12" fill="#fbfcfd" stroke="#e3e7ec"/>
+
+        <text x="150" y="72" text-anchor="middle" font-size="14.5" font-weight="800" fill="#1d3f8f">CoWoS-S</text>
+        <text x="430" y="72" text-anchor="middle" font-size="14.5" font-weight="800" fill="#00775f">CoWoS-L</text>
+        <text x="710" y="72" text-anchor="middle" font-size="14.5" font-weight="800" fill="#8a6100">EMIB · EMIB-T</text>
+        <text x="150" y="91" text-anchor="middle" font-size="11" fill="#5c6675">대형 Si 인터포저를 전면에 깐다</text>
+        <text x="430" y="91" text-anchor="middle" font-size="11" fill="#5c6675">RDL + 필요한 곳에만 Si 브리지</text>
+        <text x="710" y="91" text-anchor="middle" font-size="11" fill="#5c6675">기판 안에 Si 브리지만 매립</text>
+
+        <g stroke="#7a879b" stroke-width="1">
+          <line x1="56" y1="162" x2="56" y2="170"/><line x1="80" y1="162" x2="80" y2="170"/><line x1="104" y1="162" x2="104" y2="170"/>
+          <line x1="120" y1="162" x2="120" y2="170"/><line x1="152" y1="162" x2="152" y2="170"/><line x1="184" y1="162" x2="184" y2="170"/>
+          <line x1="204" y1="162" x2="204" y2="170"/><line x1="224" y1="162" x2="224" y2="170"/><line x1="246" y1="162" x2="246" y2="170"/>
+        </g>
+        <rect x="46" y="170" width="208" height="26" rx="3" fill="#ccd8ea" stroke="#8fa2c1"/>
+        <g stroke="#6b7a93" stroke-width="1.3">
+          <line x1="64" y1="172" x2="64" y2="194"/><line x1="92" y1="172" x2="92" y2="194"/><line x1="120" y1="172" x2="120" y2="194"/>
+          <line x1="180" y1="172" x2="180" y2="194"/><line x1="208" y1="172" x2="208" y2="194"/><line x1="236" y1="172" x2="236" y2="194"/>
+        </g>
+        <rect x="106" y="175" width="88" height="16" rx="3" fill="#fbfcfd" opacity=".92"/>
+        <text x="150" y="187" text-anchor="middle" font-size="10" font-weight="700" fill="#1d3f8f">Si interposer · TSV</text>
+        <rect x="30" y="202" width="240" height="28" rx="3" fill="url(#apSub)" stroke="#96a0b2"/>
+        <text x="150" y="221" text-anchor="middle" font-size="10" fill="#3d4c66">유기 기판 (ABF)</text>
+        <rect x="56" y="120" width="48" height="42" rx="4" fill="#8fd8c3" stroke="#4fae92"/>
+        <rect x="112" y="120" width="80" height="42" rx="4" fill="#7aa7ff" stroke="#4d7fd6"/>
+        <rect x="200" y="120" width="48" height="42" rx="4" fill="#8fd8c3" stroke="#4fae92"/>
+        <text x="80" y="145" text-anchor="middle" font-size="10" fill="#00594a">HBM</text>
+        <text x="152" y="145" text-anchor="middle" font-size="10.5" fill="#1d3f8f">Logic</text>
+        <text x="224" y="145" text-anchor="middle" font-size="10" fill="#00594a">HBM</text>
+        <g fill="#9aa8c0"><circle cx="52" cy="238" r="5"/><circle cx="92" cy="238" r="5"/><circle cx="132" cy="238" r="5"/><circle cx="172" cy="238" r="5"/><circle cx="212" cy="238" r="5"/><circle cx="252" cy="238" r="5"/></g>
+        <text x="150" y="259" text-anchor="middle" font-size="10.5" font-weight="700" fill="#42506a">Si 면적 = 패키지 전면</text>
+
+        <g stroke="#7a879b" stroke-width="1">
+          <line x1="336" y1="162" x2="336" y2="170"/><line x1="360" y1="162" x2="360" y2="170"/><line x1="384" y1="162" x2="384" y2="170"/>
+          <line x1="400" y1="162" x2="400" y2="170"/><line x1="432" y1="162" x2="432" y2="170"/><line x1="464" y1="162" x2="464" y2="170"/>
+          <line x1="484" y1="162" x2="484" y2="170"/><line x1="504" y1="162" x2="504" y2="170"/><line x1="526" y1="162" x2="526" y2="170"/>
+        </g>
+        <rect x="326" y="170" width="208" height="26" rx="3" fill="#eef2f6" stroke="#c9d2dd"/>
+        <rect x="367" y="174" width="42" height="18" rx="3" fill="#8ec5ff" stroke="#4d7fd6"/>
+        <rect x="455" y="174" width="42" height="18" rx="3" fill="#8ec5ff" stroke="#4d7fd6"/>
+        <text x="388" y="187" text-anchor="middle" font-size="9" font-weight="700" fill="#1d3f8f">LSI</text>
+        <text x="476" y="187" text-anchor="middle" font-size="9" font-weight="700" fill="#1d3f8f">LSI</text>
+        <text x="336" y="187" font-size="8.5" font-weight="700" fill="#5c6675">RDL</text>
+        <text x="530" y="187" text-anchor="end" font-size="8.5" font-weight="700" fill="#5c6675">RDL</text>
+        <rect x="310" y="202" width="240" height="28" rx="3" fill="url(#apSub)" stroke="#96a0b2"/>
+        <text x="430" y="221" text-anchor="middle" font-size="10" fill="#3d4c66">유기 기판 (ABF)</text>
+        <rect x="336" y="120" width="48" height="42" rx="4" fill="#8fd8c3" stroke="#4fae92"/>
+        <rect x="392" y="120" width="80" height="42" rx="4" fill="#7aa7ff" stroke="#4d7fd6"/>
+        <rect x="480" y="120" width="48" height="42" rx="4" fill="#8fd8c3" stroke="#4fae92"/>
+        <text x="360" y="145" text-anchor="middle" font-size="10" fill="#00594a">HBM</text>
+        <text x="432" y="145" text-anchor="middle" font-size="10.5" fill="#1d3f8f">Logic</text>
+        <text x="504" y="145" text-anchor="middle" font-size="10" fill="#00594a">HBM</text>
+        <g fill="#9aa8c0"><circle cx="332" cy="238" r="5"/><circle cx="372" cy="238" r="5"/><circle cx="412" cy="238" r="5"/><circle cx="452" cy="238" r="5"/><circle cx="492" cy="238" r="5"/><circle cx="532" cy="238" r="5"/></g>
+        <text x="430" y="259" text-anchor="middle" font-size="10.5" font-weight="700" fill="#42506a">Si 면적 = 브리지 부분만</text>
+
+        <g stroke="#7a879b" stroke-width="1">
+          <line x1="616" y1="162" x2="616" y2="170"/><line x1="640" y1="162" x2="640" y2="170"/><line x1="664" y1="162" x2="664" y2="170"/>
+          <line x1="680" y1="162" x2="680" y2="170"/><line x1="712" y1="162" x2="712" y2="170"/><line x1="744" y1="162" x2="744" y2="170"/>
+          <line x1="764" y1="162" x2="764" y2="170"/><line x1="784" y1="162" x2="784" y2="170"/><line x1="806" y1="162" x2="806" y2="170"/>
+        </g>
+        <rect x="590" y="170" width="240" height="60" rx="3" fill="url(#apSub)" stroke="#96a0b2"/>
+        <rect x="647" y="175" width="42" height="18" rx="3" fill="#8ec5ff" stroke="#4d7fd6"/>
+        <rect x="735" y="175" width="42" height="18" rx="3" fill="#8ec5ff" stroke="#4d7fd6"/>
+        <g stroke="#1d3f8f" stroke-width="1.2">
+          <line x1="656" y1="193" x2="656" y2="207"/><line x1="668" y1="193" x2="668" y2="207"/><line x1="680" y1="193" x2="680" y2="207"/>
+          <line x1="744" y1="193" x2="744" y2="207"/><line x1="756" y1="193" x2="756" y2="207"/><line x1="768" y1="193" x2="768" y2="207"/>
+        </g>
+        <text x="668" y="188" text-anchor="middle" font-size="8.5" font-weight="700" fill="#1d3f8f">bridge</text>
+        <text x="756" y="188" text-anchor="middle" font-size="8.5" font-weight="700" fill="#1d3f8f">bridge</text>
+        <text x="710" y="226" text-anchor="middle" font-size="10" fill="#3d4c66">유기 기판 (ABF) — 브리지 매립</text>
+        <rect x="616" y="120" width="48" height="42" rx="4" fill="#8fd8c3" stroke="#4fae92"/>
+        <rect x="672" y="120" width="80" height="42" rx="4" fill="#7aa7ff" stroke="#4d7fd6"/>
+        <rect x="760" y="120" width="48" height="42" rx="4" fill="#8fd8c3" stroke="#4fae92"/>
+        <text x="640" y="145" text-anchor="middle" font-size="10" fill="#00594a">HBM</text>
+        <text x="712" y="145" text-anchor="middle" font-size="10.5" fill="#1d3f8f">Logic</text>
+        <text x="784" y="145" text-anchor="middle" font-size="10" fill="#00594a">HBM</text>
+        <g fill="#9aa8c0"><circle cx="612" cy="238" r="5"/><circle cx="652" cy="238" r="5"/><circle cx="692" cy="238" r="5"/><circle cx="732" cy="238" r="5"/><circle cx="772" cy="238" r="5"/><circle cx="812" cy="238" r="5"/></g>
+        <text x="710" y="259" text-anchor="middle" font-size="10.5" font-weight="700" fill="#42506a">Si 면적 = 브리지 + TSV</text>
+
+        <rect x="14" y="282" width="272" height="80" rx="11" fill="#fff" stroke="#e3e7ec"/>
+        <rect x="14" y="282" width="272" height="3" rx="1.5" fill="#3d7bfd"/>
+        <rect x="294" y="282" width="272" height="80" rx="11" fill="#fff" stroke="#e3e7ec"/>
+        <rect x="294" y="282" width="272" height="3" rx="1.5" fill="#00b894"/>
+        <rect x="574" y="282" width="272" height="80" rx="11" fill="#fff" stroke="#e3e7ec"/>
+        <rect x="574" y="282" width="272" height="3" rx="1.5" fill="#f0a500"/>
+        <text x="30" y="303" font-size="9.5" font-weight="800" fill="#5c6675" letter-spacing="1.2">새로 생기는 검사 · 계측 지점</text>
+        <text x="310" y="303" font-size="9.5" font-weight="800" fill="#5c6675" letter-spacing="1.2">새로 생기는 검사 · 계측 지점</text>
+        <text x="590" y="303" font-size="9.5" font-weight="800" fill="#5c6675" letter-spacing="1.2">새로 생기는 검사 · 계측 지점</text>
+        <g font-size="10.5" fill="#2a3448">
+          <text x="30" y="321">· TSV 깊이 · 보이드, RDL 미세 결함</text>
+          <text x="30" y="337">· 대형 Si 박막화 · warpage 계측</text>
+          <text x="30" y="353">· CoW 본딩 정렬 · 언더필 보이드</text>
+          <text x="310" y="321">· LSI 브리지 자체의 KGD 선별</text>
+          <text x="310" y="337">· 브리지 매립 위치 · 오버레이</text>
+          <text x="310" y="353">· RDL 배선 결함 · 휨 제어</text>
+          <text x="590" y="321">· 기판 내 브리지 정렬 · 평탄도</text>
+          <text x="590" y="337">· 브리지 TSV · MIM 캡 검사</text>
+          <text x="590" y="353">· ABF 기판 휨 · 매립 보이드</text>
+        </g>
+
+        <rect x="14" y="374" width="832" height="30" rx="9" fill="#fff" stroke="#e3e7ec" stroke-dasharray="4 4"/>
+        <text x="430" y="393" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2233">실리콘을 덜 쓰는 방향으로 가더라도 검사 항목은 줄지 않는다 — 검사 대상이 “인터포저”에서 “기판 내부”로 옮겨갈 뿐이다</text>
+      </g>
+    </svg>
+    <figcaption>그림 4. 단면 비교 — CoWoS-S는 실리콘을 면으로, CoWoS-L은 국소 브리지로, EMIB는 기판 매립 브리지로 쓴다. 구조가 바뀌면 검사 항목이 사라지는 게 아니라 위치가 이동한다.</figcaption>
+  </figure>
+
+  <figure class="figure">
+    <svg viewBox="0 0 860 330" role="img" aria-label="CoWoS와 EMIB의 조립 플로우별 검사 게이트와 관측성 절벽 위치 비교">
+      <g font-family="Pretendard,system-ui,sans-serif">
+        <text x="20" y="40" font-size="12.5" font-weight="800" fill="#1d3f8f">CoWoS 계열 — 인터포저를 먼저 만들고 그 위에 칩을 붙인다</text>
+
+        <g>
+          <rect x="20" y="52" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+          <rect x="156" y="52" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+          <rect x="292" y="52" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+          <rect x="428" y="52" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+          <rect x="564" y="52" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+          <rect x="700" y="52" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+        </g>
+        <g font-size="11" font-weight="700" fill="#1a2233" text-anchor="middle">
+          <text x="84" y="72">① Si 인터포저</text><text x="220" y="72">② KGD 확보</text><text x="356" y="72">③ CoW 본딩</text>
+          <text x="492" y="72">④ 박막화 · 몰딩</text><text x="628" y="72">⑤ WoS 기판 접합</text><text x="764" y="72">⑥ Final · SLT</text>
+        </g>
+        <g font-size="10" fill="#5c6675" text-anchor="middle">
+          <text x="84" y="86">TSV · RDL 형성</text><text x="220" y="86">로직 · HBM 스택</text><text x="356" y="86">칩 → 웨이퍼 접합</text>
+          <text x="492" y="86">warpage 제어</text><text x="628" y="86">언더필 · 리드</text><text x="764" y="86">패키지 전기 테스트</text>
+        </g>
+        <g>
+          <rect x="64" y="93" width="40" height="15" rx="7.5" fill="#fdf3dc"/><text x="84" y="104" text-anchor="middle" font-size="9.5" font-weight="700" fill="#8a6100">검사</text>
+          <rect x="200" y="93" width="40" height="15" rx="7.5" fill="#e0f6ef"/><text x="220" y="104" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00775f">전기</text>
+          <rect x="336" y="93" width="40" height="15" rx="7.5" fill="#fdf3dc"/><text x="356" y="104" text-anchor="middle" font-size="9.5" font-weight="700" fill="#8a6100">검사</text>
+          <rect x="472" y="93" width="40" height="15" rx="7.5" fill="#fdf3dc"/><text x="492" y="104" text-anchor="middle" font-size="9.5" font-weight="700" fill="#8a6100">검사</text>
+          <rect x="608" y="93" width="40" height="15" rx="7.5" fill="#fdf3dc"/><text x="628" y="104" text-anchor="middle" font-size="9.5" font-weight="700" fill="#8a6100">검사</text>
+          <rect x="744" y="93" width="40" height="15" rx="7.5" fill="#e0f6ef"/><text x="764" y="104" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00775f">전기</text>
+        </g>
+        <g stroke="#b8c0cd" stroke-width="1.4" fill="none">
+          <path d="M149 83 L155 83"/><path d="M285 83 L291 83"/><path d="M557 83 L563 83"/><path d="M693 83 L699 83"/>
+        </g>
+        <line x1="424" y1="44" x2="424" y2="120" stroke="#e2504a" stroke-width="1.6" stroke-dasharray="5 4"/>
+        <text x="424" y="132" text-anchor="middle" font-size="11" font-weight="800" fill="#a13530">관측성 절벽 — 접합 이후엔 계면이 보이지 않는다</text>
+
+        <text x="20" y="158" font-size="12.5" font-weight="800" fill="#8a6100">EMIB 계열 — 기판 안에 브리지를 먼저 묻고 칩을 직접 붙인다</text>
+        <g>
+          <rect x="20" y="170" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+          <rect x="156" y="170" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+          <rect x="292" y="170" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+          <rect x="428" y="170" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+          <rect x="564" y="170" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+          <rect x="700" y="170" width="128" height="62" rx="9" fill="#fff" stroke="#e3e7ec"/>
+        </g>
+        <g font-size="11" font-weight="700" fill="#1a2233" text-anchor="middle">
+          <text x="84" y="190">① 브리지 다이</text><text x="220" y="190">② 기판 내 매립</text><text x="356" y="190">③ KGD 확보</text>
+          <text x="492" y="190">④ 다이 어태치</text><text x="628" y="190">⑤ 언더필 · 리드</text><text x="764" y="190">⑥ Final · SLT</text>
+        </g>
+        <g font-size="10" fill="#5c6675" text-anchor="middle">
+          <text x="84" y="204">TSV · MIM 캡</text><text x="220" y="204">정렬 · 평탄화 계측</text><text x="356" y="204">로직 · HBM 스택</text>
+          <text x="492" y="204">칩 → 기판 직접</text><text x="628" y="204">보이드 · 휨</text><text x="764" y="204">패키지 전기 테스트</text>
+        </g>
+        <g>
+          <rect x="64" y="211" width="40" height="15" rx="7.5" fill="#fdf3dc"/><text x="84" y="222" text-anchor="middle" font-size="9.5" font-weight="700" fill="#8a6100">검사</text>
+          <rect x="200" y="211" width="40" height="15" rx="7.5" fill="#fdf3dc"/><text x="220" y="222" text-anchor="middle" font-size="9.5" font-weight="700" fill="#8a6100">검사</text>
+          <rect x="336" y="211" width="40" height="15" rx="7.5" fill="#e0f6ef"/><text x="356" y="222" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00775f">전기</text>
+          <rect x="472" y="211" width="40" height="15" rx="7.5" fill="#fdf3dc"/><text x="492" y="222" text-anchor="middle" font-size="9.5" font-weight="700" fill="#8a6100">검사</text>
+          <rect x="608" y="211" width="40" height="15" rx="7.5" fill="#fdf3dc"/><text x="628" y="222" text-anchor="middle" font-size="9.5" font-weight="700" fill="#8a6100">검사</text>
+          <rect x="744" y="211" width="40" height="15" rx="7.5" fill="#e0f6ef"/><text x="764" y="222" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00775f">전기</text>
+        </g>
+        <g stroke="#b8c0cd" stroke-width="1.4" fill="none">
+          <path d="M149 201 L155 201"/><path d="M285 201 L291 201"/><path d="M421 201 L427 201"/><path d="M693 201 L699 201"/>
+        </g>
+        <line x1="560" y1="162" x2="560" y2="238" stroke="#e2504a" stroke-width="1.6" stroke-dasharray="5 4"/>
+        <text x="560" y="250" text-anchor="middle" font-size="11" font-weight="800" fill="#a13530">관측성 절벽 — 기판 내부 브리지는 재작업이 사실상 불가</text>
+
+        <rect x="20" y="266" width="820" height="54" rx="11" fill="#fff" stroke="#e3e7ec"/>
+        <text x="430" y="288" text-anchor="middle" font-size="12" font-weight="800" fill="#1a2233">구조가 달라도 결론은 같다 — 절벽 이전에 걸러내지 못한 불량은 로직 · HBM · 기판을 한꺼번에 폐기시킨다</text>
+        <text x="430" y="308" text-anchor="middle" font-size="11" fill="#5c6675">CoWoS는 인터포저 공정 자체가 검사 대상이 되고, EMIB는 기판 내부 매립 정밀도가 검사 대상이 된다</text>
+      </g>
+    </svg>
+    <figcaption>그림 5. 조립 플로우와 검사 게이트 — 두 구조 모두 “접합 이후”가 관측성 절벽이고, 그 앞단에 전기 테스트(KGD)와 검사·계측이 몰리는 구조다.</figcaption>
+  </figure>
+
+  <table><thead><tr><th style="width:17%">구조</th><th style="width:24%">연결 방식</th><th style="width:24%">최근 상황</th><th>테스트 · 검사에서 늘어나는 것</th></tr></thead><tbody>
+    <tr><td><strong>CoWoS-S</strong></td><td>대형 Si 인터포저 전면 + TSV</td><td>AI 가속기 주력으로 쓰여온 표준형. 인터포저가 커질수록 레티클 한계와 휨 부담</td><td>인터포저 TSV·RDL 결함, 대형 Si 박막화·warpage, CoW 본딩 정렬</td></tr>
+    <tr><td><strong>CoWoS-R</strong></td><td>Si 대신 RDL 기반 인터포저</td><td>비용·응력 완화형. 대신 배선 밀도는 Si 대비 제한</td><td>RDL 미세배선 결함, 휨·응력 계측 비중 확대</td></tr>
+    <tr><td><strong>CoWoS-L</strong></td><td>RDL + 국소 Si 브리지(LSI)</td><td>5.5 레티클급이 양산 중이며 수율은 98%를 넘는 것으로 보도. 2028년 14 레티클급 로드맵</td><td>LSI 브리지 자체의 KGD, 브리지 매립 오버레이, 대면적 검사 시간</td></tr>
+    <tr><td><strong>EMIB · EMIB-T</strong></td><td>유기 기판에 Si 브리지 매립<br>(T는 브리지에 TSV·MIM 캡 추가)</td><td>인터포저 제거로 패키징 비용 40% 이상 절감 주장. 120×120mm, 범프 피치 25µm, HBM4E 12Gb/s. Google TPU·MediaTek 채택 보도</td><td>기판 내 브리지 정렬·평탄도, 브리지 TSV·캡 검사, ABF 기판 휨·매립 보이드</td></tr>
+    <tr><td><strong>SoIC · 하이브리드 본딩</strong></td><td>범프 없이 Cu–Cu 직접 접합</td><td>접합 피치가 계속 좁아지는 방향(수 µm대). 3D 적층의 전제 기술</td><td>접합 계면 보이드, 패드 오버레이, 나노 수준 평탄도 — 사실상 전수 계측 영역</td></tr>
+  </tbody></table>
+  <p class="micro-note">수치는 언론·업계 보도 기준이며 회사 공식 스펙과 다를 수 있다. 투자 판단 전 원문(IR·기술 발표)으로 재확인할 것.</p>
+  <div class="evidence-links">
+    <a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm" target="_blank" rel="noopener">TSMC 3DFabric — CoWoS</a>
+    <a href="https://www.trendforce.com/news/2026/08/11/news-tsmcs-5-5-reticle-cowos-reportedly-tops-99-yield-flags-memory-abf-as-ai-bottlenecks/" target="_blank" rel="noopener">TrendForce — 5.5 레티클 CoWoS 수율</a>
+    <a href="https://www.tomshardware.com/tech-industry/semiconductors/tsmcs-details-next-gen-cowos-roadmap-over-14-reticle-packages-and-48x-leap-in-compute-power-expected-by-2029-massive-size-enables-24-hbm5e-stacks-and-additional-memory-bandwidth-jump" target="_blank" rel="noopener">CoWoS 14 레티클 로드맵</a>
+    <a href="https://www.techpowerup.com/351274/intels-emib-t-to-rival-tsmcs-cowos-with-50-cost-advantage-volume-production-in-2027" target="_blank" rel="noopener">EMIB-T 원가 · 스펙</a>
+    <a href="https://www.tomshardware.com/tech-industry/semiconductors/intels-emib-packaging-gains-traction-as-chip-designers-look-to-skirt-tsmcs-cowos-constraints-googles-reported-decision-for-9th-gen-tpus-highlights-intels-attractive-alternative" target="_blank" rel="noopener">EMIB 채택 확대 보도</a>
+    <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/371412-tsmc-cowos-versus-intel-emib-semiconductor-packaging/" target="_blank" rel="noopener">SemiWiki — CoWoS vs EMIB 구조 비교</a>
+  </div>
+
+  <div class="callout"><span class="tag">테스트 관점의 함의</span><strong>패키징 경쟁은 “실리콘을 얼마나 덜 쓰느냐”로 가고 있지만, 검사 수요는 그 방향으로 줄지 않는다.</strong> 인터포저를 없애면 인터포저 검사는 사라지지만, 대신 <strong>기판 내부 매립 정밀도·브리지 KGD·대면적 휨</strong>이라는 새로운 계측 항목이 생긴다. 게다가 구조가 다양해질수록 고객사마다 검사 레시피가 갈라지므로, 공정제어 업체 입장에서는 <strong>tool of record 확보 기회가 오히려 늘어난다.</strong> 투자 관점에서 봐야 할 것은 “어느 패키징이 이기는가”보다 <strong>어떤 구조로 가든 검사 스텝 수와 샘플링이 늘어나는가</strong>다.</div>
+
   <div class="formula"><span class="accent">Test Value</span> ∝ (Defect Probability × Accumulated Value × Detection Delay) ÷ Observability</div>
   <p>이 식은 예측 모델이 아니라 사고 프레임이다. 결함 가능성과 누적 투입가치가 커지고, 발견이 늦어지며, 접합 후 관측 가능성이 낮아질수록 <strong>조기 테스트와 검사에 돈을 쓸 이유가 커진다.</strong></p>
 
@@ -183,7 +395,7 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
         <text x="430" y="276" text-anchor="middle" font-size="12.5" font-weight="800" fill="#70e0c5">물량 증가 + 제품당 테스트 강도 증가 + 공정 검사 insertion 증가</text>
       </g>
     </svg>
-    <figcaption>그림 4. 시장 검증 — ATE, probe card, advanced packaging은 정의가 다른 시장이라 합산할 수 없지만, 각 밸류체인에서 테스트·검사 관련 지출 풀이 동시에 확대되는 방향은 확인된다.</figcaption>
+    <figcaption>그림 6. 시장 검증 — ATE, probe card, advanced packaging은 정의가 다른 시장이라 합산할 수 없지만, 각 밸류체인에서 테스트·검사 관련 지출 풀이 동시에 확대되는 방향은 확인된다.</figcaption>
   </figure>
 
   <div class="scope-note"><strong>범위 주의:</strong> Advantest 수치는 SoC+Memory tester TAM, FormFactor 수치는 probe card SAM, Onto가 인용한 19%는 2.5D·3D advanced package 자체의 성장률이다. 서로 다른 시장이므로 합산하지 않는다. 여기서 보는 포인트는 <strong>HBM4·AI·첨단패키징의 복잡도 증가가 여러 테스트 인접 시장의 지출 증가로 동시에 나타나는지</strong>다.</div>
@@ -211,7 +423,7 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
     <rect x="20" y="26" width="813" height="42" rx="10" fill="#fdf3dc" stroke="#f0a500" stroke-dasharray="5 4"/><text x="426" y="52" font-size="12.5" font-weight="700" fill="#7a5600">Inspection · Metrology는 표면·범프·overlay·warpage·void·subsurface defect를 공정 전후에 겹쳐서 본다</text>
     <text x="426" y="205" font-size="12.5" font-weight="700" fill="#1a2233">KGD는 불량 다이의 적층 투입을 막고, KGSD는 불량 HBM 스택이 고가 GPU·ASIC 패키징에 들어가는 것을 막는다.</text>
     <text x="426" y="230" font-size="12" fill="#5c6675">전기 테스트와 검사·계측은 대체재가 아니라 서로 다른 결함을 막는 계층적 안전장치</text>
-  </g></svg><figcaption>그림 5. 테스트 플로우 — 첨단 패키징이 고도화될수록 한 번의 final test가 아니라 단계별 release gate가 중요해진다.</figcaption></figure>
+  </g></svg><figcaption>그림 7. 테스트 플로우 — 첨단 패키징이 고도화될수록 한 번의 final test가 아니라 단계별 release gate가 중요해진다.</figcaption></figure>
 
   <h3>병렬도를 높여도 테스트 시간이 사라지지 않는 이유</h3>
   <p>테스트 장비는 병렬 사이트를 늘려 처리량을 높일 수 있다. 그래서 제품 복잡도가 올라가도 병렬화가 장비 수요를 상쇄할 수 있다는 반론이 항상 존재한다. 하지만 HBM4에서는 병렬화 자체가 전류와 열을 증가시킨다.</p>
@@ -227,7 +439,7 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
         <text x="430" y="265" text-anchor="middle" font-size="13" font-weight="800" fill="#1a2233">투자 판단: test seconds ↑ 만 볼 것이 아니라 parallel efficiency가 실제로 얼마나 따라오는지 확인</text>
       </g>
     </svg>
-    <figcaption>그림 6. 병렬화의 역설 — sites를 늘려도 전력·열이 utilization과 측정 반복성을 제한하면 유효 처리량 개선은 생각보다 작을 수 있다.</figcaption>
+    <figcaption>그림 8. 병렬화의 역설 — sites를 늘려도 전력·열이 utilization과 측정 반복성을 제한하면 유효 처리량 개선은 생각보다 작을 수 있다.</figcaption>
   </figure>
   <div class="formula">Effective Throughput ∝ (Parallel Sites × Utilization) ÷ <span class="accent">Test Time</span></div>
 
@@ -249,7 +461,7 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
         <rect x="560" y="190" width="220" height="92" rx="13" fill="#0d1321"/><text x="670" y="220" text-anchor="middle" font-size="11" fill="#70e0c5">SENSITIVITY RESULT</text><text x="670" y="251" text-anchor="middle" font-size="30" font-weight="800" fill="#fff">≈ 214</text><text x="670" y="270" text-anchor="middle" font-size="11" fill="#b8c0cd">출하 +35% vs CAPA +114%</text>
       </g>
     </svg>
-    <figcaption>그림 7. CAPA 민감도 — 출하량보다 단수·test time·insertion의 곱이 빠르게 커지고 병렬 효율이 충분히 따라오지 못하면 장비 수요는 비선형적으로 늘 수 있다.</figcaption>
+    <figcaption>그림 9. CAPA 민감도 — 출하량보다 단수·test time·insertion의 곱이 빠르게 커지고 병렬 효율이 충분히 따라오지 못하면 장비 수요는 비선형적으로 늘 수 있다.</figcaption>
   </figure>
 </section>
 
@@ -272,7 +484,7 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
         <rect x="110" y="315" width="640" height="70" rx="14" fill="#fff" stroke="#e3e7ec"/><text x="430" y="342" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1a2233">기술 변화 → 결함·병목 → 고객 손실 → 구매 행동 → 장비 매출·마진</text><text x="430" y="366" text-anchor="middle" font-size="11.5" fill="#5c6675">“HBM4가 어렵다”보다 tester order · 카드 ASP/교체 · inspection insertion · tool-of-record로 검증</text>
       </g>
     </svg>
-    <figcaption>그림 8. 밸류체인 지도 — 같은 테스트 테마라도 HBM4와 첨단 패키징이 매출로 연결되는 경로와 확인할 KPI는 서로 다르다.</figcaption>
+    <figcaption>그림 10. 밸류체인 지도 — 같은 테스트 테마라도 HBM4와 첨단 패키징이 매출로 연결되는 경로와 확인할 KPI는 서로 다르다.</figcaption>
   </figure>
 
   <table><thead><tr><th>영역</th><th>역할</th><th>주요 기업</th><th>확인할 KPI</th></tr></thead><tbody>

@@ -100,10 +100,11 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
   </tbody></table>
 
   <h3>첨단 패키징 — 왜 테스트가 앞단으로 이동하는가</h3>
-  <p>패키징의 역사는 <strong>칩을 어떻게 붙이느냐</strong>의 역사다. 그리고 붙이는 방식이 바뀔 때마다 <em class="hl">"붙인 뒤에는 안이 보이지 않는 곳"</em>이 늘어난다. 2D에서 2.5D를 거쳐 3D로 올수록 접합면은 패키지 내부로 숨고, 그 안의 불량은 완제품을 다 만든 뒤에야 드러난다. 이때 폐기되는 것은 불량 다이 하나가 아니라 그때까지 쌓인 모든 것이다.</p>
+  <p>패키징의 역사는 <strong>칩을 어떻게 붙이느냐</strong>의 역사다. 그리고 붙이는 방식이 바뀔 때마다 <em class="hl">"붙인 뒤에는 안이 보이지 않는 곳"</em>이 늘어난다. 옆으로 나란히 놓는 2.5D(CoWoS·I-Cube·EMIB)를 지나, 위로 쌓는 3D를 거쳐, 지금은 <strong>3D로 쌓은 덩어리를 다시 2.5D 인터포저에 올리는 3.5D</strong>로 간다. 여기서 흔한 오해 하나를 짚고 갈 필요가 있다. <strong>3D는 HBM만을 뜻하지 않는다.</strong> HBM은 가장 익숙한 3D 적층 사례일 뿐이고, 기술적으로 더 중요한 축은 로직을 로직 위에 쌓는 SoIC·Foveros 계열이다. 그리고 <em class="hl">3.5D는 3D를 대체하는 것이 아니라 3D를 품는다</em> — 3D 본딩이 3.5D의 핵심 부품이다. 덧붙이면 2.1D·2.3D·2.5D·3D·3.5D라는 숫자 자체가 엄밀한 표준이 아니라 업계 통용 약칭에 가깝다. 실제 구분 기준은 <strong>실리콘을 면으로 쓰나 점으로 쓰나, 옆으로 붙이나 위로 쌓나</strong>다.</p>
+  <p class="note">참고 — <a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-delivers-industrys-first-35d-f2f-technology-ai-xpus" target="_blank" rel="noopener">Broadcom 3.5D XDSiP</a>는 실리콘 6,000mm²+ 와 HBM 최대 12개를 한 패키지에 담으며(기존 2.5D는 실리콘 ~2,500mm² · HBM 8개), F2F 본딩으로 F2B 대비 신호 밀도 7배 · 다이 간 인터페이스 전력 1/10을 제시했다. 2026년 2월 양산 출하가 시작됐다. 3D 적층 쪽에서는 <a href="https://www.tomshardware.com/tech-industry/semiconductors/tsmc-soic-3d-stacking-roadmap-outlines-path-from-6-micron-pitches-today-to-4-5-micron-in-2029-fujitsus-monaka-cpu-to-benefit-from-face-to-face-chiplet-stacking" target="_blank" rel="noopener">TSMC SoIC 본딩 피치</a>가 2023년 9µm → 2025년 6µm → 2029년 4.5µm로 좁혀지는 로드맵이다.</p>
 
   <figure class="figure">
-    <svg viewBox="0 0 880 452" role="img" aria-label="2D, 2.5D, 3D 패키지 구조의 진화와 숨은 접합면 증가 비교">
+    <svg viewBox="0 0 880 752" role="img" aria-label="2D, 2.5D, 3D, 3.5D 패키지 구조의 진화와 숨은 접합면 증가 비교">
       <defs>
         <marker id="evoAr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#8a6100" stroke-width="1.6"/></marker>
         <linearGradient id="evoGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c3ccd6"/><stop offset="1" stop-color="#f0a500"/></linearGradient>
@@ -112,91 +113,164 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
         <text x="440" y="22" text-anchor="middle" font-size="14.5" font-weight="800" fill="#1a2233">패키지 구조의 진화 — 붙이는 방식이 바뀌면 검사할 곳이 바뀐다</text>
         <text x="440" y="41" text-anchor="middle" font-size="11.5" fill="#5c6675">빨간 점선 = 붙인 뒤에는 밖에서 보이지 않는 접합면(hidden interface)</text>
 
-        <!-- ===== Panel 1 : 2D ===== -->
-        <rect x="16" y="56" width="276" height="288" rx="12" fill="#fbfcfd" stroke="#e3e7ec"/>
-        <text x="154" y="84" text-anchor="middle" font-size="15" font-weight="800" fill="#42506a">2D</text>
-        <text x="154" y="103" text-anchor="middle" font-size="11" fill="#5c6675">단일 칩을 기판에 붙인다</text>
-        <rect x="64" y="214" width="180" height="16" rx="3" fill="#b8c0cd"/>
-        <text x="154" y="226" text-anchor="middle" font-size="9" fill="#4a5462">기판(substrate)</text>
-        <rect x="114" y="176" width="80" height="36" rx="4" fill="#7aa7ff"/>
-        <text x="154" y="199" text-anchor="middle" font-size="11" fill="#12336f">die</text>
-        <line x1="114" y1="213" x2="194" y2="213" stroke="#e2504a" stroke-width="2" stroke-dasharray="4 4"/>
-        <text x="154" y="252" text-anchor="middle" font-size="11" fill="#5c6675">수평 배선 · 단일 접합면</text>
-        <line x1="40" y1="266" x2="268" y2="266" stroke="#e3e7ec" stroke-dasharray="4 4"/>
-        <text x="40" y="288" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">숨은 접합면</text>
-        <text x="268" y="288" text-anchor="end" font-size="12" font-weight="800" fill="#42506a">1개</text>
-        <text x="40" y="314" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">불량 1개 = </text>
-        <text x="268" y="314" text-anchor="end" font-size="12" font-weight="800" fill="#42506a">칩 1개</text>
-        <rect x="40" y="324" width="228" height="6" rx="3" fill="#eef2f6"/>
-        <rect x="40" y="324" width="34" height="6" rx="3" fill="#9aa6b4"/>
+        <!-- ============ Panel 1 : 2D ============ -->
+        <rect x="16" y="56" width="418" height="286" rx="12" fill="#fbfcfd" stroke="#e3e7ec"/>
+        <text x="225" y="86" text-anchor="middle" font-size="16" font-weight="800" fill="#42506a">2D</text>
+        <text x="225" y="106" text-anchor="middle" font-size="11.5" fill="#5c6675">칩 하나를 기판에 붙인다</text>
+        <text x="225" y="124" text-anchor="middle" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">와이어본드 · 플립칩</text>
+        <rect x="135" y="236" width="180" height="16" rx="3" fill="#b8c0cd"/>
+        <text x="225" y="248" text-anchor="middle" font-size="9" fill="#4a5462">기판(substrate)</text>
+        <rect x="185" y="200" width="80" height="36" rx="4" fill="#7aa7ff"/>
+        <text x="225" y="223" text-anchor="middle" font-size="11" fill="#12336f">die</text>
+        <line x1="185" y1="235" x2="265" y2="235" stroke="#e2504a" stroke-width="2" stroke-dasharray="4 4"/>
+        <text x="225" y="270" text-anchor="middle" font-size="11" fill="#5c6675">수평 배선 · 단일 접합면</text>
+        <line x1="40" y1="284" x2="410" y2="284" stroke="#e3e7ec" stroke-dasharray="4 4"/>
+        <text x="40" y="304" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">숨은 접합면</text>
+        <text x="410" y="304" text-anchor="end" font-size="12" font-weight="800" fill="#42506a">1개 층</text>
+        <text x="40" y="326" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">불량 1개 =</text>
+        <text x="410" y="326" text-anchor="end" font-size="12" font-weight="800" fill="#42506a">칩 1개</text>
+        <rect x="40" y="334" width="370" height="6" rx="3" fill="#eef2f6"/>
+        <rect x="40" y="334" width="56" height="6" rx="3" fill="#9aa6b4"/>
 
-        <!-- ===== Panel 2 : 2.5D ===== -->
-        <rect x="302" y="56" width="276" height="288" rx="12" fill="#fbfcfd" stroke="#e3e7ec"/>
-        <text x="440" y="84" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f8f">2.5D</text>
-        <text x="440" y="103" text-anchor="middle" font-size="11" fill="#5c6675">여러 칩을 인터포저 위에 나란히</text>
-        <rect x="350" y="214" width="180" height="16" rx="3" fill="#b8c0cd"/>
-        <text x="440" y="226" text-anchor="middle" font-size="9" fill="#4a5462">기판(substrate)</text>
-        <rect x="356" y="194" width="168" height="16" rx="2" fill="#cfd8e6"/>
-        <text x="440" y="206" text-anchor="middle" font-size="9" fill="#33477a">Si 인터포저</text>
-        <rect x="366" y="156" width="72" height="36" rx="4" fill="#7aa7ff"/>
-        <text x="402" y="179" text-anchor="middle" font-size="10" fill="#12336f">GPU/ASIC</text>
-        <rect x="448" y="156" width="32" height="36" rx="4" fill="#8fd8c3"/>
-        <text x="464" y="179" text-anchor="middle" font-size="9" fill="#00493c">HBM</text>
-        <rect x="486" y="156" width="32" height="36" rx="4" fill="#8fd8c3"/>
-        <text x="502" y="179" text-anchor="middle" font-size="9" fill="#00493c">HBM</text>
+        <!-- ============ Panel 2 : 2.5D ============ -->
+        <rect x="446" y="56" width="418" height="286" rx="12" fill="#fbfcfd" stroke="#e3e7ec"/>
+        <text x="655" y="86" text-anchor="middle" font-size="16" font-weight="800" fill="#1d3f8f">2.5D</text>
+        <text x="655" y="106" text-anchor="middle" font-size="11.5" fill="#5c6675">여러 칩을 인터포저 위에 나란히</text>
+        <text x="655" y="124" text-anchor="middle" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">CoWoS · I-Cube · EMIB · FOCoS</text>
+        <rect x="565" y="236" width="180" height="16" rx="3" fill="#b8c0cd"/>
+        <text x="655" y="248" text-anchor="middle" font-size="9" fill="#4a5462">기판(substrate)</text>
+        <rect x="571" y="220" width="168" height="16" rx="2" fill="#cfd8e6"/>
+        <text x="655" y="232" text-anchor="middle" font-size="9" fill="#33477a">Si 인터포저 · 브리지</text>
+        <rect x="581" y="184" width="72" height="36" rx="4" fill="#7aa7ff"/>
+        <text x="617" y="207" text-anchor="middle" font-size="10" fill="#12336f">GPU/ASIC</text>
+        <rect x="663" y="184" width="32" height="36" rx="4" fill="#8fd8c3"/>
+        <text x="679" y="207" text-anchor="middle" font-size="9" fill="#00493c">HBM</text>
+        <rect x="701" y="184" width="32" height="36" rx="4" fill="#8fd8c3"/>
+        <text x="717" y="207" text-anchor="middle" font-size="9" fill="#00493c">HBM</text>
         <g stroke="#e2504a" stroke-width="2" stroke-dasharray="4 4">
-          <line x1="356" y1="193" x2="524" y2="193"/>
-          <line x1="356" y1="213" x2="524" y2="213"/>
+          <line x1="571" y1="219" x2="739" y2="219"/>
+          <line x1="571" y1="235" x2="739" y2="235"/>
         </g>
-        <text x="440" y="252" text-anchor="middle" font-size="11" fill="#5c6675">마이크로범프 · RDL · 인터포저 계면</text>
-        <line x1="326" y1="266" x2="554" y2="266" stroke="#e3e7ec" stroke-dasharray="4 4"/>
-        <text x="326" y="288" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">숨은 접합면</text>
-        <text x="554" y="288" text-anchor="end" font-size="12" font-weight="800" fill="#1d3f8f">2개 층 · 수만 개 범프</text>
-        <text x="326" y="314" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">불량 1개 = </text>
-        <text x="554" y="314" text-anchor="end" font-size="12" font-weight="800" fill="#1d3f8f">패키지 전체</text>
-        <rect x="326" y="324" width="228" height="6" rx="3" fill="#eef2f6"/>
-        <rect x="326" y="324" width="126" height="6" rx="3" fill="#7aa7ff"/>
+        <text x="655" y="270" text-anchor="middle" font-size="11" fill="#5c6675">마이크로범프 · RDL · 인터포저 계면</text>
+        <line x1="470" y1="284" x2="840" y2="284" stroke="#e3e7ec" stroke-dasharray="4 4"/>
+        <text x="470" y="304" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">숨은 접합면</text>
+        <text x="840" y="304" text-anchor="end" font-size="12" font-weight="800" fill="#1d3f8f">2개 층 · 수만 개 범프</text>
+        <text x="470" y="326" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">불량 1개 =</text>
+        <text x="840" y="326" text-anchor="end" font-size="12" font-weight="800" fill="#1d3f8f">패키지 전체</text>
+        <rect x="470" y="334" width="370" height="6" rx="3" fill="#eef2f6"/>
+        <rect x="470" y="334" width="185" height="6" rx="3" fill="#7aa7ff"/>
 
-        <!-- ===== Panel 3 : 3D ===== -->
-        <rect x="588" y="56" width="276" height="288" rx="12" fill="#fffdf7" stroke="#f3dfae"/>
-        <text x="726" y="84" text-anchor="middle" font-size="15" font-weight="800" fill="#8a6100">3D</text>
-        <text x="726" y="103" text-anchor="middle" font-size="11" fill="#5c6675">칩을 수직으로 쌓는다</text>
-        <rect x="636" y="214" width="180" height="16" rx="3" fill="#b8c0cd"/>
-        <text x="726" y="226" text-anchor="middle" font-size="9" fill="#4a5462">기판(substrate)</text>
-        <rect x="666" y="186" width="120" height="26" rx="3" fill="#7aa7ff"/>
-        <text x="726" y="203" text-anchor="middle" font-size="9.5" fill="#12336f">로직 다이</text>
-        <rect x="666" y="158" width="120" height="26" rx="3" fill="#8fd8c3"/>
-        <text x="726" y="175" text-anchor="middle" font-size="9.5" fill="#00493c">DRAM 다이</text>
-        <rect x="666" y="130" width="120" height="26" rx="3" fill="#8fd8c3"/>
-        <text x="726" y="147" text-anchor="middle" font-size="9.5" fill="#00493c">DRAM 다이</text>
-        <rect x="666" y="102" width="120" height="26" rx="3" fill="#f4cf76"/>
-        <text x="726" y="119" text-anchor="middle" font-size="9.5" fill="#7a5600">DRAM 다이</text>
+        <!-- ============ Panel 3 : 3D ============ -->
+        <rect x="16" y="356" width="418" height="286" rx="12" fill="#f9fdfb" stroke="#bfe9db"/>
+        <text x="225" y="386" text-anchor="middle" font-size="16" font-weight="800" fill="#00775f">3D</text>
+        <text x="225" y="406" text-anchor="middle" font-size="11.5" fill="#5c6675">칩을 수직으로 쌓는다 (TSV · 하이브리드 본딩)</text>
+        <text x="225" y="424" text-anchor="middle" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">SoIC · Foveros · X-Cube · HBM</text>
+
+        <!-- 3D-left : logic on logic -->
+        <rect x="100" y="536" width="140" height="16" rx="3" fill="#b8c0cd"/>
+        <rect x="125" y="504" width="90" height="32" rx="3" fill="#7aa7ff"/>
+        <text x="170" y="524" text-anchor="middle" font-size="9" fill="#12336f">SRAM · IO 다이</text>
+        <rect x="125" y="472" width="90" height="32" rx="3" fill="#7aa7ff"/>
+        <text x="170" y="492" text-anchor="middle" font-size="9" fill="#12336f">컴퓨트 로직</text>
         <g stroke="#e2504a" stroke-width="2" stroke-dasharray="4 4">
-          <line x1="666" y1="129" x2="786" y2="129"/>
-          <line x1="666" y1="157" x2="786" y2="157"/>
-          <line x1="666" y1="185" x2="786" y2="185"/>
-          <line x1="666" y1="213" x2="786" y2="213"/>
+          <line x1="125" y1="503" x2="215" y2="503"/>
+          <line x1="125" y1="535" x2="215" y2="535"/>
         </g>
-        <text x="726" y="252" text-anchor="middle" font-size="11" fill="#5c6675">하이브리드 본딩 · 층마다 새 계면</text>
-        <line x1="612" y1="266" x2="840" y2="266" stroke="#f3dfae" stroke-dasharray="4 4"/>
-        <text x="612" y="288" font-size="10.5" fill="#a8894e" font-family="JetBrains Mono,monospace">숨은 접합면</text>
-        <text x="840" y="288" text-anchor="end" font-size="12" font-weight="800" fill="#8a6100">층수만큼 누적</text>
-        <text x="612" y="314" font-size="10.5" fill="#a8894e" font-family="JetBrains Mono,monospace">불량 1개 = </text>
-        <text x="840" y="314" text-anchor="end" font-size="12" font-weight="800" fill="#8a6100">스택 + 조립가치 전부</text>
-        <rect x="612" y="324" width="228" height="6" rx="3" fill="#fdf3dc"/>
-        <rect x="612" y="324" width="212" height="6" rx="3" fill="#f0a500"/>
+        <text x="170" y="568" text-anchor="middle" font-size="10.5" font-weight="700" fill="#00775f">로직-온-로직 (SoIC · Foveros)</text>
+        <text x="170" y="583" text-anchor="middle" font-size="9.5" fill="#8a93a0">AMD 3D V-Cache · MI300 · Fujitsu Monaka</text>
 
-        <!-- ===== evolution arrow band ===== -->
-        <line x1="60" y1="386" x2="812" y2="386" stroke="url(#evoGrad)" stroke-width="4" stroke-linecap="round" marker-end="url(#evoAr)"/>
-        <text x="60" y="370" font-size="12" font-weight="700" fill="#5c6675">붙인 뒤에도 안이 보인다</text>
-        <text x="812" y="370" text-anchor="end" font-size="12" font-weight="700" fill="#8a6100">붙이고 나면 안이 보이지 않는다 — 관측성 ↓</text>
-        <text x="60" y="410" font-size="11.5" fill="#5c6675">불량이 태우는 가치 = 칩 1개</text>
-        <text x="812" y="410" text-anchor="end" font-size="11.5" font-weight="700" fill="#a13530">불량이 태우는 가치 = 누적 조립가치 전부 ↑</text>
-        <rect x="16" y="424" width="848" height="24" rx="8" fill="#0d1321"/>
-        <text x="440" y="440" text-anchor="middle" font-size="12" font-weight="700" fill="#dfe4ec">그래서 검사·테스트를 뒤가 아니라 <tspan fill="#70e0c5">앞단으로</tspan> 옮길 유인이 커진다 — 이것이 shift left다</text>
+        <!-- divider -->
+        <line x1="268" y1="466" x2="268" y2="590" stroke="#d9ece5" stroke-dasharray="4 4"/>
+
+        <!-- 3D-right : HBM as one example -->
+        <rect x="300" y="536" width="90" height="16" rx="3" fill="#b8c0cd"/>
+        <rect x="310" y="520" width="70" height="16" rx="2" fill="#7aa7ff"/>
+        <text x="345" y="532" text-anchor="middle" font-size="8" fill="#12336f">베이스 다이</text>
+        <rect x="310" y="510" width="70" height="9" rx="2" fill="#8fd8c3"/>
+        <rect x="310" y="500" width="70" height="9" rx="2" fill="#8fd8c3"/>
+        <rect x="310" y="490" width="70" height="9" rx="2" fill="#8fd8c3"/>
+        <rect x="310" y="480" width="70" height="9" rx="2" fill="#8fd8c3"/>
+        <g stroke="#e2504a" stroke-width="1.6" stroke-dasharray="3 3">
+          <line x1="310" y1="519.5" x2="380" y2="519.5"/>
+          <line x1="310" y1="509.5" x2="380" y2="509.5"/>
+          <line x1="310" y1="499.5" x2="380" y2="499.5"/>
+          <line x1="310" y1="489.5" x2="380" y2="489.5"/>
+        </g>
+        <text x="345" y="568" text-anchor="middle" font-size="10.5" font-weight="700" fill="#00775f">HBM (DRAM 적층)</text>
+        <text x="345" y="583" text-anchor="middle" font-size="9.5" fill="#8a93a0">3D의 한 사례일 뿐</text>
+
+        <line x1="40" y1="598" x2="410" y2="598" stroke="#d9ece5" stroke-dasharray="4 4"/>
+        <text x="40" y="618" font-size="10.5" fill="#7aa899" font-family="JetBrains Mono,monospace">숨은 접합면</text>
+        <text x="410" y="618" text-anchor="end" font-size="12" font-weight="800" fill="#00775f">적층 층수만큼 누적</text>
+        <text x="40" y="640" font-size="10.5" fill="#7aa899" font-family="JetBrains Mono,monospace">불량 1개 =</text>
+        <text x="410" y="640" text-anchor="end" font-size="12" font-weight="800" fill="#00775f">스택 전체</text>
+        <rect x="40" y="648" width="370" height="6" rx="3" fill="#e0f6ef"/>
+        <rect x="40" y="648" width="266" height="6" rx="3" fill="#00b894"/>
+
+        <!-- ============ Panel 4 : 3.5D ============ -->
+        <rect x="446" y="356" width="418" height="286" rx="12" fill="#fffdf7" stroke="#f3dfae"/>
+        <text x="655" y="386" text-anchor="middle" font-size="16" font-weight="800" fill="#8a6100">3.5D</text>
+        <text x="655" y="406" text-anchor="middle" font-size="11.5" fill="#5c6675">3D 적층 덩어리를 다시 2.5D 위에 올린다</text>
+        <text x="655" y="424" text-anchor="middle" font-size="10.5" fill="#a8894e" font-family="JetBrains Mono,monospace">Broadcom XDSiP · AMD MI300 계열</text>
+
+        <rect x="530" y="536" width="250" height="16" rx="3" fill="#b8c0cd"/>
+        <text x="655" y="548" text-anchor="middle" font-size="9" fill="#4a5462">기판(substrate)</text>
+        <rect x="536" y="520" width="238" height="16" rx="2" fill="#cfd8e6"/>
+        <text x="655" y="532" text-anchor="middle" font-size="9" fill="#33477a">Si 인터포저 — 2.5D 층</text>
+
+        <!-- 3D stacked compute on interposer -->
+        <rect x="556" y="488" width="94" height="32" rx="3" fill="#7aa7ff"/>
+        <text x="603" y="508" text-anchor="middle" font-size="9" fill="#12336f">SRAM · IO</text>
+        <rect x="556" y="456" width="94" height="32" rx="3" fill="#7aa7ff"/>
+        <text x="603" y="476" text-anchor="middle" font-size="9" fill="#12336f">컴퓨트 로직</text>
+        <text x="603" y="444" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00775f">← 3D 적층</text>
+
+        <!-- HBM stacks on interposer -->
+        <rect x="672" y="504" width="40" height="16" rx="2" fill="#7aa7ff"/>
+        <rect x="672" y="494" width="40" height="9" rx="2" fill="#8fd8c3"/>
+        <rect x="672" y="484" width="40" height="9" rx="2" fill="#8fd8c3"/>
+        <rect x="672" y="474" width="40" height="9" rx="2" fill="#8fd8c3"/>
+        <rect x="724" y="504" width="40" height="16" rx="2" fill="#7aa7ff"/>
+        <rect x="724" y="494" width="40" height="9" rx="2" fill="#8fd8c3"/>
+        <rect x="724" y="484" width="40" height="9" rx="2" fill="#8fd8c3"/>
+        <rect x="724" y="474" width="40" height="9" rx="2" fill="#8fd8c3"/>
+        <text x="718" y="464" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00775f">HBM ×N</text>
+
+        <g stroke="#e2504a" stroke-width="2" stroke-dasharray="4 4">
+          <line x1="556" y1="487" x2="650" y2="487"/>
+          <line x1="536" y1="519" x2="774" y2="519"/>
+          <line x1="536" y1="535" x2="774" y2="535"/>
+        </g>
+        <g stroke="#e2504a" stroke-width="1.6" stroke-dasharray="3 3">
+          <line x1="672" y1="503.5" x2="712" y2="503.5"/>
+          <line x1="672" y1="493.5" x2="712" y2="493.5"/>
+          <line x1="672" y1="483.5" x2="712" y2="483.5"/>
+          <line x1="724" y1="503.5" x2="764" y2="503.5"/>
+          <line x1="724" y1="493.5" x2="764" y2="493.5"/>
+          <line x1="724" y1="483.5" x2="764" y2="483.5"/>
+        </g>
+        <text x="655" y="570" text-anchor="middle" font-size="11" font-weight="700" fill="#8a6100">3D 계면 + 2.5D 계면이 한 패키지 안에</text>
+        <text x="655" y="585" text-anchor="middle" font-size="9.5" fill="#a8894e">실리콘 6,000mm²+ · HBM 최대 12개 (Broadcom 기준)</text>
+
+        <line x1="470" y1="598" x2="840" y2="598" stroke="#f3dfae" stroke-dasharray="4 4"/>
+        <text x="470" y="618" font-size="10.5" fill="#a8894e" font-family="JetBrains Mono,monospace">숨은 접합면</text>
+        <text x="840" y="618" text-anchor="end" font-size="12" font-weight="800" fill="#8a6100">3D + 2.5D 계면 전부</text>
+        <text x="470" y="640" font-size="10.5" fill="#a8894e" font-family="JetBrains Mono,monospace">불량 1개 =</text>
+        <text x="840" y="640" text-anchor="end" font-size="12" font-weight="800" fill="#8a6100">스택 + 패키지 전부</text>
+        <rect x="470" y="648" width="370" height="6" rx="3" fill="#fdf3dc"/>
+        <rect x="470" y="648" width="360" height="6" rx="3" fill="#f0a500"/>
+
+        <!-- ============ evolution band ============ -->
+        <line x1="60" y1="690" x2="812" y2="690" stroke="url(#evoGrad)" stroke-width="4" stroke-linecap="round" marker-end="url(#evoAr)"/>
+        <text x="60" y="676" font-size="12" font-weight="700" fill="#5c6675">붙인 뒤에도 안이 보인다</text>
+        <text x="812" y="676" text-anchor="end" font-size="12" font-weight="700" fill="#8a6100">붙이고 나면 안이 보이지 않는다 — 관측성 ↓</text>
+        <text x="60" y="712" font-size="11.5" fill="#5c6675">불량이 태우는 가치 = 칩 1개</text>
+        <text x="812" y="712" text-anchor="end" font-size="11.5" font-weight="700" fill="#a13530">불량이 태우는 가치 = 누적 조립가치 전부 ↑</text>
+        <rect x="16" y="724" width="848" height="24" rx="8" fill="#0d1321"/>
+        <text x="440" y="740" text-anchor="middle" font-size="12" font-weight="700" fill="#dfe4ec">그래서 검사·테스트를 뒤가 아니라 <tspan fill="#70e0c5">앞단으로</tspan> 옮길 유인이 커진다 — 이것이 shift left다</text>
       </g>
     </svg>
-    <figcaption>그림 3. 2D → 2.5D → 3D로 갈수록 숨은 접합면이 늘고, 불량 하나가 태우는 누적 가치가 커진다.</figcaption>
+    <figcaption>그림 3. 2D → 2.5D → 3D → 3.5D. 3D는 HBM만이 아니라 로직-온-로직 적층(SoIC·Foveros)을 포함하며, 3.5D는 3D를 대체하는 것이 아니라 3D 적층 덩어리를 2.5D 인터포저에 올려 <strong>두 종류의 숨은 계면을 한 패키지에 합친</strong> 구조다.</figcaption>
   </figure>
 
   <h4>Shift left — "나중에 걸러내기"에서 "미리 걸러내기"로</h4>

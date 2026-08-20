@@ -50,6 +50,44 @@ section>p{font-size:14.5px;color:#2a3448;margin-bottom:14px;max-width:840px}.hl{
   .probe-move,.chip-in,.bad-die,.bad-stack{animation:none}
 }
 
+
+/* 프로브카드·소켓 테스트 동작 설명용 애니메이션 */
+.test-signal{
+  stroke-dasharray:6 6;
+  animation:signalMarch 1.15s linear infinite;
+}
+@keyframes signalMarch{to{stroke-dashoffset:-24}}
+.probe-cycle{
+  animation:probeCycle 3.6s ease-in-out infinite;
+  transform-box:fill-box;
+  transform-origin:center;
+}
+@keyframes probeCycle{
+  0%,18%,100%{transform:translateY(-8px)}
+  38%,68%{transform:translateY(0)}
+  82%{transform:translateY(-8px)}
+}
+.package-cycle{
+  animation:packageCycle 3.8s ease-in-out infinite;
+  transform-box:fill-box;
+  transform-origin:center;
+}
+@keyframes packageCycle{
+  0%,18%,100%{transform:translateY(-22px)}
+  42%,70%{transform:translateY(0)}
+  84%{transform:translateY(-22px)}
+}
+.contact-glow{
+  animation:contactGlow 3.6s ease-in-out infinite;
+}
+@keyframes contactGlow{
+  0%,25%,82%,100%{opacity:.15}
+  40%,68%{opacity:.8}
+}
+@media(prefers-reduced-motion:reduce){
+  .test-signal,.probe-cycle,.package-cycle,.contact-glow{animation:none}
+}
+
 .linkline{margin-top:6px}.linkline a{font-family:"JetBrains Mono",monospace;font-size:13.5px;color:var(--signal-dark);text-decoration:none}
 footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;text-align:center;font-size:12.5px;color:var(--muted)}
 @media(max-width:700px){.diagram svg{min-width:720px}.pair{grid-template-columns:1fr}.pair .diagram svg{min-width:0}}
@@ -207,6 +245,110 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 24px 40px;t
       <text x="460" y="275" text-anchor="middle" font-size="11.5" fill="#5c6675">프로브카드는 웨이퍼 단계, 소켓은 패키지 단계에서 DUT와 테스트 시스템을 연결한다.</text>
     </g>
   </svg></figure>
+
+  <div class="pair">
+    <figure class="diagram">
+      <div class="ct">프로브카드로 웨이퍼를 검사하는 방법</div>
+      <svg viewBox="0 0 420 360" role="img" aria-label="ATE에서 프로브카드를 거쳐 웨이퍼를 검사하는 과정">
+        <defs>
+          <marker id="probeFlowArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0L10 5L0 10z" fill="#00775f"/>
+          </marker>
+        </defs>
+        <g font-family="Pretendard,system-ui,sans-serif" text-anchor="middle">
+          <rect x="95" y="16" width="230" height="48" rx="10" fill="#0d1321"/>
+          <text x="210" y="37" font-size="13.5" font-weight="800" fill="#eef1f6">① ATE · Tester</text>
+          <text x="210" y="54" font-size="10.5" fill="#9aa5b5">패턴 · 전원 인가 / 응답 판정</text>
+
+          <line class="test-signal" x1="210" y1="64" x2="210" y2="91" stroke="#00775f" stroke-width="2" marker-end="url(#probeFlowArrow)"/>
+
+          <rect x="118" y="96" width="184" height="46" rx="9" fill="#eef2f6" stroke="#b9c3cf"/>
+          <text x="210" y="116" font-size="12.5" font-weight="800" fill="#42506a">② Test head · Interface</text>
+          <text x="210" y="132" font-size="10.2" fill="#5c6675">ATE 채널을 probe card로 전달</text>
+
+          <line class="test-signal" x1="210" y1="142" x2="210" y2="166" stroke="#00775f" stroke-width="2" marker-end="url(#probeFlowArrow)"/>
+
+          <g class="probe-cycle">
+            <rect x="120" y="172" width="180" height="34" rx="8" fill="#e0f6ef" stroke="#00b894" stroke-width="1.3"/>
+            <text x="210" y="194" font-size="12.5" font-weight="800" fill="#00594a">③ Probe card</text>
+            <g stroke="#00775f" stroke-width="1.8">
+              <line x1="152" y1="206" x2="152" y2="238"/>
+              <line x1="181" y1="206" x2="181" y2="238"/>
+              <line x1="210" y1="206" x2="210" y2="238"/>
+              <line x1="239" y1="206" x2="239" y2="238"/>
+              <line x1="268" y1="206" x2="268" y2="238"/>
+            </g>
+          </g>
+
+          <rect class="contact-glow" x="122" y="237" width="176" height="8" rx="4" fill="#70e0c5"/>
+
+          <ellipse cx="210" cy="265" rx="112" ry="27" fill="#e7efff" stroke="#3d7bfd" stroke-width="1.3"/>
+          <text x="210" y="262" font-size="12" font-weight="800" fill="#1d3f8f">④ Wafer · DUT</text>
+          <text x="210" y="278" font-size="10.2" fill="#33477a">pad에 probe tip이 직접 접촉</text>
+
+          <rect x="83" y="303" width="254" height="38" rx="9" fill="#f8fafb" stroke="#d8dee6"/>
+          <text x="210" y="319" font-size="11.2" font-weight="800" fill="#42506a">Wafer Prober</text>
+          <text x="210" y="334" font-size="9.8" fill="#5c6675">웨이퍼 이동 · 정렬 · chuck/온도 제어</text>
+
+          <text x="28" y="249" text-anchor="start" font-size="9.8" fill="#00775f">접촉</text>
+          <line x1="62" y1="246" x2="117" y2="242" stroke="#00775f" stroke-width="1.2"/>
+        </g>
+      </svg>
+      <figcaption>ATE의 전기 신호가 test head와 probe card를 지나 웨이퍼의 다이에 전달된다. 프로버는 신호 경로가 아니라 웨이퍼를 정확히 이동·정렬하고 접촉 조건을 만드는 장비다.</figcaption>
+    </figure>
+
+    <figure class="diagram">
+      <div class="ct">소켓으로 패키지를 검사하는 방법</div>
+      <svg viewBox="0 0 420 360" role="img" aria-label="ATE와 소켓, 핸들러를 이용해 패키지 반도체를 검사하는 과정">
+        <defs>
+          <marker id="socketFlowArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0L10 5L0 10z" fill="#8a6100"/>
+          </marker>
+        </defs>
+        <g font-family="Pretendard,system-ui,sans-serif" text-anchor="middle">
+          <rect x="95" y="16" width="230" height="48" rx="10" fill="#0d1321"/>
+          <text x="210" y="37" font-size="13.5" font-weight="800" fill="#eef1f6">① ATE · Tester</text>
+          <text x="210" y="54" font-size="10.5" fill="#9aa5b5">패턴 · 전원 인가 / 응답 판정</text>
+
+          <line class="test-signal" x1="210" y1="64" x2="210" y2="91" stroke="#8a6100" stroke-width="2" marker-end="url(#socketFlowArrow)"/>
+
+          <rect x="105" y="96" width="210" height="46" rx="9" fill="#eef2f6" stroke="#b9c3cf"/>
+          <text x="210" y="116" font-size="12.5" font-weight="800" fill="#42506a">② Test head · Load board</text>
+          <text x="210" y="132" font-size="10.2" fill="#5c6675">ATE 채널을 socket으로 라우팅</text>
+
+          <line class="test-signal" x1="210" y1="142" x2="210" y2="173" stroke="#8a6100" stroke-width="2" marker-end="url(#socketFlowArrow)"/>
+
+          <path d="M120 222 L120 184 L157 184 L157 201 L263 201 L263 184 L300 184 L300 222 Z"
+                fill="#fdf3dc" stroke="#f0a500" stroke-width="1.4"/>
+          <text x="210" y="217" font-size="12.3" font-weight="800" fill="#7a5600">③ Test socket</text>
+
+          <g class="package-cycle">
+            <rect x="165" y="150" width="90" height="28" rx="5" fill="#e7efff" stroke="#3d7bfd" stroke-width="1.2"/>
+            <text x="210" y="168" font-size="10.8" font-weight="800" fill="#1d3f8f">④ Packaged DUT</text>
+          </g>
+
+          <rect class="contact-glow" x="158" y="199" width="104" height="8" rx="4" fill="#f0c96a"/>
+
+          <rect x="286" y="145" width="112" height="74" rx="10" fill="#f8fafb" stroke="#d8dee6"/>
+          <text x="342" y="166" font-size="11.5" font-weight="800" fill="#42506a">Handler</text>
+          <text x="342" y="184" font-size="9.8" fill="#5c6675">DUT 투입·회수</text>
+          <text x="342" y="200" font-size="9.8" fill="#5c6675">온도 조건 제어</text>
+          <line x1="286" y1="181" x2="258" y2="174" stroke="#8a6100" stroke-width="1.2" marker-end="url(#socketFlowArrow)"/>
+
+          <rect x="78" y="262" width="264" height="65" rx="10" fill="#0d1321"/>
+          <text x="210" y="283" font-size="10.5" fill="#70e0c5" font-family="JetBrains Mono,monospace">CONTACT → TEST → BIN</text>
+          <text x="210" y="302" font-size="10.8" fill="#dfe4ec">socket 접촉 → ATE 측정·판정</text>
+          <text x="210" y="318" font-size="10.2" fill="#9aa5b5">handler가 다음 DUT를 반복 투입</text>
+
+          <text x="27" y="208" text-anchor="start" font-size="9.8" fill="#8a6100">접촉</text>
+          <line x1="61" y1="205" x2="115" y2="204" stroke="#8a6100" stroke-width="1.2"/>
+        </g>
+      </svg>
+      <figcaption>패키지 테스트에서는 handler가 DUT를 socket에 넣고 온도를 제어한다. 전기 신호는 ATE → test head/load board → socket → DUT 경로로 흐른다.</figcaption>
+    </figure>
+  </div>
+
+  <div class="callout"><b>헷갈리기 쉬운 구분.</b> <b>프로브카드 테스트는 handler가 아니라 wafer prober</b>가 웨이퍼를 이동·정렬한다. 반대로 <b>소켓 테스트에서는 handler</b>가 패키지 DUT를 socket에 반복 투입·회수하고 온도를 제어한다.</div>
 </section>
 
 <section id="ate">

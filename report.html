@@ -233,34 +233,39 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
         <path d="M786 76 Q 440 40 96 76" fill="none" stroke="#00775f" stroke-width="2.4" marker-end="url(#shiftAr)"/>
         <text x="440" y="42" text-anchor="middle" font-size="12" font-weight="800" fill="#00775f">검증을 앞으로 당긴다</text>
 
-        <!-- stage boxes -->
+        <!-- canonical test flow: process / optional insertion / qualification result are separated -->
         <g>
-          <rect x="30" y="92" width="132" height="46" rx="9" fill="#e0f6ef" stroke="#00b894" stroke-width="1.4"/>
-          <text x="96" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#00775f">CP · KGD</text>
-          <text x="96" y="128" text-anchor="middle" font-size="10" fill="#2a3448">웨이퍼 테스트</text>
+          <rect x="30" y="86" width="132" height="58" rx="9" fill="#e0f6ef" stroke="#00b894" stroke-width="1.4"/>
+          <text x="96" y="105" text-anchor="middle" font-size="11.5" font-weight="800" fill="#00775f">Wafer-level test</text>
+          <text x="96" y="121" text-anchor="middle" font-size="9.6" fill="#2a3448">CP / Wafer Sort</text>
+          <text x="96" y="135" text-anchor="middle" font-size="9.2" fill="#00775f">optional WLBI → KGD</text>
 
-          <rect x="174" y="92" width="132" height="46" rx="9" fill="#e0f6ef" stroke="#00b894" stroke-width="1.4"/>
-          <text x="240" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#00775f">pre-bond 검사</text>
-          <text x="240" y="128" text-anchor="middle" font-size="10" fill="#2a3448">범프 · 표면 · 워피지</text>
+          <rect x="174" y="86" width="132" height="58" rx="9" fill="#eef2f6" stroke="#b9c3cf" stroke-width="1.4" stroke-dasharray="4 3"/>
+          <text x="240" y="108" text-anchor="middle" font-size="11.5" font-weight="800" fill="#42506a">Die-level test*</text>
+          <text x="240" y="126" text-anchor="middle" font-size="9.6" fill="#5c6675">선택적 전기 재검사</text>
+          <text x="240" y="138" text-anchor="middle" font-size="8.8" fill="#8a93a0">after dicing</text>
 
-          <rect x="318" y="92" width="132" height="46" rx="9" fill="#f8fafb" stroke="#c3ccd6" stroke-width="1.4"/>
-          <text x="384" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#42506a">본딩</text>
-          <text x="384" y="128" text-anchor="middle" font-size="10" fill="#5c6675">공정 제어 · 계측</text>
+          <rect x="318" y="86" width="132" height="58" rx="9" fill="#fdf3dc" stroke="#f0a500" stroke-width="1.4"/>
+          <text x="384" y="108" text-anchor="middle" font-size="11.5" font-weight="800" fill="#8a6100">Stack · Bond</text>
+          <text x="384" y="126" text-anchor="middle" font-size="9.6" fill="#6e5a1e">TSV · hybrid bond</text>
 
-          <rect x="462" y="92" width="132" height="46" rx="9" fill="#f8fafb" stroke="#c3ccd6" stroke-width="1.4"/>
-          <text x="528" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#42506a">post-bond 테스트</text>
-          <text x="528" y="128" text-anchor="middle" font-size="10" fill="#5c6675">스택 단위 검증(KGSD)</text>
+          <rect x="462" y="86" width="132" height="58" rx="9" fill="#e0f6ef" stroke="#00b894" stroke-width="1.4"/>
+          <text x="528" y="108" text-anchor="middle" font-size="11.3" font-weight="800" fill="#00775f">Post-bond test</text>
+          <text x="528" y="126" text-anchor="middle" font-size="9.5" fill="#2a3448">Stack test</text>
+          <text x="528" y="138" text-anchor="middle" font-size="8.8" fill="#00775f">→ KGS / KGSD</text>
 
-          <rect x="606" y="92" width="132" height="46" rx="9" fill="#fdf3dc" stroke="#f0a500" stroke-width="1.4"/>
-          <text x="672" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#8a6100">Final · Burn-in</text>
-          <text x="672" y="128" text-anchor="middle" font-size="10" fill="#2a3448">완제품 검증</text>
+          <rect x="606" y="86" width="132" height="58" rx="9" fill="#f8fafb" stroke="#c3ccd6" stroke-width="1.4"/>
+          <text x="672" y="108" text-anchor="middle" font-size="11.5" font-weight="800" fill="#42506a">Final · Burn-in</text>
+          <text x="672" y="126" text-anchor="middle" font-size="9.6" fill="#5c6675">통합 패키지 검증</text>
 
-          <rect x="750" y="92" width="100" height="46" rx="9" fill="#fdf3dc" stroke="#f0a500" stroke-width="1.4"/>
-          <text x="800" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#8a6100">SLT · 출하</text>
-          <text x="800" y="128" text-anchor="middle" font-size="10" fill="#2a3448">실사용 검증</text>
+          <rect x="750" y="86" width="100" height="58" rx="9" fill="#f8fafb" stroke="#c3ccd6" stroke-width="1.4"/>
+          <text x="800" y="108" text-anchor="middle" font-size="11.5" font-weight="800" fill="#42506a">SLT</text>
+          <text x="800" y="126" text-anchor="middle" font-size="9.6" fill="#5c6675">시스템 검증</text>
         </g>
-        <text x="30" y="160" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">← 앞단(early)</text>
-        <text x="850" y="160" text-anchor="end" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">뒷단(late) →</text>
+        <rect x="30" y="154" width="820" height="30" rx="8" fill="#fff8e7" stroke="#e6b63f" stroke-width="1.1" stroke-dasharray="5 4"/>
+        <text x="440" y="173" text-anchor="middle" font-size="10.5" font-weight="700" fill="#8a6100">Inspection · Metrology — pre-bond · bond control · post-bond를 공정 전후에 병렬로 수행</text>
+        <text x="30" y="203" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">← 앞단(early)</text>
+        <text x="850" y="203" text-anchor="end" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">뒷단(late) →</text>
 
         <!-- bars -->
         <line x1="30" y1="356" x2="850" y2="356" stroke="#d5dce4" stroke-width="1.5"/>
@@ -268,16 +273,16 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
 
         <!-- 2D era (gray) and now (green) grouped bars -->
         <g>
-          <!-- CP·KGD : 20 -> 32 -->
+          <!-- wafer-level : 20 -> 32 -->
           <rect x="72" y="313" width="18" height="43" rx="3" fill="#c3ccd6"/>
           <rect x="94" y="287" width="18" height="69" rx="3" fill="#00b894"/>
-          <!-- pre-bond : 3 -> 18 -->
+          <!-- optional die-level : 3 -> 18 -->
           <rect x="216" y="349" width="18" height="7" rx="3" fill="#c3ccd6"/>
           <rect x="238" y="317" width="18" height="39" rx="3" fill="#00b894"/>
-          <!-- bonding : 2 -> 12 -->
+          <!-- stack / bond : 2 -> 12 -->
           <rect x="360" y="352" width="18" height="4" rx="2" fill="#c3ccd6"/>
           <rect x="382" y="330" width="18" height="26" rx="3" fill="#00b894"/>
-          <!-- post-bond : 5 -> 18 -->
+          <!-- post-bond / stack test : 5 -> 18 -->
           <rect x="504" y="345" width="18" height="11" rx="3" fill="#c3ccd6"/>
           <rect x="526" y="317" width="18" height="39" rx="3" fill="#00b894"/>
           <!-- final : 60 -> 14 -->
@@ -294,10 +299,10 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
 
         <!-- x labels -->
         <g font-size="10" text-anchor="middle" fill="#5c6675">
-          <text x="96" y="374">CP · KGD</text>
-          <text x="240" y="374">pre-bond</text>
-          <text x="384" y="374">본딩</text>
-          <text x="528" y="374">post-bond</text>
+          <text x="96" y="374">Wafer test</text>
+          <text x="240" y="374">Die-level*</text>
+          <text x="384" y="374">Stack · Bond</text>
+          <text x="528" y="374">Stack test</text>
           <text x="672" y="374">Final</text>
           <text x="800" y="374">SLT</text>
         </g>
@@ -307,7 +312,7 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
           <rect x="286" y="392" width="13" height="13" rx="3" fill="#c3ccd6"/><text x="305" y="403">2D 시대 — 최종 테스트에 집중</text>
           <rect x="530" y="392" width="13" height="13" rx="3" fill="#00b894"/><text x="549" y="403">HBM4 · 첨단 패키징 — 앞단으로 분산</text>
         </g>
-        <text x="440" y="424" text-anchor="middle" font-size="10.5" fill="#8a93a0">개념 도식 — 실제 비율이 아니라 무게중심이 이동하는 방향을 보여주기 위한 예시</text>
+        <text x="440" y="424" text-anchor="middle" font-size="10.5" fill="#8a93a0">* Die-level test는 제품·조립 방식에 따른 선택적 insertion · 막대는 실제 비율이 아닌 무게중심의 방향</text>
       </g>
     </svg>
     <figcaption>그림 3-1. Shift left의 실체 — 테스트 총량이 줄어드는 것이 아니라, 같은 총량이 뒤에서 앞으로 재배치되면서 앞단 검사·테스트의 수요가 커진다.</figcaption>
@@ -608,18 +613,19 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
   <div class="sec-head"><span class="sec-num">02</span><h2>업황과 테스트 플로우</h2></div>
   <p class="sec-sub">최종 테스트 한 번이 아니라, 단계별 release gate가 늘어난다</p>
 
-  <figure class="figure"><svg viewBox="0 0 860 290" role="img" aria-label="HBM 테스트 플로우"><defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#5c6675" stroke-width="1.5"/></marker></defs><g font-family="Pretendard,system-ui,sans-serif" text-anchor="middle">
-    <rect x="20" y="92" width="112" height="70" rx="12" fill="#e7efff" stroke="#3d7bfd"/><text x="76" y="121" font-weight="700" fill="#1d3f8f">Wafer test</text><text x="76" y="142" font-size="11" fill="#33477a">WLBI · KGD</text>
-    <rect x="160" y="92" width="112" height="70" rx="12" fill="#eef2f6" stroke="#b9c3cf"/><text x="216" y="121" font-weight="700" fill="#34405a">Die-level</text><text x="216" y="142" font-size="11" fill="#5c6675">dicing damage</text>
-    <rect x="300" y="92" width="112" height="70" rx="12" fill="#fdf3dc" stroke="#f0a500"/><text x="356" y="121" font-weight="700" fill="#7a5600">Stack · Bond</text><text x="356" y="142" font-size="11" fill="#8a6100">TSV · bond</text>
-    <rect x="440" y="92" width="112" height="70" rx="12" fill="#e0f6ef" stroke="#00b894"/><text x="496" y="121" font-weight="700" fill="#00594a">Stack test</text><text x="496" y="142" font-size="11" fill="#0a6b58">KGSD · KGS</text>
-    <rect x="580" y="92" width="125" height="70" rx="12" fill="#eef2f6" stroke="#b9c3cf"/><text x="642" y="121" font-weight="700" fill="#34405a">Final · Burn-in</text><text x="642" y="142" font-size="11" fill="#5c6675">package test</text>
-    <rect x="733" y="92" width="100" height="70" rx="12" fill="#e0f6ef" stroke="#00b894"/><text x="783" y="122" font-weight="700" fill="#00594a">SLT</text><text x="783" y="143" font-size="11" fill="#0a6b58">system</text>
-    <g stroke="#5c6675" marker-end="url(#a)"><line x1="132" y1="127" x2="155" y2="127"/><line x1="272" y1="127" x2="295" y2="127"/><line x1="412" y1="127" x2="435" y2="127"/><line x1="552" y1="127" x2="575" y2="127"/><line x1="705" y1="127" x2="728" y2="127"/></g>
-    <rect x="20" y="26" width="813" height="42" rx="10" fill="#fdf3dc" stroke="#f0a500" stroke-dasharray="5 4"/><text x="426" y="52" font-size="12.5" font-weight="700" fill="#7a5600">Inspection · Metrology는 표면·범프·overlay·warpage·void·subsurface defect를 공정 전후에 겹쳐서 본다</text>
-    <text x="426" y="205" font-size="12.5" font-weight="700" fill="#1a2233">KGD는 불량 다이의 적층 투입을 막고, KGSD는 불량 HBM 스택이 고가 GPU·ASIC 패키징에 들어가는 것을 막는다.</text>
-    <text x="426" y="230" font-size="12" fill="#5c6675">전기 테스트와 검사·계측은 대체재가 아니라 서로 다른 결함을 막는 계층적 안전장치</text>
-  </g></svg><figcaption>그림 7. 테스트 플로우 — 첨단 패키징이 고도화될수록 한 번의 final test가 아니라 단계별 release gate가 중요해진다.</figcaption></figure>
+  <figure class="figure"><svg viewBox="0 0 860 290" role="img" aria-label="공정 단계와 판정 결과를 구분한 HBM 테스트 플로우"><defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#5c6675" stroke-width="1.5"/></marker></defs><g font-family="Pretendard,system-ui,sans-serif" text-anchor="middle">
+    <rect x="15" y="88" width="125" height="86" rx="12" fill="#e0f6ef" stroke="#00b894"/><text x="77.5" y="111" font-size="13" font-weight="800" fill="#00594a">Wafer-level test</text><text x="77.5" y="131" font-size="10.5" fill="#33477a">CP / Wafer Sort</text><text x="77.5" y="149" font-size="9.6" fill="#5c6675">optional WLBI</text><text x="77.5" y="164" font-size="10" font-weight="700" fill="#00775f">→ KGD qualification</text>
+    <rect x="160" y="88" width="120" height="86" rx="12" fill="#eef2f6" stroke="#b9c3cf" stroke-dasharray="4 3"/><text x="220" y="111" font-size="13" font-weight="800" fill="#34405a">Die-level test*</text><text x="220" y="132" font-size="10.2" fill="#5c6675">after dicing</text><text x="220" y="150" font-size="9.6" fill="#5c6675">damage · electrical re-test</text><text x="220" y="165" font-size="9.6" font-weight="700" fill="#42506a">→ high-confidence KGD</text>
+    <rect x="300" y="88" width="112" height="86" rx="12" fill="#fdf3dc" stroke="#f0a500"/><text x="356" y="116" font-size="13" font-weight="800" fill="#7a5600">Stack · Bond</text><text x="356" y="138" font-size="10.3" fill="#8a6100">TSV · micro-bump</text><text x="356" y="156" font-size="9.6" fill="#6e5a1e">hybrid bonding</text>
+    <rect x="435" y="88" width="125" height="86" rx="12" fill="#e0f6ef" stroke="#00b894"/><text x="497.5" y="111" font-size="13" font-weight="800" fill="#00594a">Post-bond test</text><text x="497.5" y="133" font-size="10.5" fill="#0a6b58">Stack test</text><text x="497.5" y="153" font-size="9.8" fill="#5c6675">TSV · link · function</text><text x="497.5" y="168" font-size="10" font-weight="700" fill="#00775f">→ KGS / KGSD</text>
+    <rect x="580" y="88" width="130" height="86" rx="12" fill="#eef2f6" stroke="#b9c3cf"/><text x="645" y="117" font-size="13" font-weight="800" fill="#34405a">Final · Burn-in</text><text x="645" y="139" font-size="10.3" fill="#5c6675">integrated package</text><text x="645" y="157" font-size="9.6" fill="#5c6675">spec · reliability</text>
+    <rect x="735" y="88" width="105" height="86" rx="12" fill="#eef2f6" stroke="#b9c3cf"/><text x="787.5" y="119" font-size="13.5" font-weight="800" fill="#34405a">SLT</text><text x="787.5" y="141" font-size="10.5" fill="#5c6675">system workload</text><text x="787.5" y="159" font-size="9.6" fill="#5c6675">escape screening</text>
+    <g stroke="#5c6675" marker-end="url(#a)"><line x1="140" y1="131" x2="155" y2="131"/><line x1="280" y1="131" x2="295" y2="131"/><line x1="412" y1="131" x2="430" y2="131"/><line x1="560" y1="131" x2="575" y2="131"/><line x1="710" y1="131" x2="730" y2="131"/></g>
+    <rect x="15" y="22" width="825" height="42" rx="10" fill="#fff8e7" stroke="#e6b63f" stroke-dasharray="5 4"/><text x="427.5" y="40" font-size="11.8" font-weight="800" fill="#7a5600">Inspection · Metrology — 전기 테스트와 별도의 병렬 품질 레인</text><text x="427.5" y="55" font-size="10.2" fill="#8a6100">pre-bond · bond control · post-bond에서 surface · bump · overlay · warpage · void를 확인</text>
+    <text x="427.5" y="212" font-size="12.3" font-weight="800" fill="#1a2233">CP는 웨이퍼 전기 테스트 방식, WLBI는 선택적 신뢰성 검사, KGD·KGS/KGSD는 통과 후의 품질 판정이다.</text>
+    <text x="427.5" y="237" font-size="11.5" fill="#5c6675">* Die-level test는 모든 제품의 고정 공정이 아니라 제품·조립 방식에 따라 추가되는 선택적 insertion</text>
+    <text x="427.5" y="263" font-size="11.5" fill="#5c6675">공정 단계와 판정 결과를 분리하면 wafer test → bond → stack/final test의 release gate가 명확해진다.</text>
+  </g></svg><figcaption>그림 7. HBM 테스트 플로우 — 전기 테스트 공정, 선택적 insertion, 검사·계측, 그리고 KGD·KGS/KGSD라는 판정 결과를 구분했다.</figcaption></figure>
 
   <h3>병렬도를 높여도 테스트 시간이 사라지지 않는 이유</h3>
   <p>테스트 장비는 병렬 사이트를 늘려 처리량을 높일 수 있다. 그래서 제품 복잡도가 올라가도 병렬화가 장비 수요를 상쇄할 수 있다는 반론이 항상 존재한다. 하지만 HBM4에서는 병렬화 자체가 전류와 열을 증가시킨다.</p>
@@ -668,16 +674,70 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
   <figure class="figure">
     <svg viewBox="0 0 860 430" role="img" aria-label="HBM4와 첨단 패키징에서 테스트 밸류체인으로 이어지는 수혜 지도">
       <g font-family="Pretendard,system-ui,sans-serif">
-        <rect x="45" y="35" width="300" height="70" rx="13" fill="#e0f6ef" stroke="#00b894"/><text x="195" y="64" text-anchor="middle" font-size="14" font-weight="800" fill="#00594a">HBM4 · Electrical Test</text><text x="195" y="86" text-anchor="middle" font-size="11.5" fill="#0a6b58">test seconds · contact density · power · thermal</text>
-        <rect x="515" y="35" width="300" height="70" rx="13" fill="#fdf3dc" stroke="#f0a500"/><text x="665" y="64" text-anchor="middle" font-size="14" font-weight="800" fill="#7a5600">Advanced Packaging</text><text x="665" y="86" text-anchor="middle" font-size="11.5" fill="#6e5a1e">inspection steps · bonding · hidden interface</text>
-        <line x1="195" y1="105" x2="195" y2="145" stroke="#00b894"/><line x1="665" y1="105" x2="665" y2="145" stroke="#f0a500"/>
-        <g text-anchor="middle"><rect x="25" y="150" width="150" height="105" rx="12" fill="#e7efff" stroke="#3d7bfd"/><text x="100" y="178" font-size="13.5" font-weight="800" fill="#1d3f8f">ATE</text><text x="100" y="200" font-size="11.5" fill="#33477a">Advantest</text><text x="100" y="217" font-size="11.5" fill="#33477a">Teradyne</text><text x="100" y="240" font-size="10.5" fill="#5c6675">KPI: test seconds · orders</text>
-        <rect x="195" y="150" width="150" height="105" rx="12" fill="#e0f6ef" stroke="#00b894"/><text x="270" y="178" font-size="13.5" font-weight="800" fill="#00594a">Probe · Socket</text><text x="270" y="200" font-size="11.5" fill="#0a6b58">FormFactor · MJC</text><text x="270" y="217" font-size="11.5" fill="#0a6b58">Technoprobe</text><text x="270" y="240" font-size="10.5" fill="#5c6675">KPI: ASP · replacement</text>
-        <rect x="365" y="150" width="150" height="105" rx="12" fill="#eef2f6" stroke="#b9c3cf"/><text x="440" y="178" font-size="13.5" font-weight="800" fill="#34405a">Prober · Handler</text><text x="440" y="200" font-size="11.5" fill="#5c6675">ACCRETECH</text><text x="440" y="217" font-size="11.5" fill="#5c6675">Cohu · AEM</text><text x="440" y="240" font-size="10.5" fill="#5c6675">KPI: sites · thermal option</text>
-        <rect x="535" y="150" width="150" height="105" rx="12" fill="#fdf3dc" stroke="#f0a500"/><text x="610" y="178" font-size="13.5" font-weight="800" fill="#7a5600">Inspection</text><text x="610" y="200" font-size="11.5" fill="#6e5a1e">KLA · Onto</text><text x="610" y="217" font-size="11.5" fill="#6e5a1e">Camtek</text><text x="610" y="240" font-size="10.5" fill="#5c6675">KPI: insertion · sampling</text>
-        <rect x="705" y="150" width="130" height="105" rx="12" fill="#eef2f6" stroke="#b9c3cf"/><text x="770" y="178" font-size="13.5" font-weight="800" fill="#34405a">OSAT</text><text x="770" y="200" font-size="11.5" fill="#5c6675">ASE</text><text x="770" y="217" font-size="11.5" fill="#5c6675">Amkor</text><text x="770" y="240" font-size="10.5" fill="#5c6675">KPI: utilization · mix</text></g>
-        <path d="M195 145 L100 150" stroke="#00b894" fill="none"/><path d="M195 145 L270 150" stroke="#00b894" fill="none"/><path d="M195 145 L440 150" stroke="#00b894" fill="none"/><path d="M665 145 L610 150" stroke="#f0a500" fill="none"/><path d="M665 145 L770 150" stroke="#f0a500" fill="none"/><path d="M665 145 L440 150" stroke="#f0a500" fill="none"/>
-        <rect x="110" y="315" width="640" height="70" rx="14" fill="#fff" stroke="#e3e7ec"/><text x="430" y="342" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1a2233">기술 변화 → 결함·병목 → 고객 손실 → 구매 행동 → 장비 매출·마진</text><text x="430" y="366" text-anchor="middle" font-size="11.5" fill="#5c6675">“HBM4가 어렵다”보다 tester order · 카드 ASP/교체 · inspection insertion · tool-of-record로 검증</text>
+        <!-- demand drivers -->
+        <rect x="35" y="24" width="340" height="82" rx="14" fill="#e0f6ef" stroke="#00b894" stroke-width="1.3"/>
+        <text x="55" y="47" font-size="9.5" font-weight="800" letter-spacing="1.4" fill="#00775f">DRIVER A · ELECTRICAL TEST</text>
+        <text x="205" y="72" text-anchor="middle" font-size="16" font-weight="850" fill="#00594a">HBM4</text>
+        <text x="205" y="92" text-anchor="middle" font-size="11.2" fill="#0a6b58">test seconds · contact density · power · thermal</text>
+        <rect x="485" y="24" width="340" height="82" rx="14" fill="#fff4dc" stroke="#f0a500" stroke-width="1.3"/>
+        <text x="505" y="47" font-size="9.5" font-weight="800" letter-spacing="1.4" fill="#8a6100">DRIVER B · PROCESS CONTROL</text>
+        <text x="655" y="72" text-anchor="middle" font-size="16" font-weight="850" fill="#7a5600">Advanced Packaging</text>
+        <text x="655" y="92" text-anchor="middle" font-size="11.2" fill="#6e5a1e">inspection steps · bonding · hidden interface</text>
+
+        <!-- clean dual buses: Prober / Handler is the shared node -->
+        <path d="M205 106 V136 H430" fill="none" stroke="#00b894" stroke-width="1.6"/>
+        <path d="M655 106 V144 H430" fill="none" stroke="#f0a500" stroke-width="1.6"/>
+        <path d="M100 136 H205 M100 136 V162 M265 136 V162 M430 136 V162" fill="none" stroke="#00b894" stroke-width="1.4"/>
+        <path d="M430 144 H760 M430 144 V162 M595 144 V162 M760 144 V162" fill="none" stroke="#f0a500" stroke-width="1.4"/>
+
+        <!-- beneficiary cards -->
+        <g text-anchor="middle">
+          <rect x="25" y="162" width="150" height="132" rx="13" fill="#f3f6ff" stroke="#3d7bfd"/>
+          <rect x="41" y="176" width="42" height="17" rx="8.5" fill="#dbe7ff"/><text x="62" y="188" font-size="8.5" font-weight="800" fill="#2456c8">TESTER</text>
+          <text x="100" y="216" font-size="14" font-weight="850" fill="#1d3f8f">ATE</text>
+          <text x="100" y="238" font-size="11" fill="#33477a">Advantest · Teradyne</text>
+          <rect x="40" y="258" width="120" height="22" rx="7" fill="#fff" stroke="#d7e1f5"/><text x="100" y="273" font-size="9.4" fill="#42506a">test seconds · orders</text>
+
+          <rect x="190" y="162" width="150" height="132" rx="13" fill="#effaf7" stroke="#00b894"/>
+          <rect x="206" y="176" width="54" height="17" rx="8.5" fill="#d6f4ec"/><text x="233" y="188" font-size="8.5" font-weight="800" fill="#00775f">INTERFACE</text>
+          <text x="265" y="216" font-size="14" font-weight="850" fill="#00594a">Probe · Socket</text>
+          <text x="265" y="236" font-size="10.4" fill="#0a6b58">FormFactor · MJC</text><text x="265" y="251" font-size="10.4" fill="#0a6b58">Technoprobe</text>
+          <rect x="205" y="258" width="120" height="22" rx="7" fill="#fff" stroke="#d5ebe5"/><text x="265" y="273" font-size="9.4" fill="#42506a">ASP · replacement</text>
+
+          <rect x="355" y="162" width="150" height="132" rx="13" fill="#f7f8fa" stroke="#b9c3cf" stroke-width="1.2"/>
+          <rect x="371" y="176" width="47" height="17" rx="8.5" fill="#e9edf2"/><text x="394.5" y="188" font-size="8.5" font-weight="800" fill="#5c6675">SHARED</text>
+          <circle cx="430" cy="184.5" r="3.2" fill="#00b894"/><circle cx="439" cy="184.5" r="3.2" fill="#f0a500"/>
+          <text x="430" y="216" font-size="14" font-weight="850" fill="#34405a">Prober · Handler</text>
+          <text x="430" y="236" font-size="10.4" fill="#5c6675">ACCRETECH</text><text x="430" y="251" font-size="10.4" fill="#5c6675">Cohu · AEM</text>
+          <rect x="370" y="258" width="120" height="22" rx="7" fill="#fff" stroke="#dfe3e8"/><text x="430" y="273" font-size="9.2" fill="#42506a">sites · thermal option</text>
+
+          <rect x="520" y="162" width="150" height="132" rx="13" fill="#fff8e8" stroke="#f0a500"/>
+          <rect x="536" y="176" width="62" height="17" rx="8.5" fill="#f9e9bd"/><text x="567" y="188" font-size="8.5" font-weight="800" fill="#8a6100">INSPECTION</text>
+          <text x="595" y="216" font-size="14" font-weight="850" fill="#7a5600">Inspection</text>
+          <text x="595" y="236" font-size="10.4" fill="#6e5a1e">KLA · Onto · Camtek</text>
+          <rect x="535" y="258" width="120" height="22" rx="7" fill="#fff" stroke="#eee0bc"/><text x="595" y="273" font-size="9.2" fill="#42506a">insertion · sampling</text>
+
+          <rect x="685" y="162" width="150" height="132" rx="13" fill="#f7f8fa" stroke="#b9c3cf"/>
+          <rect x="701" y="176" width="48" height="17" rx="8.5" fill="#e9edf2"/><text x="725" y="188" font-size="8.5" font-weight="800" fill="#5c6675">SERVICE</text>
+          <text x="760" y="216" font-size="14" font-weight="850" fill="#34405a">OSAT</text>
+          <text x="760" y="238" font-size="11" fill="#5c6675">ASE · Amkor</text>
+          <rect x="700" y="258" width="120" height="22" rx="7" fill="#fff" stroke="#dfe3e8"/><text x="760" y="273" font-size="9.2" fill="#42506a">utilization · mix</text>
+        </g>
+
+        <!-- investment translation -->
+        <rect x="55" y="326" width="750" height="80" rx="15" fill="#fff" stroke="#d8dee6" stroke-width="1.2"/>
+        <g font-size="10.5" font-weight="800" text-anchor="middle">
+          <rect x="78" y="344" width="112" height="25" rx="8" fill="#eef2f6"/><text x="134" y="361" fill="#42506a">기술 변화</text>
+          <text x="202" y="361" fill="#8a93a0">→</text>
+          <rect x="214" y="344" width="112" height="25" rx="8" fill="#eef2f6"/><text x="270" y="361" fill="#42506a">결함 · 병목</text>
+          <text x="338" y="361" fill="#8a93a0">→</text>
+          <rect x="350" y="344" width="112" height="25" rx="8" fill="#fff1ef"/><text x="406" y="361" fill="#a13530">고객 손실</text>
+          <text x="474" y="361" fill="#8a93a0">→</text>
+          <rect x="486" y="344" width="112" height="25" rx="8" fill="#e7efff"/><text x="542" y="361" fill="#2456c8">구매 행동</text>
+          <text x="610" y="361" fill="#8a93a0">→</text>
+          <rect x="622" y="344" width="160" height="25" rx="8" fill="#e0f6ef"/><text x="702" y="361" fill="#00775f">장비 매출 · 마진</text>
+        </g>
+        <text x="430" y="391" text-anchor="middle" font-size="10.5" fill="#5c6675">검증 KPI · tester orders · probe-card ASP/교체 · inspection insertion · tool-of-record · utilization</text>
       </g>
     </svg>
     <figcaption>그림 10. 밸류체인 지도 — 같은 테스트 테마라도 HBM4와 첨단 패키징이 매출로 연결되는 경로와 확인할 KPI는 서로 다르다.</figcaption>

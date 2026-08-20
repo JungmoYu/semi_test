@@ -799,7 +799,7 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
           <rect x="190" y="162" width="150" height="132" rx="13" fill="#effaf7" stroke="#00b894"/>
           <rect x="206" y="176" width="54" height="17" rx="8.5" fill="#d6f4ec"/><text x="233" y="188" font-size="8.5" font-weight="800" fill="#00775f">INTERFACE</text>
           <text x="265" y="216" font-size="14" font-weight="850" fill="#00594a">Probe · Socket</text>
-          <text x="265" y="236" font-size="10.4" fill="#0a6b58">FormFactor · MJC</text><text x="265" y="251" font-size="10.4" fill="#0a6b58">Technoprobe</text>
+          <text x="265" y="236" font-size="10.4" fill="#0a6b58">Probe: FormFactor · MJC</text><text x="265" y="251" font-size="10.4" fill="#0a6b58">Socket: Cohu · ISC</text>
           <rect x="205" y="258" width="120" height="22" rx="7" fill="#fff" stroke="#d5ebe5"/><text x="265" y="273" font-size="9.4" fill="#42506a">ASP · replacement</text>
 
           <rect x="355" y="162" width="150" height="132" rx="13" fill="#f7f8fa" stroke="#b9c3cf" stroke-width="1.2"/>
@@ -845,13 +845,14 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
   <table><thead><tr><th>영역</th><th>역할</th><th>주요 기업</th><th>확인할 KPI</th></tr></thead><tbody>
     <tr><td><strong>Inspection · Metrology</strong></td><td>표면·범프·본딩·내부 결함 검사</td><td>KLA, Onto, Camtek</td><td>Tool of record, 검사 단계, sampling, 수주</td></tr>
     <tr><td><strong>ATE</strong></td><td>전기 패턴 인가, 기능·속도 측정</td><td>Advantest, Teradyne</td><td>Test seconds, platform share, tester orders</td></tr>
-    <tr><td><strong>Probe card · Socket</strong></td><td>DUT와 ATE의 전기적 접촉</td><td>FormFactor, MJC, Technoprobe</td><td>ASP, 교체 주기, qualification</td></tr>
+    <tr><td><strong>Probe card</strong></td><td>Wafer·pre-bond 단계에서 die/stack과 ATE를 접촉</td><td>FormFactor, MJC, Technoprobe</td><td>Card ASP, 교체 주기, wafer-level qualification</td></tr>
+    <tr><td><strong>Test socket · Contactor</strong></td><td>Post-bond·final·SLT에서 package DUT와 ATE/load board를 접촉</td><td>Cohu, ISC, Leeno</td><td>Socket ASP, contact life, FT·SLT qualification</td></tr>
     <tr><td><strong>Prober · Handler</strong></td><td>정렬·이송·온도 제어</td><td>ACCRETECH, Cohu, AEM</td><td>Die-level 채택, parallel sites, thermal option</td></tr>
     <tr><td><strong>OSAT · Test service</strong></td><td>조립·테스트 라인 운영</td><td>ASE, Amkor</td><td>가동률, advanced packaging·test mix</td></tr>
   </tbody></table>
 
   <h3>① ATE — 테스트 시간 증가를 장비 대수로 전환</h3><p><strong>Advantest</strong>는 AI SoC와 HBM 메모리 테스트 양쪽에 노출돼 있다. 핵심은 단순 테스터 대수가 아니라 제품당 test seconds와 플랫폼 점유율이다. <strong>Teradyne</strong>은 Magnum 7H를 통해 HBM 베이스 다이와 스택 테스트에서 점유율 회복을 노리는 옵션 성격이 강하다.</p><div class="kpi"><span class="green">Test seconds</span><span>Platform share</span><span>Tester orders</span></div>
-  <h3>② Probe Card — HBM4의 물리적·전기적 접점</h3><p><strong>FormFactor</strong>는 2,048 I/O, 미세 피치, 고속 신호, 고전류, 열팽창이라는 요구가 동시에 모이는 지점에 있다. 프로브카드는 사용 과정에서 마모되기 때문에 신규 qualification뿐 아니라 반복 교체 수요가 생긴다.</p><div class="kpi"><span class="green">Card ASP</span><span>교체 주기</span><span>고전류·thermal mix</span><span>고객 qualification</span></div>
+  <h3>② Probe Card · Socket — 테스트 단계별 물리적·전기적 접점</h3><p><strong>Probe card</strong>는 wafer-level·pre-bond에서 die 또는 stack에 직접 닿아 KGD·KGS를 선별하는 접점이며, FormFactor가 HBM의 미세 피치·고속 신호·고전류·열팽창 요구에 노출된다. 반면 <strong>test socket(contactor)</strong>은 주로 post-bond·final·SLT에서 handler가 공급한 package DUT를 ATE·load board에 연결하는 교체형 인터페이스다. HBM4의 2,048-bit 인터페이스가 모두 일반적인 socket pin으로 노출되는 것은 아니지만, HBM4·AI 패키지의 고속화와 전력·발열 증가는 Cohu·ISC·Leeno 같은 socket 업체에 임피던스 제어, 안정적인 접촉, 저압력·열 대응 성능을 요구한다. Probe tip과 socket의 pin·elastomer가 모두 소모되므로 신규 qualification 이후에도 세정·유지보수와 반복 교체 수요가 이어진다.</p><div class="kpi"><span class="green">Probe-card ASP</span><span>Socket ASP · 교체</span><span>고속·고전류·thermal mix</span><span>FT·SLT qualification</span></div>
   <h3>③ Inspection — HBM4와 3D 패키징에서 검사 지점이 함께 계층화</h3><p><strong>KLA</strong>는 넓은 공정제어 포트폴리오와 설치 기반·서비스 해자가 강점이다. <strong>Onto Innovation</strong>은 2D optical, 3D metrology, IR 검사에 집중해 HBM4 적층과 첨단패키징 양쪽에 직접 노출되며, 작은 매출 기반에서 대형 수주가 실적으로 전환될 때 탄력이 크다.</p><div class="kpi"><span class="green">HBM4 inspection</span><span>Inspection steps</span><span>Sampling</span><span>Backlog</span><span>Tool of record</span></div>
 </section>
 

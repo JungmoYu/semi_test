@@ -100,24 +100,201 @@ main{max-width:920px;margin:0 auto;padding:18px 24px 48px}section{padding-top:46
   </tbody></table>
 
   <h3>첨단 패키징 — 왜 테스트가 앞단으로 이동하는가</h3>
+  <p>패키징의 역사는 <strong>칩을 어떻게 붙이느냐</strong>의 역사다. 그리고 붙이는 방식이 바뀔 때마다 <em class="hl">"붙인 뒤에는 안이 보이지 않는 곳"</em>이 늘어난다. 2D에서 2.5D를 거쳐 3D로 올수록 접합면은 패키지 내부로 숨고, 그 안의 불량은 완제품을 다 만든 뒤에야 드러난다. 이때 폐기되는 것은 불량 다이 하나가 아니라 그때까지 쌓인 모든 것이다.</p>
+
   <figure class="figure">
-    <svg viewBox="0 0 860 365" role="img" aria-label="2.5D와 3D 첨단 패키징에서 검사 단계와 late stage scrap 위험 증가">
-      <defs><marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#5c6675" stroke-width="1.5"/></marker></defs>
+    <svg viewBox="0 0 880 452" role="img" aria-label="2D, 2.5D, 3D 패키지 구조의 진화와 숨은 접합면 증가 비교">
+      <defs>
+        <marker id="evoAr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#8a6100" stroke-width="1.6"/></marker>
+        <linearGradient id="evoGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c3ccd6"/><stop offset="1" stop-color="#f0a500"/></linearGradient>
+      </defs>
       <g font-family="Pretendard,system-ui,sans-serif">
-        <text x="210" y="30" text-anchor="middle" font-size="15" font-weight="800" fill="#42506a">2.5D</text><text x="650" y="30" text-anchor="middle" font-size="15" font-weight="800" fill="#8a6100">3D · 복합 패키징</text>
-        <rect x="70" y="190" width="280" height="24" rx="4" fill="#b8c0cd"/><rect x="115" y="130" width="95" height="55" rx="6" fill="#7aa7ff"/><rect x="225" y="135" width="36" height="45" rx="4" fill="#8fd8c3"/><rect x="270" y="135" width="36" height="45" rx="4" fill="#8fd8c3"/>
-        <text x="162" y="163" text-anchor="middle" font-size="11.5" fill="#1d3f8f">GPU / ASIC</text><text x="247" y="162" text-anchor="middle" font-size="10.5" fill="#00594a">HBM</text><text x="288" y="162" text-anchor="middle" font-size="10.5" fill="#00594a">HBM</text><text x="210" y="235" text-anchor="middle" font-size="11.5" fill="#5c6675">수평 연결 · bump · RDL · interposer</text>
-        <rect x="520" y="205" width="260" height="22" rx="4" fill="#b8c0cd"/><rect x="565" y="155" width="170" height="42" rx="5" fill="#7aa7ff"/><rect x="585" y="105" width="130" height="40" rx="5" fill="#8fd8c3"/><rect x="605" y="60" width="90" height="35" rx="5" fill="#f4cf76"/>
-        <text x="650" y="181" text-anchor="middle" font-size="11" fill="#1d3f8f">active die</text><text x="650" y="130" text-anchor="middle" font-size="11" fill="#00594a">active die</text><text x="650" y="83" text-anchor="middle" font-size="10.5" fill="#7a5600">stack</text>
-        <g stroke="#e2504a" stroke-width="2"><line x1="590" y1="150" x2="710" y2="150" stroke-dasharray="4 4"/><line x1="610" y1="100" x2="690" y2="100" stroke-dasharray="4 4"/></g>
-        <text x="650" y="250" text-anchor="middle" font-size="11.5" fill="#5c6675">hybrid bond · hidden interface · subsurface defect</text>
-        <line x1="365" y1="150" x2="495" y2="150" stroke="#5c6675" marker-end="url(#m2)"/>
-        <text x="430" y="128" text-anchor="middle" font-size="11.5" font-weight="700" fill="#8a6100">관측성 ↓</text><text x="430" y="174" text-anchor="middle" font-size="11.5" font-weight="700" fill="#a13530">late-stage loss ↑</text>
-        <rect x="80" y="285" width="700" height="55" rx="12" fill="#fff" stroke="#e3e7ec"/><text x="430" y="308" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1a2233">공정이 진행될수록 누적 투입가치가 올라가므로, 불량을 더 앞에서 차단할 유인이 커진다</text><text x="430" y="329" text-anchor="middle" font-size="11.5" fill="#5c6675">KGD → pre-bond inspection → bonding process control → post-bond test → final / SLT</text>
+        <text x="440" y="22" text-anchor="middle" font-size="14.5" font-weight="800" fill="#1a2233">패키지 구조의 진화 — 붙이는 방식이 바뀌면 검사할 곳이 바뀐다</text>
+        <text x="440" y="41" text-anchor="middle" font-size="11.5" fill="#5c6675">빨간 점선 = 붙인 뒤에는 밖에서 보이지 않는 접합면(hidden interface)</text>
+
+        <!-- ===== Panel 1 : 2D ===== -->
+        <rect x="16" y="56" width="276" height="288" rx="12" fill="#fbfcfd" stroke="#e3e7ec"/>
+        <text x="154" y="84" text-anchor="middle" font-size="15" font-weight="800" fill="#42506a">2D</text>
+        <text x="154" y="103" text-anchor="middle" font-size="11" fill="#5c6675">단일 칩을 기판에 붙인다</text>
+        <rect x="64" y="214" width="180" height="16" rx="3" fill="#b8c0cd"/>
+        <text x="154" y="226" text-anchor="middle" font-size="9" fill="#4a5462">기판(substrate)</text>
+        <rect x="114" y="176" width="80" height="36" rx="4" fill="#7aa7ff"/>
+        <text x="154" y="199" text-anchor="middle" font-size="11" fill="#12336f">die</text>
+        <line x1="114" y1="213" x2="194" y2="213" stroke="#e2504a" stroke-width="2" stroke-dasharray="4 4"/>
+        <text x="154" y="252" text-anchor="middle" font-size="11" fill="#5c6675">수평 배선 · 단일 접합면</text>
+        <line x1="40" y1="266" x2="268" y2="266" stroke="#e3e7ec" stroke-dasharray="4 4"/>
+        <text x="40" y="288" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">숨은 접합면</text>
+        <text x="268" y="288" text-anchor="end" font-size="12" font-weight="800" fill="#42506a">1개</text>
+        <text x="40" y="314" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">불량 1개 = </text>
+        <text x="268" y="314" text-anchor="end" font-size="12" font-weight="800" fill="#42506a">칩 1개</text>
+        <rect x="40" y="324" width="228" height="6" rx="3" fill="#eef2f6"/>
+        <rect x="40" y="324" width="34" height="6" rx="3" fill="#9aa6b4"/>
+
+        <!-- ===== Panel 2 : 2.5D ===== -->
+        <rect x="302" y="56" width="276" height="288" rx="12" fill="#fbfcfd" stroke="#e3e7ec"/>
+        <text x="440" y="84" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f8f">2.5D</text>
+        <text x="440" y="103" text-anchor="middle" font-size="11" fill="#5c6675">여러 칩을 인터포저 위에 나란히</text>
+        <rect x="350" y="214" width="180" height="16" rx="3" fill="#b8c0cd"/>
+        <text x="440" y="226" text-anchor="middle" font-size="9" fill="#4a5462">기판(substrate)</text>
+        <rect x="356" y="194" width="168" height="16" rx="2" fill="#cfd8e6"/>
+        <text x="440" y="206" text-anchor="middle" font-size="9" fill="#33477a">Si 인터포저</text>
+        <rect x="366" y="156" width="72" height="36" rx="4" fill="#7aa7ff"/>
+        <text x="402" y="179" text-anchor="middle" font-size="10" fill="#12336f">GPU/ASIC</text>
+        <rect x="448" y="156" width="32" height="36" rx="4" fill="#8fd8c3"/>
+        <text x="464" y="179" text-anchor="middle" font-size="9" fill="#00493c">HBM</text>
+        <rect x="486" y="156" width="32" height="36" rx="4" fill="#8fd8c3"/>
+        <text x="502" y="179" text-anchor="middle" font-size="9" fill="#00493c">HBM</text>
+        <g stroke="#e2504a" stroke-width="2" stroke-dasharray="4 4">
+          <line x1="356" y1="193" x2="524" y2="193"/>
+          <line x1="356" y1="213" x2="524" y2="213"/>
+        </g>
+        <text x="440" y="252" text-anchor="middle" font-size="11" fill="#5c6675">마이크로범프 · RDL · 인터포저 계면</text>
+        <line x1="326" y1="266" x2="554" y2="266" stroke="#e3e7ec" stroke-dasharray="4 4"/>
+        <text x="326" y="288" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">숨은 접합면</text>
+        <text x="554" y="288" text-anchor="end" font-size="12" font-weight="800" fill="#1d3f8f">2개 층 · 수만 개 범프</text>
+        <text x="326" y="314" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">불량 1개 = </text>
+        <text x="554" y="314" text-anchor="end" font-size="12" font-weight="800" fill="#1d3f8f">패키지 전체</text>
+        <rect x="326" y="324" width="228" height="6" rx="3" fill="#eef2f6"/>
+        <rect x="326" y="324" width="126" height="6" rx="3" fill="#7aa7ff"/>
+
+        <!-- ===== Panel 3 : 3D ===== -->
+        <rect x="588" y="56" width="276" height="288" rx="12" fill="#fffdf7" stroke="#f3dfae"/>
+        <text x="726" y="84" text-anchor="middle" font-size="15" font-weight="800" fill="#8a6100">3D</text>
+        <text x="726" y="103" text-anchor="middle" font-size="11" fill="#5c6675">칩을 수직으로 쌓는다</text>
+        <rect x="636" y="214" width="180" height="16" rx="3" fill="#b8c0cd"/>
+        <text x="726" y="226" text-anchor="middle" font-size="9" fill="#4a5462">기판(substrate)</text>
+        <rect x="666" y="186" width="120" height="26" rx="3" fill="#7aa7ff"/>
+        <text x="726" y="203" text-anchor="middle" font-size="9.5" fill="#12336f">로직 다이</text>
+        <rect x="666" y="158" width="120" height="26" rx="3" fill="#8fd8c3"/>
+        <text x="726" y="175" text-anchor="middle" font-size="9.5" fill="#00493c">DRAM 다이</text>
+        <rect x="666" y="130" width="120" height="26" rx="3" fill="#8fd8c3"/>
+        <text x="726" y="147" text-anchor="middle" font-size="9.5" fill="#00493c">DRAM 다이</text>
+        <rect x="666" y="102" width="120" height="26" rx="3" fill="#f4cf76"/>
+        <text x="726" y="119" text-anchor="middle" font-size="9.5" fill="#7a5600">DRAM 다이</text>
+        <g stroke="#e2504a" stroke-width="2" stroke-dasharray="4 4">
+          <line x1="666" y1="129" x2="786" y2="129"/>
+          <line x1="666" y1="157" x2="786" y2="157"/>
+          <line x1="666" y1="185" x2="786" y2="185"/>
+          <line x1="666" y1="213" x2="786" y2="213"/>
+        </g>
+        <text x="726" y="252" text-anchor="middle" font-size="11" fill="#5c6675">하이브리드 본딩 · 층마다 새 계면</text>
+        <line x1="612" y1="266" x2="840" y2="266" stroke="#f3dfae" stroke-dasharray="4 4"/>
+        <text x="612" y="288" font-size="10.5" fill="#a8894e" font-family="JetBrains Mono,monospace">숨은 접합면</text>
+        <text x="840" y="288" text-anchor="end" font-size="12" font-weight="800" fill="#8a6100">층수만큼 누적</text>
+        <text x="612" y="314" font-size="10.5" fill="#a8894e" font-family="JetBrains Mono,monospace">불량 1개 = </text>
+        <text x="840" y="314" text-anchor="end" font-size="12" font-weight="800" fill="#8a6100">스택 + 조립가치 전부</text>
+        <rect x="612" y="324" width="228" height="6" rx="3" fill="#fdf3dc"/>
+        <rect x="612" y="324" width="212" height="6" rx="3" fill="#f0a500"/>
+
+        <!-- ===== evolution arrow band ===== -->
+        <line x1="60" y1="386" x2="812" y2="386" stroke="url(#evoGrad)" stroke-width="4" stroke-linecap="round" marker-end="url(#evoAr)"/>
+        <text x="60" y="370" font-size="12" font-weight="700" fill="#5c6675">붙인 뒤에도 안이 보인다</text>
+        <text x="812" y="370" text-anchor="end" font-size="12" font-weight="700" fill="#8a6100">붙이고 나면 안이 보이지 않는다 — 관측성 ↓</text>
+        <text x="60" y="410" font-size="11.5" fill="#5c6675">불량이 태우는 가치 = 칩 1개</text>
+        <text x="812" y="410" text-anchor="end" font-size="11.5" font-weight="700" fill="#a13530">불량이 태우는 가치 = 누적 조립가치 전부 ↑</text>
+        <rect x="16" y="424" width="848" height="24" rx="8" fill="#0d1321"/>
+        <text x="440" y="440" text-anchor="middle" font-size="12" font-weight="700" fill="#dfe4ec">그래서 검사·테스트를 뒤가 아니라 <tspan fill="#70e0c5">앞단으로</tspan> 옮길 유인이 커진다 — 이것이 shift left다</text>
       </g>
     </svg>
-    <figcaption>그림 3. 2.5D에서 3D로 갈수록 숨은 계면과 연결부가 늘고, 접합 후에는 관측성이 낮아져 조기 검사와 KGD의 경제적 가치가 커진다.</figcaption>
+    <figcaption>그림 3. 2D → 2.5D → 3D로 갈수록 숨은 접합면이 늘고, 불량 하나가 태우는 누적 가치가 커진다.</figcaption>
   </figure>
+
+  <h4>Shift left — "나중에 걸러내기"에서 "미리 걸러내기"로</h4>
+  <p><strong>Shift left</strong>는 원래 소프트웨어 개발에서 나온 말이다. 공정을 왼쪽(앞)에서 오른쪽(뒤)으로 그렸을 때, 검증 활동을 <em class="hl">오른쪽에서 왼쪽으로 당긴다</em>는 뜻이다. 반도체 테스트에 그대로 옮기면 이렇게 된다 — 완제품을 다 만든 뒤 최종 테스트에서 걸러내던 방식에서, <strong>붙이기 전에 미리 걸러내는</strong> 방식으로 무게중심이 옮겨간다. 이유는 도덕이 아니라 산수다. 뒤로 갈수록 폐기 비용이 커지므로, 앞에서 잡는 것이 싸다.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 880 430" role="img" aria-label="테스트 무게중심이 최종 테스트에서 웨이퍼 단계로 이동하는 shift left 개념도">
+      <defs>
+        <marker id="shiftAr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#00775f" stroke-width="1.7"/></marker>
+      </defs>
+      <g font-family="Pretendard,system-ui,sans-serif">
+        <text x="440" y="24" text-anchor="middle" font-size="14.5" font-weight="800" fill="#1a2233">Shift Left — 테스트 무게중심의 이동</text>
+
+        <!-- shift arrow -->
+        <path d="M786 76 Q 440 40 96 76" fill="none" stroke="#00775f" stroke-width="2.4" marker-end="url(#shiftAr)"/>
+        <text x="440" y="42" text-anchor="middle" font-size="12" font-weight="800" fill="#00775f">검증을 앞으로 당긴다</text>
+
+        <!-- stage boxes -->
+        <g>
+          <rect x="30" y="92" width="132" height="46" rx="9" fill="#e0f6ef" stroke="#00b894" stroke-width="1.4"/>
+          <text x="96" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#00775f">CP · KGD</text>
+          <text x="96" y="128" text-anchor="middle" font-size="10" fill="#2a3448">웨이퍼 테스트</text>
+
+          <rect x="174" y="92" width="132" height="46" rx="9" fill="#e0f6ef" stroke="#00b894" stroke-width="1.4"/>
+          <text x="240" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#00775f">pre-bond 검사</text>
+          <text x="240" y="128" text-anchor="middle" font-size="10" fill="#2a3448">범프 · 표면 · 워피지</text>
+
+          <rect x="318" y="92" width="132" height="46" rx="9" fill="#f8fafb" stroke="#c3ccd6" stroke-width="1.4"/>
+          <text x="384" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#42506a">본딩</text>
+          <text x="384" y="128" text-anchor="middle" font-size="10" fill="#5c6675">공정 제어 · 계측</text>
+
+          <rect x="462" y="92" width="132" height="46" rx="9" fill="#f8fafb" stroke="#c3ccd6" stroke-width="1.4"/>
+          <text x="528" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#42506a">post-bond 테스트</text>
+          <text x="528" y="128" text-anchor="middle" font-size="10" fill="#5c6675">스택 단위 검증(KGSD)</text>
+
+          <rect x="606" y="92" width="132" height="46" rx="9" fill="#fdf3dc" stroke="#f0a500" stroke-width="1.4"/>
+          <text x="672" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#8a6100">Final · Burn-in</text>
+          <text x="672" y="128" text-anchor="middle" font-size="10" fill="#2a3448">완제품 검증</text>
+
+          <rect x="750" y="92" width="100" height="46" rx="9" fill="#fdf3dc" stroke="#f0a500" stroke-width="1.4"/>
+          <text x="800" y="112" text-anchor="middle" font-size="11.5" font-weight="800" fill="#8a6100">SLT · 출하</text>
+          <text x="800" y="128" text-anchor="middle" font-size="10" fill="#2a3448">실사용 검증</text>
+        </g>
+        <text x="30" y="160" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">← 앞단(early)</text>
+        <text x="850" y="160" text-anchor="end" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace">뒷단(late) →</text>
+
+        <!-- bars -->
+        <line x1="30" y1="356" x2="850" y2="356" stroke="#d5dce4" stroke-width="1.5"/>
+        <text x="24" y="200" text-anchor="end" font-size="10.5" fill="#8a93a0" font-family="JetBrains Mono,monospace"></text>
+
+        <!-- 2D era (gray) and now (green) grouped bars -->
+        <g>
+          <!-- CP·KGD : 20 -> 32 -->
+          <rect x="72" y="313" width="18" height="43" rx="3" fill="#c3ccd6"/>
+          <rect x="94" y="287" width="18" height="69" rx="3" fill="#00b894"/>
+          <!-- pre-bond : 3 -> 18 -->
+          <rect x="216" y="349" width="18" height="7" rx="3" fill="#c3ccd6"/>
+          <rect x="238" y="317" width="18" height="39" rx="3" fill="#00b894"/>
+          <!-- bonding : 2 -> 12 -->
+          <rect x="360" y="352" width="18" height="4" rx="2" fill="#c3ccd6"/>
+          <rect x="382" y="330" width="18" height="26" rx="3" fill="#00b894"/>
+          <!-- post-bond : 5 -> 18 -->
+          <rect x="504" y="345" width="18" height="11" rx="3" fill="#c3ccd6"/>
+          <rect x="526" y="317" width="18" height="39" rx="3" fill="#00b894"/>
+          <!-- final : 60 -> 14 -->
+          <rect x="648" y="226" width="18" height="130" rx="3" fill="#c3ccd6"/>
+          <rect x="670" y="326" width="18" height="30" rx="3" fill="#00b894"/>
+          <!-- SLT : 10 -> 6 -->
+          <rect x="776" y="334" width="18" height="22" rx="3" fill="#c3ccd6"/>
+          <rect x="798" y="342" width="18" height="14" rx="3" fill="#00b894"/>
+        </g>
+
+        <!-- highlight callouts -->
+        <text x="103" y="278" text-anchor="middle" font-size="11" font-weight="800" fill="#00775f">↑ 커진다</text>
+        <text x="657" y="216" text-anchor="middle" font-size="11" font-weight="800" fill="#5c6675">↓ 줄어든다</text>
+
+        <!-- x labels -->
+        <g font-size="10" text-anchor="middle" fill="#5c6675">
+          <text x="96" y="374">CP · KGD</text>
+          <text x="240" y="374">pre-bond</text>
+          <text x="384" y="374">본딩</text>
+          <text x="528" y="374">post-bond</text>
+          <text x="672" y="374">Final</text>
+          <text x="800" y="374">SLT</text>
+        </g>
+
+        <!-- legend -->
+        <g font-size="11.5" fill="#42506a">
+          <rect x="286" y="392" width="13" height="13" rx="3" fill="#c3ccd6"/><text x="305" y="403">2D 시대 — 최종 테스트에 집중</text>
+          <rect x="530" y="392" width="13" height="13" rx="3" fill="#00b894"/><text x="549" y="403">HBM4 · 첨단 패키징 — 앞단으로 분산</text>
+        </g>
+        <text x="440" y="424" text-anchor="middle" font-size="10.5" fill="#8a93a0">개념 도식 — 실제 비율이 아니라 무게중심이 이동하는 방향을 보여주기 위한 예시</text>
+      </g>
+    </svg>
+    <figcaption>그림 3-1. Shift left의 실체 — 테스트 총량이 줄어드는 것이 아니라, 같은 총량이 뒤에서 앞으로 재배치되면서 앞단 검사·테스트의 수요가 커진다.</figcaption>
+  </figure>
+
+  <p>투자 관점에서 중요한 건 이것이다. Shift left는 테스트 총량이 줄어드는 이야기가 아니다. <em class="hl">뒤에 있던 무게가 앞으로 옮겨오면서, 앞단에서 새로 필요해지는 장비와 소모품이 생긴다</em>는 이야기다. 웨이퍼 단계 테스트(프로브카드), 접합 전후 검사·계측(KLA·Onto), 스택 단위 검증(KGSD)이 모두 여기서 나온다.</p>
 
   <h4>첨단 패키징은 하나가 아니다 — CoWoS와 EMIB는 실리콘을 쓰는 방식이 다르다</h4>
   <p>“첨단 패키징이 검사를 앞단으로 끌어당긴다”는 명제를 구체화하려면 <strong>어떤 구조가 어떤 검사 지점을 새로 만드는지</strong>를 봐야 한다. 현재 AI 가속기 패키징은 크게 두 갈래다. TSMC의 <strong>CoWoS</strong>는 칩 아래에 실리콘 인터포저를 깔고 그 위에 칩을 붙이는 방식이고, Intel의 <strong>EMIB</strong>는 인터포저 없이 유기 기판 안에 작은 실리콘 브리지만 묻어 칩끼리 직접 연결한다. 실리콘을 “면”으로 쓰느냐 “점”으로 쓰느냐의 차이이고, 이 차이가 그대로 검사·계측 항목의 차이로 이어진다.</p>

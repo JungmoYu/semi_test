@@ -37,10 +37,9 @@ body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFo
 main{max-width:960px;margin:0 auto;padding:48px 24px 48px}
 .section-label{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:18px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
-.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 26px 22px;text-decoration:none;color:inherit;position:relative;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(13,19,33,.09);border-color:#c9d2dd}
+.card{display:block;background:var(--card);border:1.5px solid var(--signal);border-radius:var(--radius);padding:26px 26px 22px;text-decoration:none;color:inherit;position:relative;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,119,95,.12);border-color:var(--signal-dark)}
 .card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.card.featured{border:1.5px solid var(--signal)}
 .card .icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:16px;background:var(--paper)}
 .card h2{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:9px}
 .card p{font-size:14px;color:var(--muted);margin-bottom:16px;min-height:63px}
@@ -77,7 +76,7 @@ footer .mono{font-size:12px}
 <main>
   <div class="section-label">바로가기</div>
   <div class="grid">
-    <a class="card featured" href="report.html">
+    <a class="card" href="report.html">
       <div class="icon">🧪</div><h2>산업분석 — 왜 지금 테스트인가</h2>
       <p>HBM4 전환과 첨단 패키징 확산이 테스트 수요를 키우는 구조. Why now → 업황과 테스트 플로우 → 밸류체인 → Top Pick까지 한 편의 리포트로.</p>
       <div class="tags"><span class="tag green">딥다이브</span><span class="tag">Why now</span><span class="tag">Top Pick</span></div><span class="go">→</span>
